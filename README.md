@@ -6,7 +6,7 @@ Alec Ewers - Technical Director
 
 Cameron Scott - Creative Director
 
-
+---
 
 Albert Wilcox - Interaction and Integration
 
@@ -18,11 +18,11 @@ John Geronimo - NPC Interaction
 
 Jacob Burghgraef - NPC Interaction
 
-
+---
 
 Trevor Rhodes - World
 
-
+---
 
 Matthew Hargitay - Art
 
