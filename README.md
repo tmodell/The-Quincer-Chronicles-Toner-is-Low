@@ -2,6 +2,12 @@
 The Computer Science 2 collaborative game project
 
 ## The team members:
+
+---
+
+If you aren't on here, then get your name and preference on the spreadsheet!
+
+---
 Alec Ewers - Technical Director
 
 Cameron Scott - Creative Director
