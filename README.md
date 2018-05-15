@@ -1,6 +1,16 @@
 # The Quincer Chronicles: Toner is Low
 The Computer Science 2 collaborative game project
 
+## Intermediate milestones for Friday, May 18:
+
+World: Move a sprite around a bounded area
+
+NPC: Create a basic text-based conversation
+
+Combat: Move a sprite around an isometric area
+
+Art: Main characters, enemies, and tiles prototyped
+
 ## The team members:
 
 ---
