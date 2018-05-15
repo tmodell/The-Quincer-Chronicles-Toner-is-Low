@@ -6,7 +6,7 @@ package tonerislow;
 
 /**
  *
- * @author alec.ewers
+ * @author IB CS 2 SL
  */
 public class TonerIsLow {
 
