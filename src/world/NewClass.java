@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tonerislow;
+package world;
 
 /**
  *
  * @author trevor.rhodes
  */
-public class World {
+public class NewClass {
     
 }
