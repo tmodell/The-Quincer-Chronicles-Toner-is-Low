@@ -32,6 +32,6 @@ Trevor Rhodes - World
 
 Matthew Hargitay - Art
 
-Weston Monroes - Art
+Weston Monroe - Art
 
 Rajul Bains - Sound
