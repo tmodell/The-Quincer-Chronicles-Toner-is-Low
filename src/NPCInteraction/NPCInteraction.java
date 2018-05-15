@@ -10,5 +10,5 @@ package NPCInteraction;
  * @author john.geronimo
  */
 public class NPCInteraction {
-    
+//Make it like a visual novel ( ͡° ͜ʖ ͡°)
 }
