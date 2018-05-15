@@ -1,5 +1,6 @@
 /*
  * This is madness, I say!
+ * Though no more than any other.
  */
 
 package tonerislow;
