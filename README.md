@@ -22,9 +22,9 @@ Samuel Vasquez - Combat Interaction
 
 John Geronimo - NPC Interaction
 
-Jacob Burghgraef - NPC Interaction
-
 ---
+
+Jacob Burghgraef - World
 
 Trevor Rhodes - World
 
