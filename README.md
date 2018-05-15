@@ -22,6 +22,8 @@ Samuel Vasquez - Combat Interaction
 
 John Geronimo - NPC Interaction
 
+Dzuy Nguyen - NPC Interaction
+
 ---
 
 Jacob Burghgraef - World
