@@ -31,17 +31,17 @@ public class soundController {
     }
     
     public void trackOne() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
-         Sound = new File("./src/trackOne.wav");
+         Sound = new File("./src/Sound/trackOne.wav");
          changeAudio(Sound);
     }
     
     public void trackTwo() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
-         Sound = new File("./src/trackTwo.wav");
+         Sound = new File("./src/Sound/trackTwo.wav");
          changeAudio(Sound);
     }
     
     public void trackThree() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
-         Sound = new File("./src/trackThree.wav");
+         Sound = new File("./src/Sound/trackThree.wav");
          changeAudio(Sound);
     }
     
