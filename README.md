@@ -28,17 +28,27 @@ Albert Wilcox - Interaction and Integration
 
 Jeevan Bhullar - Interaction and Integration
 
+Interaction and integration means working with all of the teams to create the state machine and make sure that each element can be integrated into the game whole.
+
 Samuel Vasquez - Combat Interaction
+
+Dzuy Nguyen- Combat Interaction
+
+Combat interaction means working out how the combat will work, from movement on an isometric grid to weapon effects.
 
 John Geronimo - NPC Interaction
 
-Dzuy Nguyen - NPC Interaction
+Earl Ranario - NPC Interaction
+
+NPC interaction means working out how to talk to NPCs and get or give things to them such that the player has updated statuses.
 
 ---
 
 Jacob Burghgraef - World
 
 Trevor Rhodes - World
+
+World means making the world map and making it posssible to move through it and trigger events through interactions.
 
 ---
 
@@ -47,3 +57,5 @@ Matthew Hargitay - Art
 Weston Monroe - Art
 
 Rajul Bains - Sound
+
+The art and sound team is responsible for creating the assets that the other teams will use.
