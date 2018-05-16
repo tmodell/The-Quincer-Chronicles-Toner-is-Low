@@ -12,18 +12,14 @@ import javax.swing.JFrame;
  */
 public class TonerIsLow {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         JFrame main = new JFrame();
         main.setExtendedState(JFrame.MAXIMIZED_BOTH);
         main.setUndecorated(true);
         main.setResizable(false);
-        main.getContentPane().setBackground(Color.BLACK);
+        main.getContentPane().setBackground(new Color(204, 255, 0));
         main.setVisible(true);
         main.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        
         
         while (true)
         {
