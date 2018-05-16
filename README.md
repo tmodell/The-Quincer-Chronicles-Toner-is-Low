@@ -28,13 +28,13 @@ Albert Wilcox - Interaction and Integration
 
 Jeevan Bhullar - Interaction and Integration
 
-Iteraction and integration means working with all of the teams to create the state machine and make sure that each element can be integrated into the game whole.
+Interaction and integration means working with all of the teams to create the state machine and make sure that each element can be integrated into the game whole.
 
 Samuel Vasquez - Combat Interaction
 
 Dzuy Nguyen- Combat Interaction
 
-Combat interaction means working out how the combat will work, from movement to weapon effects.
+Combat interaction means working out how the combat will work, from movement on an isometric grid to weapon effects.
 
 John Geronimo - NPC Interaction
 
