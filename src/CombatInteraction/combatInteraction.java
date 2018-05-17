@@ -9,6 +9,9 @@ package CombatInteraction;
  *
  * @author samuel.vasquez
  */
+
+import java.awt.*;
+        
 public class combatInteraction {
     
 }
