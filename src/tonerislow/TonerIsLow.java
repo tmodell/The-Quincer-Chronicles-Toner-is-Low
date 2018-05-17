@@ -1,7 +1,7 @@
 /*
  * this demo is working.
  */
-
+//testing
 package tonerislow;
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -20,10 +20,5 @@ public class TonerIsLow {
         main.getContentPane().setBackground(new Color(204, 255, 0));
         main.setVisible(true);
         main.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        
-        while (true)
-        {
-            main.requestFocus();
-        }
     }
 }
