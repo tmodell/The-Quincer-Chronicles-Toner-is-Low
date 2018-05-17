@@ -20,11 +20,5 @@ public class TonerIsLow {
         main.getContentPane().setBackground(new Color(204, 255, 0));
         main.setVisible(true);
         main.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        
-        while (true)
-        {
-            main.setAlwaysOnTop(true);
-            main.requestFocus();
-        }
     }
 }
