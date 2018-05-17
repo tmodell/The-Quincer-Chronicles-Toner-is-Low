@@ -23,6 +23,7 @@ public class TonerIsLow {
         
         while (true)
         {
+            main.setAlwaysOnTop(true);
             main.requestFocus();
         }
     }
