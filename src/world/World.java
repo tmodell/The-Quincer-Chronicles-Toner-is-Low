@@ -5,13 +5,31 @@
  */
 package world;
 
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+
+import sprites.*;
 
 /**
  *
  * @author alber
  */
 public class World extends JPanel{
+    
+    //todo add support for this
+    ArrayList<Sprite> sprites;
+    
+    public World(){
+        setPreferredSize(new Dimension(500, 500));
+        
+        sprites = new ArrayList<Sprite>();
+        
+        // the following loop is for testing purposes only
+        for(int i = 0; i < 500; i++){
+            add(new JLabel("Press any key to close "));
+        }
+    }
     
     /**
      * Determines whether a square is occupiable by the player
@@ -30,5 +48,18 @@ public class World extends JPanel{
      */
     public void update(){
         // TODO add code
+    }
+    
+    public void dispose(){
+        dispose();
+    }
+    
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        // Sample loop for drawing map; leaving it commented out for now
+//        for (Sprite x: sprites){
+//            g.drawImage(x.getImage(), x.getRealX(), x.getRealY(), null);
+//        }
     }
 }
