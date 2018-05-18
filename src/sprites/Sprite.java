@@ -41,6 +41,7 @@ public abstract class Sprite {
      */
     public int getRealY(){
         int realY = y * GRID_SIZE;
+        realY += GRID_SIZE;
         realY -= image.getHeight(null);
         return realY;
     }
