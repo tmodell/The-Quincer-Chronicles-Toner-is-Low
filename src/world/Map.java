@@ -103,5 +103,6 @@ public class Map {
     public Iterator getSprites() {
         return sprites.iterator();
     }
-
+//26 by 14 for world map
+    //each tile 64 by 64 pixels
 }
