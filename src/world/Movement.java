@@ -10,5 +10,5 @@ package world;
  */
 
 public class Movement {
-    
+    //what is this class?
 }

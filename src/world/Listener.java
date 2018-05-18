@@ -20,19 +20,26 @@ public class Listener implements KeyListener{
         this.world = world;
     }
     
+    // ignore these methods
     @Override
-    public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void keyTyped(KeyEvent ke) {}
+    @Override
+    public void keyReleased(KeyEvent ke) {}
 
+    /**
+     * This method handles user input for motion.
+     * 
+     * NOTE: this should be where input for other actions is handled as well IMO
+     * @param ke Don't worry about this parameter
+     */
     @Override
-    public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void keyPressed(KeyEvent ke) {
+        world.frame.dispose();
+        
+        int key = ke.getKeyCode();
+        if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT 
+                || key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN){
+            world.handleMovementKey(key);
+        }
     }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

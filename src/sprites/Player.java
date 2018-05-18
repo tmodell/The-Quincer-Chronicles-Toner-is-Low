@@ -8,7 +8,7 @@ import world.World;
  *
  * @author albert.wilcox
  */
-public class Player extends Sprite implements KeyListener{
+public class Player extends Sprite{
     static final String PLAYER_IMAGE_URL = "TODO add url";
     
     World world;
@@ -21,65 +21,20 @@ public class Player extends Sprite implements KeyListener{
         this.world = world;
     }
 
-    @Override
-    public void keyTyped(KeyEvent ke) {}
-    
-    @Override
-    public void keyReleased(KeyEvent ke) {}
-
-    /**
-     * This method handles user input for motion.
-     * 
-     * NOTE: this should be where input for other actions is handled as well IMO
-     * @param ke Don't worry about this parameter
-     */
-    @Override
-    public void keyPressed(KeyEvent ke) {
-        int key = ke.getKeyCode();
-        int hypotheticalX, hypotheticalY;
-        switch (key){
-            case KeyEvent.VK_LEFT:
-                hypotheticalX = x - 1;
-                // check whether the square is occupiable
-                if (world.isOccupiable(hypotheticalX, y)){
-                    x = hypotheticalX;
-                    world.update();
-                } else{
-                    // maybe add code for what to do if a square is unoccupiable
-                }
-                break;
-            case KeyEvent.VK_RIGHT:
-                hypotheticalX = x + 1;
-                // check whether the square is occupiable
-                if (world.isOccupiable(hypotheticalX, y)){
-                    x = hypotheticalX;
-                    world.update();
-                } else{
-                    // maybe add code for what to do if a square is unoccupiable
-                }
-                break;
-            case KeyEvent.VK_UP:
-                hypotheticalY = y - 1;
-                // check whether the square is occupiable
-                if (world.isOccupiable(x, hypotheticalY)){
-                    y = hypotheticalY;
-                    world.update();
-                } else{
-                    // maybe add code for what to do if a square is unoccupiable
-                }
-                break;
-            case KeyEvent.VK_DOWN:
-                hypotheticalY = y + 1;
-                // check whether the square is occupiable
-                if (world.isOccupiable(x, hypotheticalY)){
-                    y = hypotheticalY;
-                    world.update();
-                } else{
-                    // maybe add code for what to do if a square is unoccupiable
-                }
-                break;
-            
-               
-        }
+    public void left(){
+        x -= 1;
     }
+    
+    public void right(){
+        x += 1;
+    }
+    
+    public void down(){
+        y += 1;
+    }
+    
+    public void up(){
+        y -= 1;
+    }
+    
 }

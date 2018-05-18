@@ -14,14 +14,14 @@ import java.awt.event.KeyListener;
  * This is the main class and is the one that houses the world
  * @author alber
  */
-public class MainFrame extends JFrame implements KeyListener{
+public class MainFrame extends JFrame{
     
     World world;
     
     public MainFrame(){
         super();
         
-        world = new World();
+        world = new World(this);
         //TODO create objects for toolbar, dialogue box and stat bar
         
         init();
@@ -30,7 +30,7 @@ public class MainFrame extends JFrame implements KeyListener{
     public void init(){
         //world = new World();
         world.setFocusable(true);
-        world.addKeyListener(this);
+        world.addKeyListener(new Listener(world));
         getContentPane().add(world);
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -42,16 +42,4 @@ public class MainFrame extends JFrame implements KeyListener{
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    
-    @Override
-    public void keyTyped(KeyEvent e) {}
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        System.out.println("Hey");
-        dispose();
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {}
 }
