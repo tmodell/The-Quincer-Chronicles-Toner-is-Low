@@ -112,8 +112,10 @@ public class World extends JPanel{
                     // maybe add code for what to do if a square is unoccupiable
                 }
                 break;
-            
-               
         }
+    }
+    
+    public Player getPlayer(){
+        return player;
     }
 }

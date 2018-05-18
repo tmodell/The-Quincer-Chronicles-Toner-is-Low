@@ -44,8 +44,8 @@ public class MainFrame extends JFrame{
         //interaction
         if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_Z
             || key == KeyEvent.VK_X){
-        //TODO handle interactions
-    }
+            //TODO handle interactions
+        }
     }
     
     public void init(){
@@ -62,5 +62,17 @@ public class MainFrame extends JFrame{
         setVisible(true);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    /**
+     * If you can't figure out this method's function
+     * you probably should have done world religions
+     */
+    public void updateWorld(){
+        world.update();
+    }
+    
+    public World getWorld(){
+        return world;
     }
 }
