@@ -30,9 +30,14 @@ public class MainFrame extends JFrame{
     public void handleKeyPush(KeyEvent ke){
         int key = ke.getKeyCode();
         if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT 
-                || key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN){
+                || key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN
+                || key == KeyEvent.VK_W || key == KeyEvent.VK_A
+                || key == KeyEvent.VK_S || key == KeyEvent.VK_D){
             world.handleMovementKey(key);
         }
+        
+        //TODO key handling for interaction
+        //TODO key handling for combat
     }
     
     public void init(){
