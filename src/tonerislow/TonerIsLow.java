@@ -5,6 +5,7 @@
 package tonerislow;
 import java.awt.Color;
 import javax.swing.JFrame;
+import world.MainFrame;
 
 /**
  *
@@ -12,13 +13,9 @@ import javax.swing.JFrame;
  */
 public class TonerIsLow {
 
+    static MainFrame mainFrame;
+    
     public static void main(String[] args) {
-        JFrame main = new JFrame();
-        main.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        main.setUndecorated(true);
-        main.setResizable(false);
-        main.getContentPane().setBackground(new Color(204, 255, 0));
-        main.setVisible(true);
-        main.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        mainFrame = new MainFrame();
     }
 }
