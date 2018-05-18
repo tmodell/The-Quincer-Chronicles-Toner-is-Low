@@ -26,11 +26,19 @@ public class MainFrame extends JFrame{
         
         init();
     }
-
+    
+    public void handleKeyPush(KeyEvent ke){
+        int key = ke.getKeyCode();
+        if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT 
+                || key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN){
+            world.handleMovementKey(key);
+        }
+    }
+    
     public void init(){
         //world = new World();
         world.setFocusable(true);
-        world.addKeyListener(new Listener(world));
+        world.addKeyListener(new Listener(this));
         getContentPane().add(world);
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);

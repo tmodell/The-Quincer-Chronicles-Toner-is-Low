@@ -14,10 +14,10 @@ import java.awt.event.KeyListener;
  */
 public class Listener implements KeyListener{
 
-    World world;
+    MainFrame frame;
     
-    public Listener (World world){
-        this.world = world;
+    public Listener (MainFrame frame){
+        this.frame = frame;
     }
     
     // ignore these methods
@@ -27,19 +27,13 @@ public class Listener implements KeyListener{
     public void keyReleased(KeyEvent ke) {}
 
     /**
-     * This method handles user input for motion.
+     * This method handles user input.
      * 
      * NOTE: this should be where input for other actions is handled as well IMO
      * @param ke Don't worry about this parameter
      */
     @Override
     public void keyPressed(KeyEvent ke) {
-        world.frame.dispose();
-        
-        int key = ke.getKeyCode();
-        if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT 
-                || key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN){
-            world.handleMovementKey(key);
-        }
+        frame.dispose();
     }
 }
