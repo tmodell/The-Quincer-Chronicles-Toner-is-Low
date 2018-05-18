@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 public abstract class Sprite {
     int x;
     int y;
+    
     //int realX;
     //int realY;
     Image image;
