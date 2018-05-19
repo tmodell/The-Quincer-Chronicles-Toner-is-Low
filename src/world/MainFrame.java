@@ -66,7 +66,7 @@ public class MainFrame extends JFrame{
     
     /**
      * If you can't figure out this method's function
-     * you probably should have done world religions
+     * you probably should have taken world religions
      */
     public void updateWorld(){
         world.update();
