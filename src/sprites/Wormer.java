@@ -13,17 +13,41 @@ import world.*;
  */
 public class Wormer extends Movable{
     static final String WORMER_IMAGE_URL = "insert image url here";
+    static final int MAX_HEALTH = 100;
     
     MainFrame frame;
     Player player;
+    
+    int health;
     
     private volatile boolean alive = true;
     
     WormerThread thread;
     
+    /**
+     * Creates a Wormer with default health
+     * @param frame The main frame
+     */
     public Wormer(MainFrame frame){
         super("WORMER_IMAGE_URL");
         this.frame = frame;
+        
+        health = MAX_HEALTH;
+        
+        thread = new WormerThread(this);
+        thread.start();
+    }
+    
+    /**
+     * Creates a wormer with custom health
+     * @param frame The main frame
+     * @param health The wormer's heath
+     */
+    public Wormer(MainFrame frame, int health){
+        super("WORMER_IMAGE_URL");
+        this.frame = frame;
+        
+        this.health = health;
         
         thread = new WormerThread(this);
         thread.start();
@@ -64,6 +88,15 @@ public class Wormer extends Movable{
             
             frame.updateWorld();
             return false;
+        }
+        
+        /**
+         * Call this method when the Wormer has been attacked
+         * @param damage How much damage to do to the wormer (poor guy)
+         */
+        public void strike(int damage){
+            health -= damage;
+            if (health < 0) kill();
         }
         
         /**
