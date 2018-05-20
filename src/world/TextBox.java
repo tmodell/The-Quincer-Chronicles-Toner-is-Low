@@ -7,6 +7,7 @@ package world;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
+import java.awt.*;
 
 import npcinteraction.*;
 
@@ -22,6 +23,8 @@ public class TextBox extends JPanel{
     public TextBox(MainFrame frame){
         super();
         this.frame = frame;
+        setPreferredSize(new Dimension(1664 , 184));
+        setBackground(Color.RED);
     }
     
     public void handleInteractionKey (int key){

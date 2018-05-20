@@ -16,17 +16,58 @@ import java.awt.event.KeyListener;
  */
 public class MainFrame extends JFrame{
     
+    JPanel mainPanel;
+    
     World world;
     TextBox box;
+    SideBar bar;
     
     public MainFrame(){
         super();
         
+        mainPanel = new JPanel();
         world = new World(this);
         box = new TextBox(this);
-        //TODO create objects for toolbar, dialogue box and stat bar
+        bar = new SideBar(this);
         
         init();
+    }
+    
+    public void init(){
+        world.setFocusable(true);
+        world.addKeyListener(new Listener(this));
+
+        box.setFocusable(false);
+        bar.setFocusable(false);
+        
+        //TODO work needs to be done to figure out how to lay these components out properly
+        
+        getContentPane().add(world, BorderLayout.CENTER);
+        getContentPane().add(box, BorderLayout.SOUTH);
+        getContentPane().add(bar, BorderLayout.WEST);
+        
+//        GroupLayout g = new GroupLayout(mainPanel);
+//        g.setHorizontalGroup(g.createSequentialGroup()
+//            .addComponent(bar)
+//            .addGroup(g.createParallelGroup()
+//                .addComponent(world)
+//                .addComponent(box)));
+//        g.setVerticalGroup(g.createParallelGroup()
+//            .addComponent(bar)
+//            .addGroup(g.createSequentialGroup()
+//                .addComponent(world)
+//                .addComponent(box)));
+//        mainPanel.setLayout(g);
+//        getContentPane().add(mainPanel);
+        
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
+        setResizable(false);
+        //setFocusable(true);
+        //getContentPane().setBackground(new Color(204, 255, 0));
+        setVisible(true);
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public void handleKeyPush(KeyEvent ke){
@@ -59,22 +100,6 @@ public class MainFrame extends JFrame{
             }
         }
         
-    }
-    
-    public void init(){
-        //world = new World();
-        world.setFocusable(true);
-        world.addKeyListener(new Listener(this));
-        getContentPane().add(world);
-        
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
-        setResizable(false);
-        //setFocusable(true);
-        //getContentPane().setBackground(new Color(204, 255, 0));
-        setVisible(true);
-        
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     /**
