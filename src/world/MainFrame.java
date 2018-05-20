@@ -17,11 +17,13 @@ import java.awt.event.KeyListener;
 public class MainFrame extends JFrame{
     
     World world;
+    TextBox box;
     
     public MainFrame(){
         super();
         
         world = new World(this);
+        box = new TextBox(this);
         //TODO create objects for toolbar, dialogue box and stat bar
         
         init();
@@ -29,23 +31,34 @@ public class MainFrame extends JFrame{
     
     public void handleKeyPush(KeyEvent ke){
         int key = ke.getKeyCode();
-        //Movement
-        if (key == KeyEvent.VK_W || key == KeyEvent.VK_A
-                || key == KeyEvent.VK_S || key == KeyEvent.VK_D){
-            world.handleMovementKey(key);
+        
+        // Checks whether the user is currently in an NPC interaction
+        if (!box.active()){
+            //Movement
+            if (key == KeyEvent.VK_W || key == KeyEvent.VK_A
+                    || key == KeyEvent.VK_S || key == KeyEvent.VK_D){
+                world.handleMovementKey(key);
+            }
+
+            //Combat
+            if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT 
+                    || key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN){
+                //TODO handling combat
+            }
+
+            // Beginning an interaction
+            if (!box.active() && key == KeyEvent.VK_SPACE){
+                //TODO code to begin an interaction
+            }
+        // what to do if the user is in an npc interaction.
+        }else{
+            //interaction
+            if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_Z
+                || key == KeyEvent.VK_X){
+                //TODO handle interactions
+            }
         }
         
-        //Combat
-        if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT 
-                || key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN){
-            //TODO handling combat
-        }
-        
-        //interaction
-        if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_Z
-            || key == KeyEvent.VK_X){
-            //TODO handle interactions
-        }
     }
     
     public void init(){
