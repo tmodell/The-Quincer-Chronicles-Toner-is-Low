@@ -40,6 +40,26 @@ public class World extends JPanel{
     }
     
     /**
+     * This method is called when the player attacks
+     * @param x
+     * @param y
+     * @param damage 
+     */
+    public void PlayerAttack(int x, int y, int damage){
+        //TODO add logic for player attacks
+    }
+    
+    /**
+     * This method is called when a wormer attacks
+     * @param x 
+     * @param y
+     * @param damage 
+     */
+    public void WormerAttack(int x, int y, int damage){
+        // TODO add logic for wormer attacks
+    }
+    
+    /**
      * Determines whether a square is occupiable by the player
      * @param x the square's x position
      * @param y the square's y position

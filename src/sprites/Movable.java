@@ -24,6 +24,7 @@ public abstract class Movable extends Sprite{
         super(s);
     }
     
+    // TODO add code to notify the world about movements
     public void left(){
         x -= 1;
         orientation = ORIENTATION_LEFT;

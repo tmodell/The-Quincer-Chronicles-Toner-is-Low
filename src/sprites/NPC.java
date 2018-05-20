@@ -9,6 +9,6 @@ package sprites;
  *
  * @author albert.wilcox
  */
-public abstract class NPC {
+public class NPC {
     
 }

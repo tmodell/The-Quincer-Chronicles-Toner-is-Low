@@ -6,19 +6,22 @@
 package sprites;
 
 
+import javax.swing.ImageIcon;
 import world.*;
 /**
  *
  * @author albert.wilcox
  */
 public class Wormer extends Movable{
-    static final String WORMER_IMAGE_URL = "insert image url here";
-    static final int MAX_HEALTH = 100;
+    static final String[] WORMER_IMAGE_URLS = {"down facing URL", "up facing url", "left facing url", "right facing url"};
+    static final int DEFAULT_HEALTH = 100;
+    static final int DEFAULT_DAMAGE = 10;
     
-    MainFrame frame;
+    World world;
     Player player;
     
     int health;
+    int damage = DEFAULT_DAMAGE;
     
     private volatile boolean alive = true;
     
@@ -26,13 +29,13 @@ public class Wormer extends Movable{
     
     /**
      * Creates a Wormer with default health
-     * @param frame The main frame
+     * @param world The world
      */
-    public Wormer(MainFrame frame){
-        super("WORMER_IMAGE_URL");
-        this.frame = frame;
+    public Wormer(World world){
+        super(WORMER_IMAGE_URLS[0]);
+        this.world = world;
         
-        health = MAX_HEALTH;
+        health = DEFAULT_HEALTH;
         
         thread = new WormerThread(this);
         thread.start();
@@ -43,9 +46,9 @@ public class Wormer extends Movable{
      * @param frame The main frame
      * @param health The wormer's heath
      */
-    public Wormer(MainFrame frame, int health){
-        super("WORMER_IMAGE_URL");
-        this.frame = frame;
+    public Wormer(World world, int health){
+        super(WORMER_IMAGE_URLS[0]);
+        this.world = world;
         
         this.health = health;
         
@@ -55,6 +58,7 @@ public class Wormer extends Movable{
     
     public void kill(){
         alive = false;
+        // TODO logic to let the world know the wormer has died
     }
 
     private class WormerThread extends Thread{
@@ -86,7 +90,7 @@ public class Wormer extends Movable{
                 else down();
             }
             
-            frame.updateWorld();
+            world.update();
             return false;
         }
         
@@ -94,7 +98,7 @@ public class Wormer extends Movable{
          * Call this method when the Wormer has been attacked
          * @param damage How much damage to do to the wormer (poor guy)
          */
-        public void strike(int damage){
+        public void recieveStrike(int damage){
             health -= damage;
             if (health < 0) kill();
         }
@@ -103,7 +107,22 @@ public class Wormer extends Movable{
          * This method will attack the user
          */
         public void attack(){
-            // todo attack logic
+            int destX = x, destY = y;
+            switch (orientation){
+                case 0:
+                    destY++;
+                    break;
+                case 1:
+                    destY--;
+                    break;
+                case 2:
+                    destX--;
+                    break;
+                case 3:
+                    destX++;
+                    break;
+            }
+            world.WormerAttack(x, y, damage);
         }
         
         // TODO this wormer ai needs alot of work
@@ -119,5 +138,33 @@ public class Wormer extends Movable{
                 } catch (InterruptedException e) {/*lazy exception handling*/}
             }
         }
+    }
+    
+    @Override
+    public void left(){
+        super.left();
+        ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
+        image = ii.getImage();
+    }
+    
+    @Override
+    public void right(){
+        super.right();
+        ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
+        image = ii.getImage();
+    }
+    
+    @Override
+    public void up(){
+        super.up();
+        ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
+        image = ii.getImage();
+    }
+    
+    @Override
+    public void down(){
+        super.down();
+        ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
+        image = ii.getImage();
     }
 }
