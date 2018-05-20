@@ -18,13 +18,17 @@ import sprites.*;
  */
 public class World extends JPanel{
     
+    public static final int GRID_SIZE = 64;
+    public static final int WIDTH = 26;
+    public static final int HEIGHT = 14;
+    
     //todo add support for this
     ArrayList<Sprite> sprites;
     Player player;
     MainFrame frame;
-    
+        
     public World(MainFrame frame){
-        setPreferredSize(new Dimension(500, 500));
+        setSize(new Dimension(WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE));
         
         sprites = new ArrayList<Sprite>();
         this.frame = frame;
