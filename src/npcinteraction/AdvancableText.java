@@ -63,6 +63,10 @@ public class AdvancableText {
         else return currentNode.getMessage();
     }
     
+    public String nextLine(){
+        return nextLine(1);
+    }
+    
     /**
      * This will be used to make a tree of values to hold an interaction.
      * For this constructor to interpret the file correctly the file must
@@ -115,17 +119,25 @@ public class AdvancableText {
         }
         
         public TreeNode getChild(int num){
-            if (num == 1) return child1;
-            if (num == 2) return child2;
-            return null;
+            switch (num){
+                case 1:
+                    return child1;
+                case 2:
+                    return child2;
+                default:
+                    return null;
+            }
         }
         
         public String getMessage(){
             return message;
         }
-        
-        public boolean isLinear(){
-            return child2 == null;
-        }
     }
+    
+    public int getOptionCount(){
+            int count = 0;
+            if (currentNode.getChild(1) != null) count += 1;
+            if (currentNode.getChild(2) != null) count += 1;
+            return count;
+        }
 }
