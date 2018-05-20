@@ -20,7 +20,7 @@ public abstract class Sprite {
     //int realY;
     Image image;
     
-    static final int GRID_SIZE = 100; // TODO add grid size info
+    static final int GRID_SIZE = 64;
     
     public Sprite(String url){
         ImageIcon ii = new ImageIcon(url);
