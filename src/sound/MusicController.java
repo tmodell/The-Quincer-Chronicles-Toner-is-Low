@@ -7,6 +7,14 @@ import java.io.IOException;
 import java.net.*;
 import javax.sound.sampled.*;
 
+/*
+Implementation instructions
+If music is already playing, must run stopAudio otherwise stream control will be lost
+If music has stopped, must reinitialize the stream
+running track set method will set the track and play the music
+stopAudio will pause the stream, startAudio will resume/play the stream
+*/
+
 public class MusicController {
     
     public static File Sound;
