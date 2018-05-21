@@ -8,6 +8,8 @@ package npcinteraction;
 import java.io.*;
 import java.util.Scanner;
 
+import sprites.Player;
+
 /**
  *
  * @author albert.wilcox
@@ -16,6 +18,7 @@ public class AdvancableText {
     
     // Don't even try to figure out how this works lol
     TreeNode topNode, currentNode;
+    Player player;
     
     //Test purposes only
 //    public static void main(String[] args) throws IOException{
@@ -64,6 +67,8 @@ public class AdvancableText {
             if (inputStream != null) inputStream.close();
         }
         
+        player = tonerislow.TonerIsLow.getMainFrame().getWorld().getPlayer();
+        
         topNode = new TreeNode(s, ">");
         currentNode = topNode;
     }
@@ -78,7 +83,37 @@ public class AdvancableText {
     }
     
     public String nextLine(){
-        return nextLine(1);
+        String s = nextLine(1);
+        
+        return s;
+    }
+    
+    public void checkHealthIncrease(String s){
+        if (s.contains("~h")){
+            int index = s.indexOf("~");
+            s = s.replace("~h", "");
+            String sub = s.substring(index, s.length());
+            int dH = Integer.parseInt(sub);
+            player.setMaxHealth(dH);
+        }
+    }
+    
+    public void checkHealthRestore(String s){
+        if (s.contains("~r")){
+            s = s.replace("~r", "");
+            player.restoreHealth();
+        }
+    }
+    
+    // TODO finish this method
+    public void checkDamageIncrease(String s){
+        if (s.contains("~d")){
+            int index = s.indexOf("~");
+            s = s.replace("~d", "");
+            String sub = s.substring(index, s.length());
+            int dH = Integer.parseInt(sub);
+            player.setMaxHealth(dH);
+        }
     }
     
     /**

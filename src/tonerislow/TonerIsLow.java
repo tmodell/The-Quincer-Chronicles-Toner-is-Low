@@ -18,4 +18,8 @@ public class TonerIsLow {
     public static void main(String[] args) {
         mainFrame = new MainFrame();
     }
+    
+    public static MainFrame getMainFrame(){
+        return mainFrame;
+    }
 }

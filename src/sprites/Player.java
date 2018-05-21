@@ -26,7 +26,24 @@ public class Player extends Movable{
         
         this.world = world;
     }
-
+    
+    public void restoreHealth(){
+        health = maxHealth;
+    }
+    
+    public void increaseHealth(int value){
+        health += value;
+        if (health > maxHealth) health = maxHealth;
+    }
+    
+    public void setMaxHealth(int newHealth){
+        this.maxHealth = newHealth;
+    }
+    
+    public void setDamage(int damage){
+        this.damage = damage;
+    }
+    
     public void recieveStrike(int damage){
         health -= damage;
         //TODO add code to handle player death
