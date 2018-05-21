@@ -9,6 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import sound.MusicController;
 
 /**
  * This is the main class and is the one that houses the world
@@ -34,6 +40,12 @@ public class MainFrame extends JFrame{
     }
     
     public void init(){
+        try {
+            MusicController.trackOne();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         world.setFocusable(true);
         world.addKeyListener(new Listener(this));
 
