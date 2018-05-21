@@ -13,5 +13,6 @@ package combatinteraction;
 import java.awt.*;
         
 public class CombatInteraction {
-    
+    // Do we need this class? 
+    // if the combat is based in the world then this might be unnecessary
 }

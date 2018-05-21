@@ -1,0 +1,6 @@
+Hello, I offer armor.
+>Would you like some armor?
+->Ok, here is some armor.
+->Are you sure?
+-->Suit yourself.
+-->Ok, here is some armor.

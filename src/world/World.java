@@ -18,13 +18,17 @@ import sprites.*;
  */
 public class World extends JPanel{
     
+    public static final int GRID_SIZE = 64;
+    public static final int WIDTH = 26;
+    public static final int HEIGHT = 14;
+    
     //todo add support for this
     ArrayList<Sprite> sprites;
     Player player;
     MainFrame frame;
-    
+        
     public World(MainFrame frame){
-        setPreferredSize(new Dimension(500, 500));
+        setSize(new Dimension(WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE));
         
         sprites = new ArrayList<Sprite>();
         this.frame = frame;
@@ -33,6 +37,26 @@ public class World extends JPanel{
         for(int i = 0; i < 500; i++){
             add(new JLabel("Press any key to close "));
         }
+    }
+    
+    /**
+     * This method is called when the player attacks
+     * @param x
+     * @param y
+     * @param damage 
+     */
+    public void PlayerAttack(int x, int y, int damage){
+        //TODO add logic for player attacks
+    }
+    
+    /**
+     * This method is called when a wormer attacks
+     * @param x 
+     * @param y
+     * @param damage 
+     */
+    public void WormerAttack(int x, int y, int damage){
+        // TODO add logic for wormer attacks
     }
     
     /**
@@ -112,8 +136,10 @@ public class World extends JPanel{
                     // maybe add code for what to do if a square is unoccupiable
                 }
                 break;
-            
-               
         }
+    }
+    
+    public Player getPlayer(){
+        return player;
     }
 }
