@@ -88,14 +88,14 @@ public class MainFrame extends JFrame{
             }
 
             // Beginning an interaction
-            if (!box.active() && key == KeyEvent.VK_SPACE){
+            if (key == KeyEvent.VK_SPACE){
                 //TODO code to begin an interaction
             }
         // what to do if the user is in an npc interaction.
         }else{
             //interaction
             if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_Z
-                || key == KeyEvent.VK_X){
+                || key == KeyEvent.VK_X || key == KeyEvent.VK_C){
                 //TODO handle interactions
             }
         }
