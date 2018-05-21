@@ -1,6 +1,8 @@
 Hello, I offer armor.
 >Would you like some armor?
-->Ok, here is some armor.
+->Would you like S P E C I A L armor?
+-->Ok, here is some S P E C I A L armor.
+-->Your loss.
 ->Are you sure?
 -->Suit yourself.
 -->Ok, here is some armor.

@@ -14,6 +14,7 @@ import java.util.Scanner;
  */
 public class AdvancableText {
     
+    // Don't even try to figure out how this works lol
     TreeNode topNode, currentNode;
     
     //Test purposes only
@@ -49,7 +50,20 @@ public class AdvancableText {
 //        }
 //    }
     
-    public AdvancableText(String s){
+    public AdvancableText(String URL) throws IOException{
+        BufferedReader inputStream = null;
+        String s = "";
+        try{
+            inputStream = new BufferedReader(new FileReader(URL));
+            String l;
+            while ((l = inputStream.readLine()) != null){
+                s = s + l + "\n";
+            }
+        } catch(Exception e){}//NOT lazy i promise
+        finally{
+            if (inputStream != null) inputStream.close();
+        }
+        
         topNode = new TreeNode(s, ">");
         currentNode = topNode;
     }
