@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import sound.musicController;
+import sound.MusicController;
 
 /**
  * This is the main class and is the one that houses the world
@@ -40,12 +40,11 @@ public class MainFrame extends JFrame{
     }
     
     public void init(){
-        // I commented this out because it contains errors
-//        try {
-//            MusicController.trackOne();
-//        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
-//            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            MusicController.trackOne();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         world.setFocusable(true);
         world.addKeyListener(new Listener(this));
