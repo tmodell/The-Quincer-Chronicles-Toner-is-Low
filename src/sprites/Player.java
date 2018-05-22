@@ -11,14 +11,14 @@ public class Player extends Movable{
     static final String[] PLAYER_IMAGE_URLS = {"down facing url", "up facing url", "left facing url", "right facing url"};
     static final int DEFAULT_HEALTH = 200;
     static final int DEFAULT_DAMAGE = 25;
-    static final int DEFAULT_SPEED = 1250;
+    static final int DEFAULT_COOLDOWN = 1250;
     
     World world;
     
     int maxHealth = DEFAULT_HEALTH;
     int health = DEFAULT_HEALTH;
     int damage = DEFAULT_DAMAGE;
-    int speed = DEFAULT_SPEED;
+    int speed = DEFAULT_COOLDOWN;
     
     long time;
     long deltatime;
@@ -68,12 +68,19 @@ public class Player extends Movable{
     
     public void attack(){
         int attackdmg = damage;
+        double k = .096;    //k is a constant
         
         deltatime = System.currentTimeMillis() - time;
         time = System.currentTimeMillis();
         
         //TODO add formula for damage reduction
+        //This is a linear relationship for damage and time between key pressing
+        //Sam, if you get your thing working you can replace it :)
+        if(deltatime <= 250){attackdmg = 1;}
+        else if(deltatime > 250 && deltatime < 500){attackdmg = (int) (deltatime*k - 23);}
+        
         world.PlayerAttack(x, y, attackdmg);
+        
     }
     
     @Override
