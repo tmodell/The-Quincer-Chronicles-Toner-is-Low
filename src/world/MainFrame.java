@@ -40,11 +40,12 @@ public class MainFrame extends JFrame{
     }
     
     public void init(){
-        try {
-            MusicController.trackOne();
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // I commented this out because it contains errors
+//        try {
+//            MusicController.trackOne();
+//        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
+//            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
         world.setFocusable(true);
         world.addKeyListener(new Listener(this));
