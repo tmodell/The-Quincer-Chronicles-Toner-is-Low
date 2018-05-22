@@ -9,6 +9,8 @@ package npcinteraction;
  *
  * @author john.geronimo
  */
+import java.io.*;
+
 public class NPCInteraction {
 //Make it like a visual novel ( ͡° ͜ʖ ͡°)
 }
