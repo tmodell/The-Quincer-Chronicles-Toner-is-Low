@@ -21,7 +21,7 @@ public class NPC extends Sprite{
      * @param x
      * @param y 
      */
-    public NPC(String imageURL, String name, String interactionFileName, int x, int y){
+    public NPC(String imageURL, String interactionFileName, String name, int x, int y){
         super(imageURL);
         interactionURL = PREFIX + interactionFileName + ".txt";
         

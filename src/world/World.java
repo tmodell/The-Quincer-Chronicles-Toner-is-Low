@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import sprites.*;
+import npcinteraction.*;
 
 /**
  *
@@ -27,16 +28,21 @@ public class World extends JPanel{
     private static final String PREFIX = "src/world/lib/";
     private static final String SUFFIX = ".txt";
     
-    //todo add support for this
+    // These all have some use somewhere
+    //The sprites arraylist is used for rendering. It contains all the items in the subsequent ALs as well
     ArrayList<Sprite> sprites;
+    // The wormers array list is used for collision detection and combat
     ArrayList<Wormer> wormers;
+    //The npcs array list is used to initiate interactions
+    ArrayList<NPC> NPCs;
+    //the paths AL is used for paths between maps
     private ArrayList<Path> paths;
-    Player player;
-    MainFrame frame;
     
-    Image tile;
-    
+    Player player;    
     char[][] squares;
+    
+    MainFrame frame;
+    Image tile;
     
     HashMap<Character, String> symbolMap;
         
@@ -46,6 +52,7 @@ public class World extends JPanel{
         sprites = new ArrayList <Sprite>();
         wormers = new ArrayList<Wormer>();
         paths = new ArrayList<Path>();
+        NPCs = new ArrayList<NPC>();
         
         this.frame = frame;
         symbolMap = new HashMap <Character, String>();
@@ -57,6 +64,13 @@ public class World extends JPanel{
     }
     
     public void loadMap(String name, int playerX, int playerY) throws IOException{
+        sprites.clear();
+        wormers.clear();
+        paths.clear();
+        NPCs.clear();
+        
+        player.setPosition(playerX, playerY);
+        
         String url = PREFIX + name + SUFFIX;
         
         // File IO is fun right?
@@ -96,11 +110,24 @@ public class World extends JPanel{
             }
         }
         
-        //TODO code to handle NPCs and paths
-        // btw i know how to do it just havent gotten around
-        // to it so dont worry about it
+        // This code handles paths
         for (int i = 15; i < 15 + pathCount; i++){
+            paths.get(i - 15).setLocName(lines[i]);
+        }
+        
+        // This code handles NPCs
+        for (int i = 15 + pathCount; i < lines.length; i++){
+            String[] split = lines[i].split(",");
+            String imageURL = "src/sprites/lib/characters/" + split[0] + ".png";
+            String interactionName = split[1];
+            String nam = split[2];
+            int x = Integer.parseInt(split[3]);
+            int y = Integer.parseInt(split[4]);
+            NPC npc = new NPC(imageURL, interactionName, nam, x, y);
+            squares[x][y] = 'N';
             
+            sprites.add(npc);
+            NPCs.add(npc);
         }
     }
     
@@ -114,7 +141,7 @@ public class World extends JPanel{
     private void populateSymbolMap(){
         symbolMap.put('T', "tree");
         symbolMap.put('H', "house");
-        symbolMap.put('N', null);
+        symbolMap.put('/', null);
         //add more if you please
         
         /* These two are special, and represent pathways that, when stepped
@@ -145,6 +172,38 @@ public class World extends JPanel{
         // TODO add logic for wormer attacks
     }
     
+    public void playerInteraction(){
+        int x = player.getX(), y = player.getY(), orientation = player.getOrientation();
+        switch (orientation){
+            case Movable.ORIENTATION_UP:
+                y--;
+                break;
+            case Movable.ORIENTATION_DOWN:
+                y++;
+                break;
+            case Movable.ORIENTATION_LEFT:
+                x--;
+                break;
+            case Movable.ORIENTATION_RIGHT:
+                x++;
+                break;
+        }
+        
+        AdvancableText at = null;
+        if (squares[x][y] == 'N'){
+            for (NPC npc: NPCs){
+                if (npc.getX() == x && npc.getY() == y){
+                    try{
+                        at = npc.getInteraction();
+                    }catch(Exception e){}
+                }
+            }
+            if (at == null) System.out.println("Something went horribly wrong.");
+            
+            frame.box.startInteraction(at);
+        }
+    }
+    
     /**
      * Determines whether a square is occupiable by the player
      * @param x the square's x position
@@ -152,7 +211,10 @@ public class World extends JPanel{
      * @return whether the square is occupiable
      */
     public boolean isOccupiable(int x, int y){
-        // TODO add logic here
+        if (squares[x][y] != ' ') return false;
+        for (Wormer w: wormers){
+            if (w.getX() == x && w.getY() == y) return false;
+        }
         return true;
     }
     
@@ -168,9 +230,9 @@ public class World extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         // Sample loop for drawing map; leaving it commented out for now
-//        for (Sprite x: sprites){
-//            g.drawImage(x.getImage(), x.getRealX(), x.getRealY(), null);
-//        }
+        for (Sprite x: sprites){
+            g.drawImage(x.getImage(), x.getRealX(), x.getRealY(), null);
+        }
     }
     
     /**

@@ -59,6 +59,11 @@ public class TextBox extends JPanel{
         }
     }
     
+    public void startInteraction(AdvancableText text){
+        currentText = text;
+        displayText(currentText.nextLine());
+    }
+    
     public boolean active(){
         return currentText != null;
     }

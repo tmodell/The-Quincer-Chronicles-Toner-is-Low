@@ -49,6 +49,11 @@ public class Player extends Movable{
         //TODO add code to handle player death
     }
     
+    public void setPosition(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+    
     @Override
     public void left(){
         super.left();
