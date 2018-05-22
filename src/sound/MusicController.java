@@ -7,45 +7,37 @@ import java.io.IOException;
 import java.net.*;
 import javax.sound.sampled.*;
 
-/*
-Implementation instructions
-If music is already playing, must run stopAudio otherwise stream control will be lost
-If music has stopped, must reinitialize the stream
-running track set method will set the track and play the music
-stopAudio will pause the stream, startAudio will resume/play the stream
-*/
-
 public class MusicController {
     
-    public static File Sound;
-    public static Clip clip;
+    public File Sound;
+    public Clip clip;
     
-    public static void changeMusic(File playMe) throws MalformedURLException, UnsupportedAudioFileException, IOException, LineUnavailableException, InterruptedException {
+    public void changeMusic(File playMe) throws MalformedURLException, UnsupportedAudioFileException, IOException, LineUnavailableException, InterruptedException {
         clip = AudioSystem.getClip();
         clip.open(AudioSystem.getAudioInputStream(playMe));
         clip.start();//Play Audio
         //Thread.sleep(clip.getMicrosecondLength()); //Only one at a time
     }
     
-    public static void startAudio() {
+    public void startAudio() {
         clip.start(); //Play/Resume Audio
     }
     
-    public static void stopAudio() {
+    public void stopAudio() {
         clip.stop(); //Pause Audio
     }
     
-    public static void trackOne() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
+    public void trackOne() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
         Sound = new File("./src/Sound/Music/trackOne.wav");
         changeMusic(Sound);
     }
     
-    public static void trackTwo() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
+    public void trackTwo() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
         Sound = new File("./src/Sound/Music/trackTwo.wav");
         changeMusic(Sound);
     }
     
-    public static void trackThree() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
+    public void trackThree() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
         Sound = new File("./src/Sound/Music/trackThree.wav");
         changeMusic(Sound);
     }
