@@ -28,6 +28,8 @@ public class MainFrame extends JFrame{
     TextBox box;
     SideBar bar;
     
+    static final boolean developerDebug = true;
+    
     public MainFrame(){
         super();
         
@@ -73,8 +75,14 @@ public class MainFrame extends JFrame{
 //        getContentPane().add(mainPanel);
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setUndecorated(true);
-        setResizable(false);
+        
+        if (developerDebug){
+            setUndecorated(false);
+            setResizable(true);
+        } else {
+            setUndecorated(true);
+            setResizable(false);
+        }
         //setFocusable(true);
         //getContentPane().setBackground(new Color(204, 255, 0));
         setVisible(true);
