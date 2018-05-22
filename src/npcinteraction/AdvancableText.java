@@ -116,6 +116,12 @@ public class AdvancableText {
         }
     }
     
+    public void checkBuy(String s){
+        if (s.contains("~b")){
+            s.replace("~b", "");
+        }
+    }
+    
     /**
      * This will be used to make a tree of values to hold an interaction.
      * For this constructor to interpret the file correctly the file must
