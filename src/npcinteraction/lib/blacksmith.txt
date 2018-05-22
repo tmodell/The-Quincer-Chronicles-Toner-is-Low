@@ -1,7 +1,5 @@
 Huh? Oh it's you again.
 >I got this jack suit of armor.
 ->Would you like to check it out?
--->Ok! Do you like it? ~h100
---->You can keep it but you owe me later!
---->Freeloader. Leave me to suffer on my own.
+-->~h
 -->Your loss.
