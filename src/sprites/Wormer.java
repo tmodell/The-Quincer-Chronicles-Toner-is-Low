@@ -16,12 +16,14 @@ public class Wormer extends Movable{
     static final String[] WORMER_IMAGE_URLS = {"down facing URL", "up facing url", "left facing url", "right facing url"};
     static final int DEFAULT_HEALTH = 100;
     static final int DEFAULT_DAMAGE = 10;
+    static final int DEFAULT_SPEED = 1000;
     
     World world;
     Player player;
     
     int health;
-    int damage = DEFAULT_DAMAGE;
+    int damage;
+    int speed;
     
     private volatile boolean alive = true;
     
@@ -36,6 +38,8 @@ public class Wormer extends Movable{
         this.world = world;
         
         health = DEFAULT_HEALTH;
+        damage = DEFAULT_DAMAGE;
+        speed = DEFAULT_SPEED;
         
         thread = new WormerThread(this);
         thread.start();
@@ -43,14 +47,18 @@ public class Wormer extends Movable{
     
     /**
      * Creates a wormer with custom health
-     * @param frame The main frame
+     * @param world Za warudo
      * @param health The wormer's heath
+     * @param damage The wormer's damage
+     * @param speed The wormer's attack speed
      */
-    public Wormer(World world, int health){
+    public Wormer(World world, int health, int damage, int speed){
         super(WORMER_IMAGE_URLS[0]);
-        this.world = world;
         
+        this.world = world;
         this.health = health;
+        this.damage = damage;
+        this.speed = speed;
         
         thread = new WormerThread(this);
         thread.start();
@@ -134,7 +142,7 @@ public class Wormer extends Movable{
                     attack();
                 }
                 try{
-                    Thread.sleep(1000);
+                    Thread.sleep(speed);
                 } catch (InterruptedException e) {/*lazy exception handling*/}
             }
         }

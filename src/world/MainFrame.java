@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import sound.MusicController;
+import sound.musicController;
 
 /**
  * This is the main class and is the one that houses the world

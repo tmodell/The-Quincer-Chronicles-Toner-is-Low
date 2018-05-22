@@ -141,7 +141,7 @@ public class World extends JPanel{
     private void populateSymbolMap(){
         symbolMap.put('T', "tree");
         symbolMap.put('H', "house");
-        symbolMap.put('/', null);
+        symbolMap.put('X', null);
         //add more if you please
         
         /* These two are special, and represent pathways that, when stepped
@@ -156,7 +156,7 @@ public class World extends JPanel{
      * This method is called when the player attacks
      * @param x
      * @param y
-     * @param damage 
+     * @param damage
      */
     public void PlayerAttack(int x, int y, int damage){
         //TODO add logic for player attacks
