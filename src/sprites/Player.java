@@ -68,11 +68,17 @@ public class Player extends Movable{
     
     public void attack(){
         int attackdmg = damage;
+        double k = .096;    //k is a constant
         
         deltatime = System.currentTimeMillis() - time;
         time = System.currentTimeMillis();
         
         //TODO add formula for damage reduction
+        //This is a linear relationship for damage and time between key pressing
+        //Sam, if you get your thing working you can replace it :)
+        if(deltatime <= 250){attackdmg = 1;}
+        else if(deltatime > 250 && deltatime < 500){attackdmg = (int) (deltatime*k - 23);}
+        
         world.PlayerAttack(x, y, attackdmg);
         
     }
