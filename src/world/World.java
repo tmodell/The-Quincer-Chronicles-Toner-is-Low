@@ -97,8 +97,11 @@ public class World extends JPanel{
          * This loop populates the 2D char array and sprites arraylist
          */
         for (int i = 1; i < 15; i++){
+            String[] split = lines[i].split(",");
             for (int j = 0; j < 26; j++){
-                char c = lines[i].charAt(j);
+                char c;
+                if (split[j] == "") c = ' ';
+                else c = split[j].charAt(0);
                 if (c != ' '){
                     sprites.add(new Stationary(symbolMap.get(c)));
                 }
@@ -224,12 +227,18 @@ public class World extends JPanel{
      * when something is changed
      */
     public void update(){
-        // TODO add code
     }
     
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        
+        for (int i = 0; i < 26; i++){
+            for (int j = 0; j < 14; j++){
+                g.drawImage(tile, i * 64, j * 64, null);
+            }
+        }
+        
         // Sample loop for drawing map; leaving it commented out for now
         for (Sprite x: sprites){
             g.drawImage(x.getImage(), x.getRealX(), x.getRealY(), null);

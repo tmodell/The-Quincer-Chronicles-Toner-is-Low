@@ -1,0 +1,17 @@
+Quincer:Are you okay?
+>Captain Kamui: Huh? Yeah I'm fine.
+->Quincer:Oka-
+-->Captain Kamui:My name is Captain Kamui. Retired Captain from the war!
+--->Captain Kamui:And you Are?
+---->Quincer:Quincer, I crash landed on this planet now I just need some toner.
+----->Captain Kamui:Oh I see, huh
+------>Quincer:Well see yo-
+------->Captain Kamui:My name is Captain Kamui. Retired Captain form the war!
+-------->Captain Kamui:And you are?
+--------->Quincer:?
+---------->Quincer:Quincer...I crash landed on this planet now I just need some 
+----------->Quincer:toner.
+------------>Captain Kamui: My name is Captain Kamui. Retired Captain from the
+------------->Captain Kamui: war! And you are? My name is Captain Kamui. Retired
+-------------->Captain Kamui: Captain from the war! And you are?
+--------------->Quincer:Well see you.
