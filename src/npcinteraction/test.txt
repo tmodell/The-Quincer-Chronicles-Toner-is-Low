@@ -1,8 +1,4 @@
-Hello, I offer armor.
->Would you like some armor?
-->Would you like S P E C I A L armor?
--->Ok, here is some S P E C I A L armor.~h200
--->Your loss.
-->Are you sure?
--->Suit yourself.
--->Ok, here is some armor.
+Hello, I am the alchemist. I do alchemy apparently.
+>Would you like to visit my shop?
+->~balchemistMenu.txt
+->Screw you man
