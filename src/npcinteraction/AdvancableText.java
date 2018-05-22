@@ -111,8 +111,8 @@ public class AdvancableText {
             int index = s.indexOf("~");
             s = s.replace("~d", "");
             String sub = s.substring(index, s.length());
-            int dH = Integer.parseInt(sub);
-            player.setMaxHealth(dH);
+            int dD = Integer.parseInt(sub);
+            player.setDamage(dD);
         }
     }
     

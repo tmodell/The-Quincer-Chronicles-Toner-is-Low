@@ -11,15 +11,23 @@ public class NPC extends Sprite{
     static final String PREFIX = "src/npcinteraction/lib/";
     
     public String interactionURL;
+    String name;
     
     /**
      * Creates an NPC
-     * @param imageURL the NPC's image's URL
-     * @param name the NPC's name for dialogue finding purposes
+     * @param imageURL
+     * @param name
+     * @param interactionFileName
+     * @param x
+     * @param y 
      */
-    public NPC(String imageURL, String name){
+    public NPC(String imageURL, String name, String interactionFileName, int x, int y){
         super(imageURL);
-        interactionURL = PREFIX + name + ".txt";
+        interactionURL = PREFIX + interactionFileName + ".txt";
+        
+        this.name = name;
+        this.x = x;
+        this.y = y;
     }
     
     public AdvancableText getInteraction() throws IOException{
