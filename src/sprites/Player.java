@@ -11,14 +11,14 @@ public class Player extends Movable{
     static final String[] PLAYER_IMAGE_URLS = {"down facing url", "up facing url", "left facing url", "right facing url"};
     static final int DEFAULT_HEALTH = 200;
     static final int DEFAULT_DAMAGE = 25;
-    static final int DEFAULT_SPEED = 1250;
+    static final int DEFAULT_COOLDOWN = 1250;
     
     World world;
     
     int maxHealth = DEFAULT_HEALTH;
     int health = DEFAULT_HEALTH;
     int damage = DEFAULT_DAMAGE;
-    int speed = DEFAULT_SPEED;
+    int speed = DEFAULT_COOLDOWN;
     
     long time;
     long deltatime;
@@ -74,6 +74,7 @@ public class Player extends Movable{
         
         //TODO add formula for damage reduction
         world.PlayerAttack(x, y, attackdmg);
+        
     }
     
     @Override
