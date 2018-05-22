@@ -98,7 +98,7 @@ public class World extends JPanel{
          */
         for (int i = 1; i < 15; i++){
             for (int j = 0; j < 26; j++){
-                char c = lines[i].charAt(j);
+                char c = lines[i].charAt(2 * j);
                 if (c != ' '){
                     sprites.add(new Stationary(symbolMap.get(c)));
                 }
@@ -229,6 +229,13 @@ public class World extends JPanel{
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        
+        for (int i = 0; i < 26; i++){
+            for (int j = 0; j < 14; j++){
+                
+            }
+        }
+        
         // Sample loop for drawing map; leaving it commented out for now
         for (Sprite x: sprites){
             g.drawImage(x.getImage(), x.getRealX(), x.getRealY(), null);
