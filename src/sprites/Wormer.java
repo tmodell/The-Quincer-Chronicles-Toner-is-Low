@@ -97,7 +97,6 @@ public class Wormer extends Movable{
                 else down();
             }
             
-            world.update();
             return false;
         }
         

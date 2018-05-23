@@ -79,7 +79,6 @@ public class MainFrame extends JFrame{
             world.loadMap("test", 11, 11);
         } catch (Exception e){}
         
-        world.run();
         if (DEVELOPER_DEBUG){
             setUndecorated(false);
             setResizable(true);
@@ -124,14 +123,6 @@ public class MainFrame extends JFrame{
             }
         }
         
-    }
-    
-    /**
-     * If you can't figure out this method's function
-     * you probably should have taken world religions
-     */
-    public void updateWorld(){
-        world.update();
     }
     
     public World getWorld(){

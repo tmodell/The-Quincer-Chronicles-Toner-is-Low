@@ -19,7 +19,7 @@ import npcinteraction.*;
  *
  * @author alber
  */
-public class World extends JPanel implements Runnable{
+public class World extends JPanel{
     
     public static final int GRID_SIZE = 64;
     public static final int WIDTH = 26;
@@ -240,13 +240,6 @@ public class World extends JPanel implements Runnable{
         return !(squares[x][y] != ' ' || wormers[x][y] != null);
     }
     
-    /**
-     * This method will one day be used to repaint the panel
-     * when something is changed
-     */
-    public void update(){
-    }
-    
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -284,7 +277,6 @@ public class World extends JPanel implements Runnable{
                 // check whether the square is occupiable
                 if (isOccupiable(hypotheticalX, y)){
                     player.left();
-                    update();
                 } else{
                     // maybe add code for what to do if a square is unoccupiable
                 }
@@ -294,7 +286,6 @@ public class World extends JPanel implements Runnable{
                 // check whether the square is occupiable
                 if (isOccupiable(hypotheticalX, y)){
                     player.right();
-                    update();
                 } else{
                     // maybe add code for what to do if a square is unoccupiable
                 }
@@ -304,7 +295,6 @@ public class World extends JPanel implements Runnable{
                 // check whether the square is occupiable
                 if (isOccupiable(x, hypotheticalY)){
                     player.up();
-                    update();
                 } else{
                     // maybe add code for what to do if a square is unoccupiable
                 }
@@ -314,7 +304,6 @@ public class World extends JPanel implements Runnable{
                 // check whether the square is occupiable
                 if (isOccupiable(x, hypotheticalY)){
                     player.down();
-                    update();
                 } else{
                     // maybe add code for what to do if a square is unoccupiable
                 }
@@ -324,20 +313,6 @@ public class World extends JPanel implements Runnable{
     
     public Player getPlayer(){
         return player;
-    }
-
-    @Override
-    public void run() {
-//        while(true){
-//            //System.out.println("Hey");
-//            if (repainting){
-//                System.out.println("Repainting");
-//                repaint();
-//            } //else System.out.println("b");
-//            try{
-//                Thread.sleep(33);
-//            } catch (Exception e){}
-//        }
     }
     
     private class Path{
