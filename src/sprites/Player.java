@@ -19,7 +19,7 @@ public class Player extends Movable{
     int maxHealth = DEFAULT_HEALTH;
     int health = DEFAULT_HEALTH;
     int damage = DEFAULT_DAMAGE;
-    int speed = DEFAULT_COOLDOWN;
+    int cooldown = DEFAULT_COOLDOWN;
     
     long time;
     long deltatime;
@@ -58,8 +58,8 @@ public class Player extends Movable{
         //TODO add code to handle player death
     }
     
-    public void setSpeed(int time){
-        this.speed = speed;
+    public void setCooldown(int cooldown){
+        this.cooldown = cooldown;
     }
     
     public void setPosition(int x, int y){
@@ -69,16 +69,14 @@ public class Player extends Movable{
     
     public void attack(){
         int attackdmg = damage;
-        double k = .096;    //k is a constant
         
         deltatime = System.currentTimeMillis() - time;
         time = System.currentTimeMillis();
         
-        //TODO add formula for damage reduction
-        //This is a linear relationship for damage and time between key pressing
-        //Sam, if you get your thing working you can replace it :)
+        //Needlessly complicated but it works.
+        //Relationship for damage and time between key presses.
         if(deltatime <= 250){attackdmg = 1;}
-        else if(deltatime > 250 && deltatime < 500){attackdmg = (int) (deltatime*k - 23);}
+        else if(deltatime > 250 && deltatime < cooldown){attackdmg = (int)((double)damage*Math.pow((double)damage/2,(deltatime-cooldown)/(cooldown-250)));}
         
         world.PlayerAttack(x, y, attackdmg);
         

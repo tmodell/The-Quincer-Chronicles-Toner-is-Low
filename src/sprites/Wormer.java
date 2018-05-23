@@ -68,6 +68,11 @@ public class Wormer extends Movable{
         // TODO logic to let the world know the wormer has died
     }
 
+    public void receiveStrike(int damage){
+            health -= damage;
+            if (health < 0) kill();
+    }
+    
     private class WormerThread extends Thread{
         Wormer wormer;
         
@@ -104,10 +109,7 @@ public class Wormer extends Movable{
          * Call this method when the Wormer has been attacked
          * @param damage How much damage to do to the wormer (poor guy)
          */
-        public void recieveStrike(int damage){
-            health -= damage;
-            if (health < 0) kill();
-        }
+        
         
         /**
          * This method will attack the user
