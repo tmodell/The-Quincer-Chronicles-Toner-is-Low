@@ -28,7 +28,7 @@ public class MainFrame extends JFrame{
     TextBox box;
     SideBar bar;
     
-    static final boolean developerDebug = true;
+    static final boolean DEVELOPER_DEBUG = true;
     
     public MainFrame(){
         super();
@@ -75,8 +75,12 @@ public class MainFrame extends JFrame{
 //        getContentPane().add(mainPanel);
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        try{
+            world.loadMap("test", 11, 11);
+        } catch (Exception e){}
         
-        if (developerDebug){
+        world.run();
+        if (DEVELOPER_DEBUG){
             setUndecorated(false);
             setResizable(true);
         } else {

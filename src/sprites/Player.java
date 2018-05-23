@@ -8,7 +8,8 @@ import world.World;
  * @author albert.wilcox
  */
 public class Player extends Movable{
-    static final String[] PLAYER_IMAGE_URLS = {"down facing url", "up facing url", "left facing url", "right facing url"};
+    static final String[] PLAYER_IMAGE_URLS = {"src/sprites/lib/images/quincerfront.png", "src/sprites/lib/images/quincerfront.png", 
+        "src/sprites/lib/images/quincerfront.png", "src/sprites/lib/images/quincerfront.png"};
     static final int DEFAULT_HEALTH = 200;
     static final int DEFAULT_DAMAGE = 25;
     static final int DEFAULT_COOLDOWN = 1250;

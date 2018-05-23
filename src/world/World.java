@@ -19,21 +19,17 @@ import npcinteraction.*;
  *
  * @author alber
  */
-public class World extends JPanel{
+public class World extends JPanel implements Runnable{
     
     public static final int GRID_SIZE = 64;
     public static final int WIDTH = 26;
     public static final int HEIGHT = 14;
     
-    private static final String PREFIX = "src/world/lib/";
+    private static final String PREFIX = "src/world/lib/maps/";
     private static final String SUFFIX = ".csv";
     
-    // These all have some use somewhere
     //The sprites arraylist is used for rendering. It contains all the items in the subsequent ALs as well
     ArrayList<Sprite> sprites;
-    // The wormers array list is used for collision detection and combat
-    //The npcs array list is used to initiate interactions
-    //the paths AL is used for paths between maps
     
     Player player;    
     char[][] squares;
@@ -44,10 +40,12 @@ public class World extends JPanel{
     MainFrame frame;
     Image tile;
     
+    volatile boolean repainting = true;
+    
     HashMap<Character, String> symbolMap;
         
-    public World(MainFrame frame){
-        setSize(new Dimension(WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE));
+    public World(MainFrame frame){        
+        //setSize(new Dimension(WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE));
         
         sprites = new ArrayList <Sprite>();
         
@@ -57,25 +55,32 @@ public class World extends JPanel{
         wormers = new Wormer[WIDTH][HEIGHT];
         
         this.frame = frame;
+        
         symbolMap = new HashMap <Character, String>();
-                
+        populateSymbolMap();
+        
+        player = new Player(0, 0, this);
+        
         // the following loop is for testing purposes only
-        for(int i = 0; i < 500; i++){
-            add(new JLabel("Press any key to close "));
-        }
+//        for(int i = 0; i < 500; i++){
+//            add(new JLabel("Press any key to close "));
+//        }
     }
     
     public void loadMap(String name, int playerX, int playerY) throws IOException{
+        repainting = false;
+
         sprites.clear();
+        sprites.add(player);
         
         paths = new Path[WIDTH][HEIGHT];
         NPCs = new NPC[WIDTH][HEIGHT];
         wormers = new Wormer[WIDTH][HEIGHT];
-        
+
         player.setPosition(playerX, playerY);
         
         String url = PREFIX + name + SUFFIX;
-        
+
         // File IO is fun right?
         BufferedReader inputStream = null;
         String s = "";
@@ -83,68 +88,80 @@ public class World extends JPanel{
             inputStream = new BufferedReader(new FileReader(url));
             String l;
             while ((l = inputStream.readLine()) != null){
-                if(s.substring(0, 1).equals("#")) continue;
+                if(l.substring(0, 1).equals("#")) continue;
                 s = s + l + "\n";
             }
-        } //catch(Exception e){}//NOT lazy i promise
+        } catch(Exception e){e.printStackTrace();}//NOT lazy i promise
         finally{
             if (inputStream != null) inputStream.close();
         }
-        
+
         String[] lines = s.split("\n");
         
+        //System.out.println(1);
         tile = new ImageIcon("src/sprites/lib/tiles/" + lines[0] + ".png").getImage();
         
+        //System.out.println("The loop is about to start...");
         /*
          * This loop fills in all the variables and loads the world
          */
         for (int y = 1; y < 15; y++){
-            String[] split = lines[y].split(",");
+            //System.out.println(lines[y]);
+            String[] commaSplit = lines[y].split(",");
             for (int x = 0; x < WIDTH; x++){
+                //System.out.println("\ny: " + y + " \nx: " + x);
                 char c;
-                if (split[x].equals("")) c = ' ';
-                else c = split[x].charAt(0);
+                //System.out.println(1);
+                if (commaSplit[x].equals("")) c = ' ';
+                else c = commaSplit[x].charAt(0);
+               // System.out.println(2);
                 // What to do if I notice an escape character
                 if (c == '%'){
-                    String[] split2 = split[x].split(",");
-                    char ch = split2[0].charAt(1);
+                    //System.out.println(3);
+                    //System.out.println("Something went wrong.");
+                    String[] escapeSplit = commaSplit[x].split(";");
+                    char ch = escapeSplit[0].charAt(1);
                     switch (ch){
                         // Paths
                         case 'P':
                             c = 'P';
                             char symbol = '\0';
-                            if (!split2[1].equals(""))sprites.add(new Stationary(symbolMap.get(split2[1].charAt(0)), x, y));
-                            int destX = Integer.parseInt(split2[2]);
-                            int destY = Integer.parseInt(split2[3]);
-                            String destName = split2[4];
+                            if (!escapeSplit[1].equals(""))sprites.add(new Stationary(symbolMap.get(escapeSplit[1].charAt(0)), x, y - 1));
+                            int destX = Integer.parseInt(escapeSplit[2]);
+                            int destY = Integer.parseInt(escapeSplit[3]);
+                            String destName = escapeSplit[4];
                             Path path = new Path(destX, destY, destName);
-                            paths[x][y] = path;
+                            paths[x][y - 1] = path;
                             break;
                         // NPCs
                         case 'N':
                             c = 'N';
-                            char symbool = split2[1].charAt(0);
-                            String interactionFileName = split2[2];
-                            String nam = split2[3];
-                            NPC npc = new NPC(symbolMap.get(symbool), interactionFileName, nam, x, y);
-                            NPCs[x][y] = npc;
+                            char symbool = escapeSplit[1].charAt(0);
+                            String interactionFileName = escapeSplit[2];
+                            String nam = escapeSplit[3];
+                            NPC npc = new NPC(symbolMap.get(symbool), interactionFileName, nam, x, y - 1);
+                            NPCs[x][y - 1] = npc;
                             sprites.add(npc);
                             break;
                         // Hysperia
                         case 'H':
                             c = 'N';
-                            Hysperia hysperia = new Hysperia(x, y);
-                            NPCs[x][y] = hysperia;
+                            Hysperia hysperia = new Hysperia(x, y - 1);
+                            NPCs[x][y - 1] = hysperia;
                             sprites.add(hysperia);
                             break;
                     }
                 }
                 else if (c != ' '){
-                    sprites.add(new Stationary(symbolMap.get(c), x , y));
+                    //System.out.println(c);
+                    //System.out.println(symbolMap.get(c));
+                    sprites.add(new Stationary(symbolMap.get(c), x , y - 1));
+                    //System.out.println(5);
                 }
-                squares[x][y] = c;
-            }
-        }
+                squares[x][y - 1] = c;
+            }//System.out.println(count++);
+        } //System.out.println("Loop complete.");
+        repainting = true;
     }
     
     /**
@@ -233,17 +250,24 @@ public class World extends JPanel{
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        
-        for (int i = 0; i < WIDTH; i++){
-            for (int j = 0; j < HEIGHT; j++){
-                g.drawImage(tile, i * GRID_SIZE, j * GRID_SIZE, null);
+        //System.out.println("Painting");
+        for (int x = 0; x < WIDTH; x++){
+            System.out.println(x);
+            for (int y = 0; y < HEIGHT; y++){
+                g.drawImage(tile, x * GRID_SIZE, y * GRID_SIZE, null);
             }
         }
         
         // Sample loop for drawing map; leaving it commented out for now
         for (Sprite x: sprites){
+            //System.out.println(x.getRealY());
             g.drawImage(x.getImage(), x.getRealX(), x.getRealY(), null);
         }
+        
+        try{
+            Thread.sleep(33);
+        } catch (Exception e){}
+        repaint();
     }
     
     /**
@@ -300,6 +324,20 @@ public class World extends JPanel{
     
     public Player getPlayer(){
         return player;
+    }
+
+    @Override
+    public void run() {
+//        while(true){
+//            //System.out.println("Hey");
+//            if (repainting){
+//                System.out.println("Repainting");
+//                repaint();
+//            } //else System.out.println("b");
+//            try{
+//                Thread.sleep(33);
+//            } catch (Exception e){}
+//        }
     }
     
     private class Path{

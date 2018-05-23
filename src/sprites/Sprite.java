@@ -18,7 +18,7 @@ public abstract class Sprite {
     
     //int realX;
     //int realY;
-    Image image;
+    Image image = null;
     
     static final int GRID_SIZE = 64;
     
@@ -56,6 +56,7 @@ public abstract class Sprite {
     }
     
     public Image getImage(){
+        //if (image == null) System.out.println("This is bad");
         return image;
     }
 }
