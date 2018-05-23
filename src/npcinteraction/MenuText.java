@@ -97,7 +97,28 @@ public class MenuText {
         return iteration;
     }
     
-    private static ArrayList<String> outputs = new ArrayList<>(); 
+    public static void setTarget(String y) {
+        target = y;
+    }
+    
+    public static String getTarget() {
+        return target;
+    }
+    
+    public static void reset() {
+        outputs.clear();
+        target = "";
+        isMenu = false;
+        isNext = false;
+        isSpeaking = false;
+        cursPos = 0;
+        maxPos = 0;
+        speechPos = 0;
+        iteration = 0;
+    }
+    
+    private static ArrayList<String> outputs = new ArrayList<>();
+    private static String target;
     private static boolean isMenu = false;
     private static boolean isNext = false;
     private static boolean isSpeaking = false;
