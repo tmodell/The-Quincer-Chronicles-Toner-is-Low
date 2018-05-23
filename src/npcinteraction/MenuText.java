@@ -18,9 +18,13 @@ import java.util.ArrayList;
  */
 public class MenuText {
 
+    public MenuText (String input) {
+        
+    }
+    
     //This section is the reader, which imports the content of the file and
     //passes it as separate lines out.
-    public static String [] reader (String target, int iteration) 
+    public static void reader (String target, int iteration) 
             throws IOException {
         ArrayList<String> parts = new ArrayList<>();
         if (iteration == 0) {
@@ -30,7 +34,7 @@ public class MenuText {
                 parts.add(I);
             }
         }
-        return parts.toArray(new String[parts.size()]);
+         parts.toArray(new String[parts.size()]);
     }
     
     //This section includes the control booleans and the data values that must
@@ -81,6 +85,10 @@ public class MenuText {
         return outputs.get(index);
     }
     
+    public static void addToOutputs(String data) {
+        outputs.add(data);
+    }
+    
     public static void setSpeechPos(int y) {
         speechPos = y;
     }
@@ -118,6 +126,7 @@ public class MenuText {
     }
     
     private static ArrayList<String> outputs = new ArrayList<>();
+    private String continent;
     private static String target;
     private static boolean isMenu = false;
     private static boolean isNext = false;
