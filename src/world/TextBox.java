@@ -8,6 +8,7 @@ package world;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import java.awt.*;
+import javax.swing.ImageIcon;
 
 import npcinteraction.*;
 
@@ -20,11 +21,15 @@ public class TextBox extends JPanel{
     
     AdvancableText currentText = null;
     
+    Image background;
+    
     public TextBox(MainFrame frame){
         super();
         this.frame = frame;
         setPreferredSize(new Dimension(1664 , 184));
-        setBackground(Color.RED);
+        
+        background = new ImageIcon("src/world/lib/textbox.png").getImage();
+        //setBackground(Color.RED);
     }
     
     public void handleInteractionKey (int key){
@@ -70,5 +75,10 @@ public class TextBox extends JPanel{
     
     public void displayText(String text){
         //TODO add code to display text
+    }
+    
+    @Override
+    public void paintComponent(Graphics g){
+        g.drawImage(background, 0, 0, null);
     }
 }

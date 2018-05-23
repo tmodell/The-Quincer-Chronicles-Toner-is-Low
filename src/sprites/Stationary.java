@@ -10,7 +10,12 @@ package sprites;
  * @author albert.wilcox
  */
 public class Stationary extends Sprite{
-    public Stationary(String url){
-        super(url);
+    private static final String PREFIX = "src/sprites/lib/images/";
+    private static final String SUFFIX = ".png";
+    
+    public Stationary(String name, int x, int y){
+        super(PREFIX + name + SUFFIX);
+        this.x = x;
+        this.y = y;
     }
 }

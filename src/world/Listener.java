@@ -34,6 +34,7 @@ public class Listener implements KeyListener{
      */
     @Override
     public void keyPressed(KeyEvent ke) {
-        //frame.dispose(); //why? we need user input for the game to work.
+        // frame.dispose is for testing. once we have something more than press any key to quit we'll replace it
+        frame.dispose();
     }
 }

@@ -88,7 +88,7 @@ public class AdvancableText {
         return s;
     }
     
-    public void checkHealthIncrease(String s){
+    private String checkHealthIncrease(String s){
         if (s.contains("~h")){
             int index = s.indexOf("~");
             s = s.replace("~h", "");
@@ -96,17 +96,18 @@ public class AdvancableText {
             int dH = Integer.parseInt(sub);
             player.setMaxHealth(dH);
         }
+        return s;
     }
     
-    public void checkHealthRestore(String s){
+    private String checkHealthRestore(String s){
         if (s.contains("~r")){
             s = s.replace("~r", "");
             player.restoreHealth();
         }
+        return s;
     }
     
-    // TODO finish this method
-    public void checkDamageIncrease(String s){
+    private String checkDamageIncrease(String s){
         if (s.contains("~d")){
             int index = s.indexOf("~");
             s = s.replace("~d", "");
@@ -114,12 +115,17 @@ public class AdvancableText {
             int dD = Integer.parseInt(sub);
             player.setDamage(dD);
         }
+        return s;
     }
     
-    public void checkBuy(String s){
+    private String checkBuy(String s){
         if (s.contains("~b")){
-            s.replace("~b", "");
+            int index = s.indexOf("~") + 2;
+            s = s.substring(index, s.length());
+            String url = s;
+            // TODO code to open a menu
         }
+        return s;
     }
     
     /**

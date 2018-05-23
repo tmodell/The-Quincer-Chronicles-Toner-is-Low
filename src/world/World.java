@@ -26,20 +26,20 @@ public class World extends JPanel{
     public static final int HEIGHT = 14;
     
     private static final String PREFIX = "src/world/lib/";
-    private static final String SUFFIX = ".txt";
+    private static final String SUFFIX = ".csv";
     
     // These all have some use somewhere
     //The sprites arraylist is used for rendering. It contains all the items in the subsequent ALs as well
     ArrayList<Sprite> sprites;
     // The wormers array list is used for collision detection and combat
-    ArrayList<Wormer> wormers;
     //The npcs array list is used to initiate interactions
-    ArrayList<NPC> NPCs;
     //the paths AL is used for paths between maps
-    private ArrayList<Path> paths;
     
     Player player;    
     char[][] squares;
+    Path[][] paths;
+    NPC[][] NPCs;
+    Wormer[][] wormers; //TODO some code that keeps track of which wormers are in which squares. This will be inconvenient but i think faster
     
     MainFrame frame;
     Image tile;
@@ -50,9 +50,11 @@ public class World extends JPanel{
         setSize(new Dimension(WIDTH * GRID_SIZE, HEIGHT * GRID_SIZE));
         
         sprites = new ArrayList <Sprite>();
-        wormers = new ArrayList<Wormer>();
-        paths = new ArrayList<Path>();
-        NPCs = new ArrayList<NPC>();
+        
+        squares = new char[WIDTH][HEIGHT];
+        paths = new Path[WIDTH][HEIGHT];
+        NPCs = new NPC[WIDTH][HEIGHT];
+        wormers = new Wormer[WIDTH][HEIGHT];
         
         this.frame = frame;
         symbolMap = new HashMap <Character, String>();
@@ -65,9 +67,10 @@ public class World extends JPanel{
     
     public void loadMap(String name, int playerX, int playerY) throws IOException{
         sprites.clear();
-        wormers.clear();
-        paths.clear();
-        NPCs.clear();
+        
+        paths = new Path[WIDTH][HEIGHT];
+        NPCs = new NPC[WIDTH][HEIGHT];
+        wormers = new Wormer[WIDTH][HEIGHT];
         
         player.setPosition(playerX, playerY);
         
@@ -90,47 +93,57 @@ public class World extends JPanel{
         
         String[] lines = s.split("\n");
         
-        int pathCount = 0;
         tile = new ImageIcon("src/sprites/lib/tiles/" + lines[0] + ".png").getImage();
         
         /*
-         * This loop populates the 2D char array and sprites arraylist
+         * This loop fills in all the variables and loads the world
          */
-        for (int i = 1; i < 15; i++){
-            String[] split = lines[i].split(",");
-            for (int j = 0; j < 26; j++){
+        for (int y = 1; y < 15; y++){
+            String[] split = lines[y].split(",");
+            for (int x = 0; x < WIDTH; x++){
                 char c;
-                if (split[j] == "") c = ' ';
-                else c = split[j].charAt(0);
-                if (c != ' '){
-                    sprites.add(new Stationary(symbolMap.get(c)));
+                if (split[x].equals("")) c = ' ';
+                else c = split[x].charAt(0);
+                // What to do if I notice an escape character
+                if (c == '%'){
+                    String[] split2 = split[x].split(",");
+                    char ch = split2[0].charAt(1);
+                    switch (ch){
+                        // Paths
+                        case 'P':
+                            c = 'P';
+                            char symbol = '\0';
+                            if (!split2[1].equals(""))sprites.add(new Stationary(symbolMap.get(split2[1].charAt(0)), x, y));
+                            int destX = Integer.parseInt(split2[2]);
+                            int destY = Integer.parseInt(split2[3]);
+                            String destName = split2[4];
+                            Path path = new Path(destX, destY, destName);
+                            paths[x][y] = path;
+                            break;
+                        // NPCs
+                        case 'N':
+                            c = 'N';
+                            char symbool = split2[1].charAt(0);
+                            String interactionFileName = split2[2];
+                            String nam = split2[3];
+                            NPC npc = new NPC(symbolMap.get(symbool), interactionFileName, nam, x, y);
+                            NPCs[x][y] = npc;
+                            sprites.add(npc);
+                            break;
+                        // Hysperia
+                        case 'H':
+                            c = 'N';
+                            Hysperia hysperia = new Hysperia(x, y);
+                            NPCs[x][y] = hysperia;
+                            sprites.add(hysperia);
+                            break;
+                    }
                 }
-                if (c == 'P' || c == 'D'){
-                    pathCount++;
-                    paths.add(new Path(i, j, null));
+                else if (c != ' '){
+                    sprites.add(new Stationary(symbolMap.get(c), x , y));
                 }
-                squares[i][j] = c;
+                squares[x][y] = c;
             }
-        }
-        
-        // This code handles paths
-        for (int i = 15; i < 15 + pathCount; i++){
-            paths.get(i - 15).setLocName(lines[i]);
-        }
-        
-        // This code handles NPCs
-        for (int i = 15 + pathCount; i < lines.length; i++){
-            String[] split = lines[i].split(",");
-            String imageURL = "src/sprites/lib/characters/" + split[0] + ".png";
-            String interactionName = split[1];
-            String nam = split[2];
-            int x = Integer.parseInt(split[3]);
-            int y = Integer.parseInt(split[4]);
-            NPC npc = new NPC(imageURL, interactionName, nam, x, y);
-            squares[x][y] = 'N';
-            
-            sprites.add(npc);
-            NPCs.add(npc);
         }
     }
     
@@ -144,15 +157,16 @@ public class World extends JPanel{
     private void populateSymbolMap(){
         symbolMap.put('T', "tree");
         symbolMap.put('H', "house");
-        symbolMap.put('X', null);
-        //add more if you please
-        
-        /* These two are special, and represent pathways that, when stepped
-         * on, will send the player elsewhere. If you feel the need to add one
-         * here let me know so I can hard code support for it.
-         */
-        symbolMap.put('D', "doorway");
-        symbolMap.put('P', "path");
+        symbolMap.put('.', null);
+        symbolMap.put('A', "alchemist");
+//        symbolMap.put('D', "doorway");
+//        symbolMap.put('P', "path");
+        symbolMap.put('C', "alchemistcart");
+        symbolMap.put('Y', "hysperia");
+        symbolMap.put('L', "villageleader");
+        symbolMap.put('V', "villager");
+        symbolMap.put('B', "blacksmith");
+        symbolMap.put('W', "wiseman");
     }
     
     /**
@@ -193,17 +207,8 @@ public class World extends JPanel{
                 break;
         }
         
-        AdvancableText at = null;
         if (squares[x][y] == 'N'){
-            for (NPC npc: NPCs){
-                if (npc.getX() == x && npc.getY() == y){
-                    try{
-                        at = npc.getInteraction();
-                    }catch(Exception e){}
-                }
-            }
-            if (at == null) System.out.println("Something went horribly wrong.");
-            
+            AdvancableText at = NPCs[x][y].getInteraction();
             frame.box.startInteraction(at);
         }
     }
@@ -215,11 +220,7 @@ public class World extends JPanel{
      * @return whether the square is occupiable
      */
     public boolean isOccupiable(int x, int y){
-        if (squares[x][y] != ' ') return false;
-        for (Wormer w: wormers){
-            if (w.getX() == x && w.getY() == y) return false;
-        }
-        return true;
+        return !(squares[x][y] != ' ' || wormers[x][y] != null);
     }
     
     /**
@@ -233,9 +234,9 @@ public class World extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         
-        for (int i = 0; i < 26; i++){
-            for (int j = 0; j < 14; j++){
-                g.drawImage(tile, i * 64, j * 64, null);
+        for (int i = 0; i < WIDTH; i++){
+            for (int j = 0; j < HEIGHT; j++){
+                g.drawImage(tile, i * GRID_SIZE, j * GRID_SIZE, null);
             }
         }
         
@@ -302,20 +303,19 @@ public class World extends JPanel{
     }
     
     private class Path{
+        //private static final String PREFIX = "src/world/lib/maps/";
+        
         int destX, destY;
-        String locName;
+        String destURL;
+        
         public Path(int destX, int destY, String locName){
             this.destX = destX;
             this.destY = destY;
-            this.locName = locName;
-        }
+            this.destURL = PREFIX + locName + SUFFIX;
+        }        
         
-        public void setLocName(String locName){
-            this.locName = locName;
-        }
-        
-        public String getLocName(){
-            return locName;
+        public String getDestURL(){
+            return destURL;
         }
     }
 }

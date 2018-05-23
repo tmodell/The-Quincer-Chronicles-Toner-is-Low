@@ -30,7 +30,9 @@ public class NPC extends Sprite{
         this.y = y;
     }
     
-    public AdvancableText getInteraction() throws IOException{
-        return new AdvancableText(interactionURL);
+    public AdvancableText getInteraction(){
+        try{
+            return new AdvancableText(interactionURL);
+        }catch(Exception e){return null;}
     }
 }
