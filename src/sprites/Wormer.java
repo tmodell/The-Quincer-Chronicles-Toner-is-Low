@@ -13,17 +13,18 @@ import world.*;
  * @author albert.wilcox
  */
 public class Wormer extends Movable{
-    static final String[] WORMER_IMAGE_URLS = {"down facing URL", "up facing url", "left facing url", "right facing url"};
+    static final String[] WORMER_IMAGE_URLS = {"src/sprites/lib/images/wormerfront.png", "src/sprites/lib/images/wormerfront.png", 
+        "src/sprites/lib/images/wormerfront.png", "src/sprites/lib/images/wormerfront.png"};
     static final int DEFAULT_HEALTH = 100;
     static final int DEFAULT_DAMAGE = 10;
-    static final int DEFAULT_SPEED = 1000;
+    static final int DEFAULT_COOLDOWN = 1000;
     
     World world;
     Player player;
     
     int health;
     int damage;
-    int speed;
+    int cooldown;
     
     private volatile boolean alive = true;
     
@@ -39,7 +40,7 @@ public class Wormer extends Movable{
         
         health = DEFAULT_HEALTH;
         damage = DEFAULT_DAMAGE;
-        speed = DEFAULT_SPEED;
+        cooldown = DEFAULT_COOLDOWN;
         
         thread = new WormerThread(this);
         thread.start();
@@ -68,6 +69,11 @@ public class Wormer extends Movable{
         // TODO logic to let the world know the wormer has died
     }
 
+    public void receiveStrike(int damage){
+            health -= damage;
+            if (health < 0) kill();
+    }
+    
     private class WormerThread extends Thread{
         Wormer wormer;
         
@@ -104,10 +110,7 @@ public class Wormer extends Movable{
          * Call this method when the Wormer has been attacked
          * @param damage How much damage to do to the wormer (poor guy)
          */
-        public void recieveStrike(int damage){
-            health -= damage;
-            if (health < 0) kill();
-        }
+        
         
         /**
          * This method will attack the user
@@ -140,7 +143,7 @@ public class Wormer extends Movable{
                     attack();
                 }
                 try{
-                    Thread.sleep(speed);
+                    Thread.sleep(cooldown);
                 } catch (InterruptedException e) {/*lazy exception handling*/}
             }
         }
