@@ -7,9 +7,9 @@ Quincer:(Is that a wormer?)
 ----->Quincer:die. Decompose and return from the elements from which you came.
 ------>The wormer begins to cry
 ------->Some guy:Traveller! It's okay he's innocent! He defected!
--------->Wormer:I defected when I found out what mypeople have become, I'm sorry
+-------->Wormer:I defected when I found out what my people have become
 --------->Womrer:I'm sorry if my family hurt you.
----------->Quincer:(**** I messed up. This womrer is sfoter than tofu)
+---------->Quincer:(**** I messed up. This wormer is softer than tofu)
 ----------->Quincer: Sorry I thought you were evil, do you want to get some
 ------------>Quincer:7 layer ice cream?
 ------------->Wormer:Bohkay
