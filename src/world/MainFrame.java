@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import npcinteraction.MenuText;
 import sound.MusicController;
 
 /**
@@ -117,8 +118,37 @@ public class MainFrame extends JFrame{
         // what to do if the user is in an npc interaction.
         }else{
             //interaction
-            if (key == KeyEvent.VK_SPACE || key == KeyEvent.VK_Z
-                || key == KeyEvent.VK_X || key == KeyEvent.VK_C){
+            if (MenuText.getMenu() == true && (key == KeyEvent.VK_UP
+                    || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_ENTER ||
+                    key == KeyEvent.VK_X)) {
+                if (MenuText.getSpeaking() == true) {
+                    if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_ENTER) {
+                        MenuText.setNext(true);
+                        MenuText.setSpeaking(false);
+                        box.repaint();
+                    }
+                } else if (MenuText.getSpeaking() == false) {
+                    if (key == KeyEvent.VK_UP) {
+                        MenuText.setCursPos(-1);
+                        box.repaint();
+                    } else if (key == KeyEvent.VK_DOWN) {
+                        MenuText.setCursPos(1);
+                        box.repaint();
+                    } else if (key == KeyEvent.VK_X) {
+                        MenuText.setMenu(false);
+                        box.repaint();
+                    } else if (MenuText.getMenu() == true && 
+                            key == KeyEvent.VK_ENTER) {
+                        MenuText.setMenu(false);
+                        System.out.println(MenuText.getOutputs(
+                                MenuText.getCursPos()));
+                        MenuText.setNext(true);
+                        box.repaint();
+                    }
+                }
+            } else if (MenuText.getMenu() == false && (key == KeyEvent.VK_SPACE
+                    || key == KeyEvent.VK_Z || key == KeyEvent.VK_X ||
+                    key == KeyEvent.VK_C)){
                 //TODO handle interactions
             }
         }
