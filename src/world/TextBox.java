@@ -101,11 +101,11 @@ class TextComponent extends JComponent {
         
         String[] hold = new String[3];
         
-        try {
-            hold = MenuText.reader("menutest", MenuText.getIteration());
-        } catch (IOException e) {
-            
-        }
+//        try {
+//            //hold = MenuText.reader("menutest", MenuText.getIteration());
+//        } catch (IOException e) {
+//            
+//        }
         
         MenuText.setIteration(MenuText.getIteration());
         
