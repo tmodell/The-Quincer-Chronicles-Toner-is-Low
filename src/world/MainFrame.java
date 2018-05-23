@@ -54,12 +54,22 @@ public class MainFrame extends JFrame{
 
         box.setFocusable(false);
         bar.setFocusable(false);
+                
+        mainPanel.setLayout(null);
         
-        //TODO work needs to be done to figure out how to lay these components out properly
+        mainPanel.add(world);
+        mainPanel.add(box);
+        mainPanel.add(bar);
         
-        getContentPane().add(world, BorderLayout.CENTER);
-        getContentPane().add(box, BorderLayout.SOUTH);
-        getContentPane().add(bar, BorderLayout.WEST);
+        world.setBounds(256,0,1664,896);
+        box.setBounds(256,896,1664,184);
+        bar.setBounds(0,0,256,1080);
+        
+        getContentPane().add(mainPanel);
+        
+//        getContentPane().add(world, BorderLayout.CENTER);
+//        getContentPane().add(box, BorderLayout.SOUTH);
+//        getContentPane().add(bar, BorderLayout.WEST);
         
 //        GroupLayout g = new GroupLayout(mainPanel);
 //        g.setHorizontalGroup(g.createSequentialGroup()

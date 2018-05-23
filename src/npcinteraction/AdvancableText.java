@@ -84,7 +84,10 @@ public class AdvancableText {
     
     public String nextLine(){
         String s = nextLine(1);
-        
+        s = checkHealthIncrease(s);
+        s = checkHealthRestore(s);
+        s = checkDamageIncrease(s);
+        s = checkBuy(s);
         return s;
     }
     
