@@ -1,1 +1,16 @@
-
+???:Haven't seen you around, whats your name newcomer?
+>Quincer:The name is Quincer, you probobly heard about me you know with the ship
+->???:Yeah I heard of you, take a seat and chill for a bit. I'm the bartender
+-->Quincer pops a seat up.
+--->Bartender:What will it be m8? 
+---->Quincer:Bottled water, from Hysperia falls
+----->Bartender:Alright... drinks on the house buddy
+------>Quincer:Thanks man, your very kind. I don't get that much around here
+------->Quincer: Even though I'm the savior of this land
+-------->Bartender:Thats what its like sometimes man.
+--------->Bartender:Graditude comes in small doses, but when you get it,
+---------->Bartender:It can make anyones day brighter
+----------->Quincer: :) Thanks man
+------------>Bartender:Anitime
+------------->Quincer and the Bartender talk and talk all throughout the day
+-------------->Quincer made a new friend.
