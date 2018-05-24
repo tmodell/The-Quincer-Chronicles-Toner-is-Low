@@ -23,6 +23,13 @@ import javax.swing.JComponent;
  */
 public class MenuText {
 
+    /*
+    * ALEC LOOK HERE
+    menu text will be initialized in a method in an advanceable text object
+    just set it up so tht the textbox can recieve a menutext object and display it
+    */
+    
+    
     public MenuText (String input) {
         
     }
