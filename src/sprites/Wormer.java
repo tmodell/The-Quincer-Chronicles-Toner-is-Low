@@ -51,9 +51,8 @@ public class Wormer extends Movable{
      * @param world Za warudo
      * @param health The wormer's heath
      * @param damage The wormer's damage
-     * @param speed The wormer's attack speed
      */
-    public Wormer(World world, int health, int damage, int speed){
+    public Wormer(World world, int health, int damage, int x, int y){
         super(WORMER_IMAGE_URLS[0]);
         
         this.world = world;
@@ -62,16 +61,22 @@ public class Wormer extends Movable{
         
         thread = new WormerThread(this);
         thread.start();
+        
+        this.x = x;
+        this.y = y;
     }
     
     public void kill(){
         alive = false;
-        // TODO logic to let the world know the wormer has died
+        world.killWormer(this, x, y);
     }
 
     public void receiveStrike(int damage){
             health -= damage;
+//            String s;
             if (health < 0) kill();
+//            s = health < 0 ? "dead" : Integer.toString(health);
+//            System.out.println(s);
     }
     
     private class WormerThread extends Thread{

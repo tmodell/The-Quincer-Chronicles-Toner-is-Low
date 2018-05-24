@@ -189,6 +189,11 @@ public class World extends JPanel{
         } 
         if (infested) spawnWormers();
         
+        // Hardcode wormer
+        Wormer w = new Wormer(this, 100, 10, 20, 5);
+        sprites.add(w);
+        wormers[20][5] = w;
+        
         repainting = true;
     }
     
@@ -221,7 +226,9 @@ public class World extends JPanel{
      * @param damage
      */
     public void PlayerAttack(int x, int y, int damage){
-        wormers[x][y].receiveStrike(damage);
+        Wormer w = wormers[x][y];
+        if (w== null) System.out.println("Kys");
+        else w.receiveStrike(damage);
     }
     
     /**
@@ -232,6 +239,11 @@ public class World extends JPanel{
      */
     public void WormerAttack(int x, int y, int damage){
         player.receiveStrike(damage);
+    }
+    
+    public void killWormer(Wormer wormer, int x, int y){
+        sprites.remove(wormer);
+        wormers[x][y] = null;
     }
     
     // TODO complete method to spawn wormers

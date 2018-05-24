@@ -12,7 +12,7 @@ public class Player extends Movable{
         "src/sprites/lib/images/quincerfront.png", "src/sprites/lib/images/quincerfront.png"};
     public static final int DEFAULT_HEALTH = 200;
     public static final int DEFAULT_DAMAGE = 25;
-    public static final int DEFAULT_COOLDOWN = 1250;
+    public static final int DEFAULT_COOLDOWN = 1000;
     public static final int DEFAULT_MONEY = 100;
     
     World world;
@@ -57,7 +57,10 @@ public class Player extends Movable{
     
     public void receiveStrike(int damage){
         health -= damage;
+//        String s;
         if (health <= 0) kill();
+//        s = health < 0 ? "dead" : Integer.toString(health);
+//        System.out.println(s);
     }
     
     public void givePotion(int n){
@@ -88,7 +91,10 @@ public class Player extends Movable{
         if(deltatime <= 250){attackdmg = 1;}
         else if(deltatime > 250 && deltatime < cooldown){attackdmg = (int)((double)damage*Math.pow((double)damage/2,(deltatime-cooldown)/(cooldown-250)));}
         
-        world.PlayerAttack(x, y, attackdmg);
+        int destX = getXInFront();
+        int destY = getYInFront();
+        
+        world.PlayerAttack(destX, destY, attackdmg);
         
     }
     
