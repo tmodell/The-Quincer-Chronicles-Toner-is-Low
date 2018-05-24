@@ -40,7 +40,11 @@ public class MenuText {
     private int iteration = 0;
     
     public MenuText (String input) {
-        
+        try {
+            reader(input, 0);
+        } catch (IOException e) {
+            
+        }
     }
     
     //This section is the reader, which imports the content of the file and

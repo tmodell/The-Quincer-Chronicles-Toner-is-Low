@@ -213,4 +213,23 @@ public class AdvancableText {
             if (currentNode.getChild(2) != null) count += 1;
             return count;
         }
+    
+    private MenuText mt;
+    private boolean isMenu = false;
+    
+    public void setMenuText(MenuText menu) {
+        mt = menu;
+    }
+    
+    public MenuText getMenuText() {
+        return mt;
+    }
+    
+    public void setIsMenu(boolean set) {
+        isMenu = set;
+    }
+    
+    public boolean getIsMenu() {
+        return isMenu;
+    }
 }
