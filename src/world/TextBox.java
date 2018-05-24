@@ -7,10 +7,8 @@ package world;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
-import javax.swing.JComponent;
 import java.awt.*;
 import javax.swing.ImageIcon;
-import java.io.IOException; 
 
 import npcinteraction.*;
 
@@ -33,8 +31,8 @@ public class TextBox extends JPanel{
         background = new ImageIcon("src/world/lib/textbox.png").getImage();
         //setBackground(Color.RED);
         
-        TextComponent textMenu = new TextComponent();
-        this.frame.add(textMenu);
+        //TextComponent textMenu = new TextComponent();
+        //this.frame.add(textMenu);
     }
     
     public void handleInteractionKey (int key){
@@ -88,71 +86,3 @@ public class TextBox extends JPanel{
     }
 }
 
-class TextComponent extends JComponent {
-    
-    @Override
-    public void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        
-        Image rob = Toolkit.getDefaultToolkit().getImage("textBox.png");
-        Image bob = Toolkit.getDefaultToolkit().getImage("cursor.png");
-
-        g2.drawImage(rob, 0, 480-150, this);
-        
-        String[] hold = new String[3];
-        
-//        try {
-//            //hold = MenuText.reader("menutest", MenuText.getIteration());
-//        } catch (IOException e) {
-//            
-//        }
-        
-        MenuText.setIteration(MenuText.getIteration());
-        
-        int dialogPos = 0;
-        
-        if (MenuText.getNext() == true) {
-            MenuText.setSpeechPos(MenuText.getSpeechPos() + 1 <= 
-                    hold.length - 1 ? 
-                    MenuText.getSpeechPos() + 1 : 
-                    MenuText.getSpeechPos());
-        }
-        
-        String I = hold[MenuText.getSpeechPos()];
-        if (I.contains("/'/")) {
-            int L = 0;
-            MenuText.setMaxPos(Character.getNumericValue(
-                    I.charAt(0)));
-            for (String J : I.split("/'/")) {
-                for (String K : J.split("_")) {
-                    if (L % 2 != 1) {
-                        if (L == 0) {
-                            g2.drawString(K.substring(1), 50, 360 
-                                    + dialogPos * 25);
-                            dialogPos++;
-                            MenuText.setMenu(true);
-                            L++;
-                        } else {
-                            g2.drawString(K, 50, 360 + dialogPos * 25);
-                            dialogPos++;
-                            MenuText.setMenu(true);
-                            L++;
-                        }
-                    } else {
-                        MenuText.addToOutputs(K);
-                        L++;
-                    }
-                }
-            }
-        } else {
-            g2.drawString(I, 35, 360);
-            MenuText.setSpeaking(true);
-        }
-        MenuText.setNext(false);
-        
-        if (MenuText.getMenu() == true) {
-            g2.drawImage(bob, 35, 350 + MenuText.getCursPos() * 25, 
-                    this);
-        }
-    }
-}
