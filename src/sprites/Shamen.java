@@ -17,8 +17,8 @@ public class Shamen extends Wormer{
     
     int shamenNum;
     
-    public Shamen(World world, int health, int damage, int speed, int shamenNum) {
-        super(world, health, damage, speed);
+    public Shamen(World world, int health, int damage, int x, int y, int shamenNum) {
+        super(world, health, damage, x, y);
         
         this.shamenNum = shamenNum;
         
