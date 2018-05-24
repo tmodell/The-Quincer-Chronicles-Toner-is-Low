@@ -26,6 +26,8 @@ public class Save implements Serializable {
     private static final String FILE_NAME = "save.ser";
     private static final String DEFAULT_ROOM = "default_room_url";
     
+    private transient Player player;
+    
     public Save() {
         File f = new File(FILE_NAME);
         try {
@@ -59,10 +61,27 @@ public class Save implements Serializable {
                     playerRoom = temp.getPlayerRoom();
                     ois.close();
             }
-        } catch(Exception e) {
-            // I handled exceptions lazily
-            e.printStackTrace();
-        }
+        } catch(Exception e) {}
+    }
+    
+    public void save(){
+        // Update all the variables
+        playerX = player.getX();
+        playerY = player.getY();
+        money = player.getMoney();
+        maxHealth = player.getMaxHealth();
+        playerRoom = player.getWorld().getMap();
+        
+        // Now save this object
+        try{
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
+            oos.writeObject(this);
+            oos.close();
+        } catch (Exception e){}
+    }
+    
+    public void setPlayer(Player player){
+        this.player = player;
     }
     
     public int getPlayerX(){

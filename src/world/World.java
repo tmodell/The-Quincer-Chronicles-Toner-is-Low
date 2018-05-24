@@ -39,6 +39,7 @@ public class World extends JPanel{
     
     MainFrame frame;
     Image tile;
+    String map;
     
     volatile boolean repainting = true;
     
@@ -80,7 +81,8 @@ public class World extends JPanel{
         player.setPosition(playerX, playerY);
         
         String url = PREFIX + name + SUFFIX;
-
+        map = name;
+        
         // File IO is fun right?
         BufferedReader inputStream = null;
         String s = "";
@@ -332,6 +334,14 @@ public class World extends JPanel{
     
     public Player getPlayer(){
         return player;
+    }
+    
+    public MainFrame getFrame(){
+        return frame;
+    }
+    
+    public String getMap(){
+        return map;
     }
     
     private class Path{

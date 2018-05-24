@@ -84,6 +84,22 @@ public class Player extends Movable{
         
     }
     
+    public int getMoney(){
+        return money;
+    }
+    
+    public int getMaxHealth(){
+        return maxHealth;
+    }
+    
+    public int getHealth(){
+        return health;
+    }
+    
+    public World getWorld(){
+        return world;
+    }
+    
     @Override
     public void left(){
         super.left();

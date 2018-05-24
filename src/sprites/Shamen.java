@@ -26,4 +26,10 @@ public class Shamen extends Wormer{
         image = ii.getImage();
     }
     
+    @Override
+    public void kill(){
+        super.kill();
+        world.getFrame().getSave().setShamenAlive(shamenNum, false);
+    }
+    
 }
