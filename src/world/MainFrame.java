@@ -16,6 +16,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import npcinteraction.MenuText;
 import sound.MusicController;
+import tonerislow.Save;
 
 /**
  * This is the main class and is the one that houses the world
@@ -29,10 +30,14 @@ public class MainFrame extends JFrame{
     TextBox box;
     SideBar bar;
     
+    Save save;
+    
     static final boolean DEVELOPER_DEBUG = true;
     
-    public MainFrame(){
+    public MainFrame(Save save){
         super();
+        
+        this.save  = save;
         
         mainPanel = new JPanel();
         world = new World(this);
@@ -167,5 +172,9 @@ public class MainFrame extends JFrame{
     
     public World getWorld(){
         return world;
+    }
+    
+    public Save getSave(){
+        return save;
     }
 }

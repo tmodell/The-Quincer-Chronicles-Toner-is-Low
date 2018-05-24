@@ -10,9 +10,10 @@ import world.World;
 public class Player extends Movable{
     static final String[] PLAYER_IMAGE_URLS = {"src/sprites/lib/images/quincerfront.png", "src/sprites/lib/images/quincerfront.png", 
         "src/sprites/lib/images/quincerfront.png", "src/sprites/lib/images/quincerfront.png"};
-    static final int DEFAULT_HEALTH = 200;
-    static final int DEFAULT_DAMAGE = 25;
-    static final int DEFAULT_COOLDOWN = 1250;
+    public static final int DEFAULT_HEALTH = 200;
+    public static final int DEFAULT_DAMAGE = 25;
+    public static final int DEFAULT_COOLDOWN = 1250;
+    public static final int DEFAULT_MONEY = 100;
     
     World world;
     
@@ -20,6 +21,7 @@ public class Player extends Movable{
     int health = DEFAULT_HEALTH;
     int damage = DEFAULT_DAMAGE;
     int cooldown = DEFAULT_COOLDOWN;
+    int money = DEFAULT_MONEY;
     
     long time;
     long deltatime;
