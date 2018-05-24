@@ -43,6 +43,7 @@ public class World extends JPanel{
     String map;
     
     int shamenNum;
+    boolean needsSort = false;
     
     volatile boolean repainting = true;
     
@@ -209,8 +210,6 @@ public class World extends JPanel{
         symbolMap.put('H', "house");
         symbolMap.put('.', null);
         symbolMap.put('A', "alchemist");
-//        symbolMap.put('D', "doorway");
-//        symbolMap.put('P', "path");
         symbolMap.put('C', "alchemistcart");
         symbolMap.put('Y', "hysperia");
         symbolMap.put('L', "villageleader");
@@ -299,6 +298,8 @@ public class World extends JPanel{
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        
+        long time = System.currentTimeMillis();
         //System.out.println("Painting");
         for (int x = 0; x < WIDTH; x++){
             //System.out.println(x);
@@ -307,16 +308,27 @@ public class World extends JPanel{
             }
         }
         
-        // Sample loop for drawing map; leaving it commented out for now
+        if (needsSort) sortSprites();
         for (Sprite x: sprites){
             //System.out.println(x.getRealY());
             g.drawImage(x.getImage(), x.getRealX() + x.getOffsetX(), x.getRealY() + x.getOffsetY(), null);
         }
         
+        int delay = (int)(System.currentTimeMillis() - time) + 20;
         try{
-            Thread.sleep(20);
+            Thread.sleep(delay);
         } catch (Exception e){}
         repaint();
+    }
+    
+    private void sortSprites(){
+        for (int i = 1; i < sprites.size(); i++){
+            for (int j = i; j > 0 && sprites.get(j - 1).getY() > sprites.get(j).getY(); j--){
+                Sprite temp = sprites.get(j);
+                sprites.set(j, sprites.get(j - 1));
+                sprites.set(j - 1, temp);
+            }
+        }
     }
     
     /**
@@ -327,13 +339,55 @@ public class World extends JPanel{
      */
     public void handleMovementKey(int key) {
         int hypotheticalX, hypotheticalY, x = player.getX(), y = player.getY();
+        needsSort = true;
         switch (key){
-            case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT:
                 hypotheticalX = x - 1;
                 // check whether the square is occupiable
                 if (isOccupiable(hypotheticalX, y)){
                     player.left();
-                } else if (wormerAtPos(hypotheticalX, y)){
+                } else {
+                   // maybe add code for what to do if a square is unoccupiable 
+                }
+                break;
+            case KeyEvent.VK_RIGHT:
+                hypotheticalX = x + 1;
+                // check whether the square is occupiable
+                if (isOccupiable(hypotheticalX, y)){
+                    player.right();
+                } else {
+                   // maybe add code for what to do if a square is unoccupiable 
+                }
+                break;
+            case KeyEvent.VK_UP:
+                hypotheticalY = y - 1;
+                // check whether the square is occupiable
+                if (isOccupiable(x, hypotheticalY)){
+                    player.up();
+                } else {
+                   // maybe add code for what to do if a square is unoccupiable 
+                }
+                break;
+            case KeyEvent.VK_DOWN:
+                hypotheticalY = y + 1;
+                // check whether the square is occupiable
+                if (isOccupiable(x, hypotheticalY)){
+                    player.down();
+                } else {
+                   // maybe add code for what to do if a square is unoccupiable 
+                }
+                break;
+        }
+    }
+    
+    public void handleCombatKey(int key){
+        int hypotheticalX, hypotheticalY, x = player.getX(), y = player.getY();
+        needsSort = true;
+        switch (key){
+            case KeyEvent.VK_A:
+                hypotheticalX = x - 1;
+                // check whether the square is occupiable
+                if (wormerAtPos(hypotheticalX, y)){
                     player.attack();
                 } else if (wormerAtPos(x+1, y)) {
                     //some way to block attacks
@@ -344,9 +398,7 @@ public class World extends JPanel{
             case KeyEvent.VK_D:
                 hypotheticalX = x + 1;
                 // check whether the square is occupiable
-                if (isOccupiable(hypotheticalX, y)){
-                    player.right();
-                } else if (wormerAtPos(hypotheticalX, y)){
+                if (wormerAtPos(hypotheticalX, y)){
                     player.attack();
                 } else if (wormerAtPos(x-1, y)) {
                     //some way to block attacks
@@ -357,9 +409,7 @@ public class World extends JPanel{
             case KeyEvent.VK_W:
                 hypotheticalY = y - 1;
                 // check whether the square is occupiable
-                if (isOccupiable(x, hypotheticalY)){
-                    player.up();
-                } else if (wormerAtPos(x, hypotheticalY)){
+                if (wormerAtPos(x, hypotheticalY)){
                     player.attack();
                 } else if (wormerAtPos(x, y+1)) {
                     //some way to block attacks
@@ -370,9 +420,7 @@ public class World extends JPanel{
             case KeyEvent.VK_S:
                 hypotheticalY = y + 1;
                 // check whether the square is occupiable
-                if (isOccupiable(x, hypotheticalY)){
-                    player.down();
-                } else if (wormerAtPos(x, hypotheticalY)){
+                if (wormerAtPos(x, hypotheticalY)){
                     player.attack();
                 } else if (wormerAtPos(x, y-1)) {
                     //some way to block attacks

@@ -61,7 +61,7 @@ public class Wormer extends Movable{
         this.health = health;
         this.damage = damage;
         
-        this.player = world.getPlayer();
+        //this.player = world.getPlayer();
         
         thread = new WormerThread(this);
         thread.start();
