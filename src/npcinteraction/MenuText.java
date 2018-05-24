@@ -28,7 +28,16 @@ public class MenuText {
     menu text will be initialized in a method in an advanceable text object
     just set it up so tht the textbox can recieve a menutext object and display it
     */
-    
+    private ArrayList<String> outputs = new ArrayList<>();
+    private String [] continent;
+    private String target;
+    private boolean isMenu = false;
+    private boolean isNext = false;
+    private boolean isSpeaking = false;
+    private int cursPos = 0;
+    private int maxPos = 0;
+    private int speechPos = 0;
+    private int iteration = 0;
     
     public MenuText (String input) {
         
@@ -136,17 +145,6 @@ public class MenuText {
         speechPos = 0;
         iteration = 0;
     }
-    
-    private ArrayList<String> outputs = new ArrayList<>();
-    private String [] continent;
-    private String target;
-    private boolean isMenu = false;
-    private boolean isNext = false;
-    private boolean isSpeaking = false;
-    private int cursPos = 0;
-    private int maxPos = 0;
-    private int speechPos = 0;
-    private int iteration = 0;
     
 }
 

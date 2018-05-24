@@ -22,7 +22,7 @@ public class NPC extends Sprite{
      * @param y 
      */
     public NPC(String imageURL, String interactionFileName, String name, int x, int y){
-        super(imageURL);
+        super("src/sprites/lib/images/" + imageURL + ".png");
         interactionURL = PREFIX + interactionFileName + ".txt";
         
         this.name = name;

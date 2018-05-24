@@ -5,9 +5,13 @@
  */
 package world;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
-import java.awt.*;
 import javax.swing.ImageIcon;
 
 import npcinteraction.*;
@@ -20,8 +24,11 @@ public class TextBox extends JPanel{
     MainFrame frame;
     
     AdvancableText currentText = null;
+    Menu menu = null;
     
     Image background;
+    
+    String s;
     
     public TextBox(MainFrame frame){
         super();
@@ -47,9 +54,8 @@ public class TextBox extends JPanel{
                     String s = currentText.nextLine();
                     if (s == null) {
                         currentText = null;
-                    } else{
-                        displayText(s);
                     }
+                    displayText(s);
                 }
                 break;
             case KeyEvent.VK_Z:
@@ -77,12 +83,22 @@ public class TextBox extends JPanel{
     }
     
     public void displayText(String text){
-        //TODO add code to display text
+        this.s = text;
+        repaint();
     }
     
     @Override
     public void paintComponent(Graphics g){
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("", Font.PLAIN, 30));
+        
         g.drawImage(background, 0, 0, null);
+        if (s != null){
+            g.drawString(s, 100, 50);
+            if (currentText.getOptionCount() > 1) {
+                g.drawString("z: Yes    x: No", 100, 100);
+            }
+        }
     }
 }
 

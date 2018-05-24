@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 import sprites.*;
 import npcinteraction.*;
+import tonerislow.TonerIsLow;
 
 /**
  *
@@ -40,6 +41,8 @@ public class World extends JPanel{
     MainFrame frame;
     Image tile;
     String map;
+    
+    int shamenNum;
     
     volatile boolean repainting = true;
     
@@ -100,8 +103,17 @@ public class World extends JPanel{
 
         String[] lines = s.split("\n");
         
-        //System.out.println(1);
-        tile = new ImageIcon("src/sprites/lib/tiles/" + lines[0] + ".png").getImage();
+        // Find out whether the map is infested by wormers
+        String[] line1Split = lines[0].split(",");
+        shamenNum = Integer.parseInt(line1Split[0]);
+        boolean infested = TonerIsLow.getSave().isShamenAlive(shamenNum);
+        
+        // Figure out which tile to paint on
+        String tileName = line1Split[1];
+        if (tileName.equals("grass") && infested) tileName = "snow";
+        
+        ImageIcon ii = new ImageIcon("src/sprites/lib/tiles/" + tileName + ".png");
+        tile = ii.getImage();
         
         //System.out.println("The loop is about to start...");
         /*
@@ -137,8 +149,16 @@ public class World extends JPanel{
                             break;
                         // NPCs
                         case 'N':
+                            System.out.println("Drawing NPC");
+                            // Does not spawn an NPC if the map is infested
+                            if (infested){
+                                System.out.println("Infested");
+                                c = ' ';
+                                break;
+                            }
                             c = 'N';
                             char symbool = escapeSplit[1].charAt(0);
+                            System.out.println(symbool);
                             String interactionFileName = escapeSplit[2];
                             String nam = escapeSplit[3];
                             NPC npc = new NPC(symbolMap.get(symbool), interactionFileName, nam, x, y - 1);
@@ -152,17 +172,23 @@ public class World extends JPanel{
                             NPCs[x][y - 1] = hysperia;
                             sprites.add(hysperia);
                             break;
+                        case 'O':
+                            if (infested) c = 'O';
+                            else c = ' ';
+                            break;
+                        case 'W':
+                            // TODO code to parse and add a wormer shamen
+                            break;
                     }
                 }
                 else if (c != ' '){
-                    //System.out.println(c);
-                    //System.out.println(symbolMap.get(c));
                     sprites.add(new Stationary(symbolMap.get(c), x , y - 1));
-                    //System.out.println(5);
                 }
                 squares[x][y - 1] = c;
-            }//System.out.println(count++);
-        } //System.out.println("Loop complete.");
+            }
+        } 
+        if (infested) spawnWormers();
+        
         repainting = true;
     }
     
@@ -206,6 +232,19 @@ public class World extends JPanel{
      */
     public void WormerAttack(int x, int y, int damage){
         // TODO add logic for wormer attacks
+    }
+    
+    // TODO complete method to spawn wormers
+    public void spawnWormers(){
+//        int emptyCount = 0;
+//        // 2d for loop
+//        for (char[] c: squares){
+//            for (char d: c){
+//                if (d == ' ') emptyCount ++;
+//            }
+//        }
+//        
+//        int wormerCount = emptyCount
     }
     
     public void playerInteraction(){

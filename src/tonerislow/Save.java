@@ -102,6 +102,8 @@ public class Save implements Serializable {
     
     public boolean isShamenAlive(int n){
         switch(n){
+            case 0:
+                return false;
             case 1:
                 return shamen1;
             case 2:

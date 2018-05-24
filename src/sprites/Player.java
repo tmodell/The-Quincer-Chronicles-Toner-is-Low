@@ -51,9 +51,17 @@ public class Player extends Movable{
         this.damage = damage;
     }
     
+    public int getDamage(){
+        return damage;
+    }
+    
     public void recieveStrike(int damage){
         health -= damage;
         if (health <= 0) kill();
+    }
+    
+    public void givePotion(int n){
+        //TODO code to give the player n potions
     }
     
     public void kill(){
@@ -86,6 +94,10 @@ public class Player extends Movable{
     
     public int getMoney(){
         return money;
+    }
+    
+    public void setMoney(int money){
+        this.money = money;
     }
     
     public int getMaxHealth(){
