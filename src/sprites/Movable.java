@@ -28,6 +28,28 @@ public abstract class Movable extends Sprite{
         return orientation;
     }
     
+    public int getXInFront(){
+        switch(orientation){
+            case ORIENTATION_LEFT:
+                return x - 1;
+            case ORIENTATION_RIGHT:
+                return x + 1;
+            default:
+                return x;
+        }
+    }
+    
+    public int getYInFront(){
+        switch(orientation){
+            case ORIENTATION_UP:
+                return y - 1;
+            case ORIENTATION_DOWN:
+                return y + 1;
+            default:
+                return y;
+        }
+    }
+    
     // TODO add code to notify the world about movements
     public void left(){
         x -= 1;

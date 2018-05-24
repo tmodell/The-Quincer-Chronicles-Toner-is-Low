@@ -50,29 +50,61 @@ public class TextBox extends JPanel{
             return;
         }
         
-        int optionCount = currentText.getOptionCount();
-        switch (key){
-            case KeyEvent.VK_SPACE:
-                if (optionCount < 2){
-                    String s = currentText.nextLine();
-                    if (s == null) {
-                        currentText = null;
+        if (mt != null) {
+            if (mt.getMenu() == true && (key == KeyEvent.VK_UP
+                    || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_ENTER ||
+                    key == KeyEvent.VK_X)) {
+                if (mt.getSpeaking() == true) {
+                    if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_ENTER) {
+                        mt.setNext(true);
+                        mt.setSpeaking(false);
+                        repaint();
                     }
-                    displayText(s);
+                } else if (mt.getSpeaking() == false) {
+                    if (key == KeyEvent.VK_UP) {
+                        mt.setCursPos(-1);
+                        repaint();
+                    } else if (key == KeyEvent.VK_DOWN) {
+                        mt.setCursPos(1);
+                        repaint();
+                    } else if (key == KeyEvent.VK_X) {
+                        mt.setMenu(false);
+                        repaint();
+                    } else if (mt.getMenu() == true && 
+                            key == KeyEvent.VK_ENTER) {
+                        mt.setMenu(false);
+                        System.out.println(mt.getOutputs(
+                                mt.getCursPos()));
+                        mt.setNext(true);
+                        repaint();
+                    }
                 }
-                break;
-            case KeyEvent.VK_Z:
-                if (optionCount == 2){
-                    String s = currentText.nextLine(1);
-                    displayText(s);
-                }
-                break;
-            case KeyEvent.VK_X:
-                if (optionCount == 2){
-                    String s = currentText.nextLine(2);
-                    displayText(s);
-                }
-                break;
+            }
+        } else {
+            int optionCount = currentText.getOptionCount();
+            switch (key){
+                case KeyEvent.VK_SPACE:
+                    if (optionCount < 2){
+                        String s = currentText.nextLine();
+                        if (s == null) {
+                            currentText = null;
+                        }
+                        displayText(s);
+                    }
+                    break;
+                case KeyEvent.VK_Z:
+                    if (optionCount == 2){
+                        String s = currentText.nextLine(1);
+                        displayText(s);
+                    }
+                    break;
+                case KeyEvent.VK_X:
+                    if (optionCount == 2){
+                        String s = currentText.nextLine(2);
+                        displayText(s);
+                    }
+                    break;
+            }
         }
     }
     
