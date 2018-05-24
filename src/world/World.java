@@ -231,7 +231,7 @@ public class World extends JPanel{
      * @param damage 
      */
     public void WormerAttack(int x, int y, int damage){
-        // TODO add logic for wormer attacks
+        player.receiveStrike(damage);
     }
     
     // TODO complete method to spawn wormers
@@ -321,12 +321,12 @@ public class World extends JPanel{
                 // check whether the square is occupiable
                 if (isOccupiable(hypotheticalX, y)){
                     player.left();
-                } else{
-                    if (wormerAtPos(hypotheticalX, y)){
-                        player.attack();
-                    } else {
-                       // maybe add code for what to do if a square is unoccupiable 
-                    }
+                } else if (wormerAtPos(hypotheticalX, y)){
+                    player.attack();
+                } else if (wormerAtPos(x+1, y)) {
+                    //some way to block attacks
+                } else {
+                   // maybe add code for what to do if a square is unoccupiable 
                 }
                 break;
             case KeyEvent.VK_D:
@@ -334,12 +334,12 @@ public class World extends JPanel{
                 // check whether the square is occupiable
                 if (isOccupiable(hypotheticalX, y)){
                     player.right();
-                } else{
-                    if (wormerAtPos(hypotheticalX, y)){
-                        player.attack();
-                    } else {
-                       // maybe add code for what to do if a square is unoccupiable 
-                    }
+                } else if (wormerAtPos(hypotheticalX, y)){
+                    player.attack();
+                } else if (wormerAtPos(x-1, y)) {
+                    //some way to block attacks
+                } else {
+                   // maybe add code for what to do if a square is unoccupiable 
                 }
                 break;
             case KeyEvent.VK_W:
@@ -347,12 +347,12 @@ public class World extends JPanel{
                 // check whether the square is occupiable
                 if (isOccupiable(x, hypotheticalY)){
                     player.up();
-                } else{
-                    if (wormerAtPos(x, hypotheticalY)){
-                        player.attack();
-                    } else {
-                       // maybe add code for what to do if a square is unoccupiable 
-                    }
+                } else if (wormerAtPos(x, hypotheticalY)){
+                    player.attack();
+                } else if (wormerAtPos(x, y+1)) {
+                    //some way to block attacks
+                } else {
+                   // maybe add code for what to do if a square is unoccupiable 
                 }
                 break;
             case KeyEvent.VK_S:
@@ -360,12 +360,12 @@ public class World extends JPanel{
                 // check whether the square is occupiable
                 if (isOccupiable(x, hypotheticalY)){
                     player.down();
-                } else{
-                    if (wormerAtPos(x, hypotheticalY)){
-                        player.attack();
-                    } else {
-                       // maybe add code for what to do if a square is unoccupiable 
-                    }
+                } else if (wormerAtPos(x, hypotheticalY)){
+                    player.attack();
+                } else if (wormerAtPos(x, y-1)) {
+                    //some way to block attacks
+                } else {
+                   // maybe add code for what to do if a square is unoccupiable 
                 }
                 break;
         }

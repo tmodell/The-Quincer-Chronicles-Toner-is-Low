@@ -55,7 +55,7 @@ public class Player extends Movable{
         return damage;
     }
     
-    public void recieveStrike(int damage){
+    public void receiveStrike(int damage){
         health -= damage;
         if (health <= 0) kill();
     }
