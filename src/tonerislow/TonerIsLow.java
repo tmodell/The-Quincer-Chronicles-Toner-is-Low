@@ -14,12 +14,18 @@ import world.MainFrame;
 public class TonerIsLow {
 
     static MainFrame mainFrame;
+    static Save save;
     
     public static void main(String[] args) {
-        mainFrame = new MainFrame();
+        save = new Save();
+        mainFrame = new MainFrame(save);
     }
     
     public static MainFrame getMainFrame(){
         return mainFrame;
+    }
+    
+    public static Save getSave(){
+        return save;
     }
 }

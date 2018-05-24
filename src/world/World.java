@@ -248,7 +248,7 @@ public class World extends JPanel{
         super.paintComponent(g);
         //System.out.println("Painting");
         for (int x = 0; x < WIDTH; x++){
-            System.out.println(x);
+            //System.out.println(x);
             for (int y = 0; y < HEIGHT; y++){
                 g.drawImage(tile, x * GRID_SIZE, y * GRID_SIZE, null);
             }
