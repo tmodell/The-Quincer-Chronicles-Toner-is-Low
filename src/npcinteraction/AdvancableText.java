@@ -91,6 +91,7 @@ public class AdvancableText {
             s = checkHealthRestore(s);
             s = checkDamageIncrease(s);
             s = checkBuy(s);
+            s = checkMenu(s);
             return s;
         }
     }
@@ -127,6 +128,16 @@ public class AdvancableText {
             int dD = Integer.parseInt(sub);
             player.setDamage(dD);
         }
+        return s;
+    }
+    
+    private String checkMenu(String s){
+        if (s.contains ("~m")){
+            s.replace("~m", "");
+            MenuText menu = new MenuText(s);
+            s = null;
+        }
+        
         return s;
     }
     

@@ -48,7 +48,7 @@ public class MenuText {
             throws IOException {
         ArrayList<String> parts = new ArrayList<>();
         if (iteration == 0) {
-            String content = new String(Files.readAllBytes(Paths.get(target 
+            String content = new String(Files.readAllBytes(Paths.get("src/npcinteraction/lib/" + target 
                     + ".txt")));
             for (String I: content.split("\n")) {
                 parts.add(I);
