@@ -109,6 +109,9 @@ public class TextBox extends JPanel{
                 currentText.getMenuText().getMenu() == true) {
             mt = currentText.getMenuText();
             
+            int vertPos = (int) Math.round(Toolkit.getDefaultToolkit()
+                    .getScreenSize().getHeight());
+            
             Image bob = Toolkit.getDefaultToolkit().getImage(
                     "./src/npcinteraction.lib/cursor.png");
             
@@ -134,13 +137,14 @@ public class TextBox extends JPanel{
                     for (String K : J.split("_")) {
                         if (L % 2 != 1) {
                             if (L == 0) {
-                                g.drawString(K.substring(1), 50, 360 
+                                g.drawString(K.substring(1), 50, vertPos - 160 
                                         + dialogPos * 25);
                                 dialogPos++;
                                 mt.setMenu(true);
                                 L++;
                             } else {
-                                g.drawString(K, 50, 360 + dialogPos * 25);
+                                g.drawString(K, 50, vertPos - 160 
+                                        + dialogPos * 25);
                                 dialogPos++;
                                 mt.setMenu(true);
                                 L++;
@@ -152,7 +156,7 @@ public class TextBox extends JPanel{
                     }
                 }
             } else {
-                g.drawString(I, 35, 360);
+                g.drawString(I, 35, vertPos - 160);
                 mt.setSpeaking(true);
             }
             mt.setNext(false);
