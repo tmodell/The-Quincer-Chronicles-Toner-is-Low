@@ -34,13 +34,15 @@ public class Wormer extends Movable{
      * Creates a Wormer with default health
      * @param world The world
      */
-    public Wormer(World world){
+    public Wormer(World world, int x, int y){
         super(WORMER_IMAGE_URLS[0]);
         this.world = world;
         
         health = DEFAULT_HEALTH;
         damage = DEFAULT_DAMAGE;
         cooldown = DEFAULT_COOLDOWN;
+        
+        this.player = world.getPlayer();
         
         thread = new WormerThread(this);
         thread.start();
@@ -58,6 +60,8 @@ public class Wormer extends Movable{
         this.world = world;
         this.health = health;
         this.damage = damage;
+        
+        this.player = world.getPlayer();
         
         thread = new WormerThread(this);
         thread.start();
@@ -93,9 +97,11 @@ public class Wormer extends Movable{
         public boolean moveTowardsPlayer(){
             // Find distance between player and wormer
             int dx = x - player.getX();
+            System.out.println(dx);
             int dy = y - player.getY();
+            System.out.println(dy);
             int distance = (int)(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
-            
+            System.out.println();
             if (distance > 5) return false;
             if (distance == 1) return true;
             
@@ -121,22 +127,8 @@ public class Wormer extends Movable{
          * This method will attack the user
          */
         public void attack(){
-            int destX = x, destY = y;
-            switch (orientation){
-                case 0:
-                    destY++;
-                    break;
-                case 1:
-                    destY--;
-                    break;
-                case 2:
-                    destX--;
-                    break;
-                case 3:
-                    destX++;
-                    break;
-            }
-            world.WormerAttack(x, y, damage);
+            int destX = getXInFront(), destY = getYInFront();
+            world.WormerAttack(destX, destY, damage);
         }
         
         // TODO this wormer ai needs alot of work

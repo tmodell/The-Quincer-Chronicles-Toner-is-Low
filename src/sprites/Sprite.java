@@ -13,8 +13,8 @@ import javax.swing.ImageIcon;
  * @author albert.wilcox
  */
 public abstract class Sprite {
-    int x;
-    int y;
+    volatile int x;
+    volatile int y;
     int getOffsetX = 0;
     int getOffsetY = 0;
     
