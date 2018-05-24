@@ -32,7 +32,7 @@ public class NPC extends Sprite{
     
     public AdvancableText getInteraction(){
         try{
-            return new AdvancableText(interactionURL);
+            return new AdvancableText(interactionURL, name);
         }catch(Exception e){return null;}
     }
 }

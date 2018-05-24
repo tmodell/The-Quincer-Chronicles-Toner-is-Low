@@ -29,6 +29,7 @@ public class TextBox extends JPanel{
     Image background;
     
     String s;
+    String name;
     
     public TextBox(MainFrame frame){
         super();
@@ -76,6 +77,8 @@ public class TextBox extends JPanel{
     public void startInteraction(AdvancableText text){
         currentText = text;
         displayText(currentText.nextLine());
+        name  = currentText.getName();
+        System.out.println("Name: " + name);
     }
     
     public boolean active(){
@@ -90,13 +93,15 @@ public class TextBox extends JPanel{
     @Override
     public void paintComponent(Graphics g){
         g.setColor(Color.WHITE);
-        g.setFont(new Font("", Font.PLAIN, 30));
+        g.setFont(new Font("", Font.BOLD, 30));
         
         g.drawImage(background, 0, 0, null);
         if (s != null){
-            g.drawString(s, 100, 50);
+            g.drawString(name, 30, 50);
+            g.setFont(new Font("", Font.PLAIN, 30));
+            g.drawString(s, 100, 100);
             if (currentText.getOptionCount() > 1) {
-                g.drawString("z: Yes    x: No", 100, 100);
+                g.drawString("z: Yes    x: No", 100, 150);
             }
         }
     }

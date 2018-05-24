@@ -19,6 +19,7 @@ public class AdvancableText {
     // Don't even try to figure out how this works lol
     TreeNode topNode, currentNode;
     Player player;
+    String name;
     
     //Test purposes only
 //    public static void main(String[] args) throws IOException{
@@ -53,7 +54,7 @@ public class AdvancableText {
 //        }
 //    }
     
-    public AdvancableText(String URL) throws IOException{
+    public AdvancableText(String URL, String name) throws IOException{
         BufferedReader inputStream = null;
         String s = "";
         try{
@@ -68,9 +69,14 @@ public class AdvancableText {
         }
         
         player = tonerislow.TonerIsLow.getMainFrame().getWorld().getPlayer();
+        this.name = name;
         
         topNode = new TreeNode(s, ">");
         currentNode = topNode;
+    }
+    
+    public String getName(){
+        return name;
     }
     
     // It may behoove us to use a tree to represent the conversations so that
@@ -79,17 +85,18 @@ public class AdvancableText {
     public String nextLine(int n){
         currentNode = currentNode.getChild(n);
         if (currentNode == null) return null;
-        else return currentNode.getMessage();
-    }
-    
-    public String nextLine(){
-        String s = nextLine(1);
-        if (s != null){
+        else {
+            String s = currentNode.getMessage();
             s = checkHealthIncrease(s);
             s = checkHealthRestore(s);
             s = checkDamageIncrease(s);
             s = checkBuy(s);
+            return s;
         }
+    }
+    
+    public String nextLine(){
+        String s = nextLine(1);
         return s;
     }
     
@@ -106,7 +113,7 @@ public class AdvancableText {
     
     private String checkHealthRestore(String s){
         if (s.contains("~r")){
-            s = s.replace("~r", "");
+            s = s.replace("~r", "Health Restored.");
             player.restoreHealth();
         }
         return s;
