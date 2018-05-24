@@ -50,7 +50,7 @@ public class TextBox extends JPanel{
             return;
         }
         
-        if (mt.getMenu() == true) {
+        if (mt != null) {
             if (mt.getMenu() == true && (key == KeyEvent.VK_UP
                     || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_ENTER ||
                     key == KeyEvent.VK_X)) {
