@@ -7,15 +7,10 @@
 
 package npcinteraction;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import javax.swing.JComponent;
 
 /**
  *

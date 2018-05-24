@@ -105,7 +105,7 @@ public class TextBox extends JPanel{
             if (currentText.getOptionCount() > 1) {
                 g.drawString("z: Yes    x: No", 100, 150);
             }
-        } else if (currentText.getMenuText() != null && 
+        } else if (currentText != null && currentText.getMenuText() != null && 
                 currentText.getMenuText().getMenu() == true) {
             mt = currentText.getMenuText();
             
