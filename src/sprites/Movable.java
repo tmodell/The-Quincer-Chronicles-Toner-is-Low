@@ -18,6 +18,8 @@ public abstract class Movable extends Sprite{
     public static final int ORIENTATION_LEFT = 2;
     public static final int ORIENTATION_RIGHT = 3;
     
+    private static boolean alreadyMoving= false;
+    
     int orientation = 0;
     
     public Movable(String s){
@@ -52,22 +54,118 @@ public abstract class Movable extends Sprite{
     
     // TODO add code to notify the world about movements
     public void left(){
-        x -= 1;
-        orientation = ORIENTATION_LEFT;
+        if (!alreadyMoving){
+            alreadyMoving = true;
+            orientation = ORIENTATION_LEFT;
+            new Thread(){
+                @Override
+                public void run(){
+                    for (int i=0; i<10; i++){
+                        if (getOffsetX < -(GRID_SIZE-(GRID_SIZE/4))){
+                            x -= 1;
+                            getOffsetX = 0;
+                        } else {
+                            getOffsetX -= (GRID_SIZE/10);
+                        }
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e){  
+                            e.printStackTrace();
+                        }
+                    }
+                    if (((GRID_SIZE/4)-getOffsetX) < 0){
+                    getOffsetX = 0; 
+                    }
+                    alreadyMoving = false;
+                }
+            }.start();
+        }
     }
     
     public void right(){
-        x += 1;
-        orientation = ORIENTATION_RIGHT;
+        if (!alreadyMoving){
+            alreadyMoving = true;
+            orientation = ORIENTATION_RIGHT;
+            new Thread(){
+                @Override
+                public void run(){
+                    for (int i=0; i<10; i++){
+                        if (getOffsetX > (GRID_SIZE-(GRID_SIZE/4))){
+                            x += 1;
+                            getOffsetX = 0;
+                        } else {
+                            getOffsetX += (GRID_SIZE/10);
+                        }
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e){  
+                            e.printStackTrace();
+                        }
+                    }
+                    if (((GRID_SIZE/4)-getOffsetX) < 0){
+                    getOffsetX = 0; 
+                    }
+                    alreadyMoving = false;
+                }
+            }.start();
+        }
     }
     
     public void down(){
-        y += 1;
-        orientation = ORIENTATION_DOWN;
+        if (!alreadyMoving){
+            alreadyMoving = true;
+            orientation = ORIENTATION_DOWN;
+            new Thread(){
+                @Override
+                public void run(){
+                    for (int i=0; i<10; i++){
+                        if (getOffsetY > (GRID_SIZE-(GRID_SIZE/4))){
+                            y += 1;
+                            getOffsetY = 0;
+                        } else {
+                            getOffsetY += (GRID_SIZE/10);
+                        }
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e){  
+                            e.printStackTrace();
+                        }
+                    }
+                    if (((GRID_SIZE/4)-getOffsetY) < 0){
+                    getOffsetY = 0; 
+                    }
+                    alreadyMoving = false;
+                }
+            }.start();
+        }
     }
     
     public void up(){
-        y -= 1;
-        orientation = ORIENTATION_UP;
+        if (!alreadyMoving){
+            alreadyMoving = true;
+            orientation = ORIENTATION_UP;
+            new Thread(){
+                @Override
+                public void run(){
+                    for (int i=0; i<10; i++){
+                        if (getOffsetY < -(GRID_SIZE-(GRID_SIZE/4))){
+                            y -= 1;
+                            getOffsetY = 0;
+                        } else {
+                            getOffsetY -= (GRID_SIZE/10);
+                        }
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e){  
+                            e.printStackTrace();
+                        }
+                    }
+                    if (((GRID_SIZE/4)-getOffsetY) < 0){
+                        getOffsetY = 0; 
+                    }
+                    alreadyMoving = false;
+                }
+            }.start();
+        }
     }
 }

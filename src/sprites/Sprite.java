@@ -15,6 +15,8 @@ import javax.swing.ImageIcon;
 public abstract class Sprite {
     int x;
     int y;
+    int getOffsetX = 0;
+    int getOffsetY = 0;
     
     //int realX;
     //int realY;
@@ -53,6 +55,14 @@ public abstract class Sprite {
     
     public int getY(){
         return y;
+    }
+    
+    public int getOffsetX(){
+        return getOffsetX;
+    }
+
+    public int getOffsetY(){
+        return getOffsetY;
     }
     
     public Image getImage(){

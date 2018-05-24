@@ -310,11 +310,11 @@ public class World extends JPanel{
         // Sample loop for drawing map; leaving it commented out for now
         for (Sprite x: sprites){
             //System.out.println(x.getRealY());
-            g.drawImage(x.getImage(), x.getRealX(), x.getRealY(), null);
+            g.drawImage(x.getImage(), x.getRealX() + x.getOffsetX(), x.getRealY() + x.getOffsetY(), null);
         }
         
         try{
-            Thread.sleep(33);
+            Thread.sleep(20);
         } catch (Exception e){}
         repaint();
     }
