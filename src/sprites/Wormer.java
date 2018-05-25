@@ -93,11 +93,27 @@ public class Wormer extends Movable{
 
         //TODO this code has no way of handling obstacles
         if (Math.abs(dx) > Math.abs(dy)){
-            if (dx > 0) left();
-            else right();
+            if (dx > 0) {
+                if(world.isOccupiable(x - 1, y)) left();
+                else if (world.isOccupiable(x, y + 1)) down();
+                else if (world.isOccupiable(x, y - 1)) up();
+            }
+            else {
+                if (world.isOccupiable(x + 1, y)) right();
+                else if (world.isOccupiable(x, y + 1)) down();
+                else if (world.isOccupiable(x, y - 1)) up();
+            }
         } else{
-            if (dy > 0) up();
-            else down();
+            if (dy > 0) {
+                if (world.isOccupiable(x, y - 1)) up();
+                else if (world.isOccupiable(x - 1, y)) left();
+                else if (world.isOccupiable(x + 1, y)) right();
+            }
+            else {
+                if (world.isOccupiable(x, y + 1)) down();
+                else if (world.isOccupiable(x - 1, y)) left();
+                else if (world.isOccupiable(x + 1, y)) right();
+            }
         }
 
         return false;

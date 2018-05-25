@@ -75,7 +75,7 @@ public class World extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-                if (count++ > 5){
+                if (count++ > 10){
                     count = 0;
                     refreshWormers();
                 }
