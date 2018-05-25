@@ -73,6 +73,8 @@ public class World extends JPanel{
     }
     
     public void loadMap(String name, int playerX, int playerY) throws IOException{
+        System.out.println(imageFileExists("statue"));
+        
         repainting = false;
 
         sprites.clear();
@@ -111,8 +113,12 @@ public class World extends JPanel{
         
         // Figure out which tile to paint on
         String tileName = line1Split[1];
-        if (tileName.equals("grass") && infested) tileName = "snow";
+        if (tileFileExists(tileName + "snow") && infested) {
+           // System.out.println(tileName + "snow exists");
+            tileName = tileName + "snow";
+        }
         
+        //System.out.println(tileName);
         ImageIcon ii = new ImageIcon("src/sprites/lib/tiles/" + tileName + ".png");
         tile = ii.getImage();
         
@@ -139,7 +145,7 @@ public class World extends JPanel{
                     switch (ch){
                         // Paths
                         case 'P':
-                            c = 'P';
+                            c = ' ';
                             char symbol = '\0';
                             if (!escapeSplit[1].equals(""))sprites.add(new Stationary(symbolMap.get(escapeSplit[1].charAt(0)), x, y - 1));
                             int destX = Integer.parseInt(escapeSplit[2]);
@@ -150,11 +156,11 @@ public class World extends JPanel{
                             break;
                         // NPCs
                         case 'N':
-                            System.out.println("Drawing NPC");
+                            //System.out.println("Drawing NPC");
                             // Does not spawn an NPC if the map is infested
                             if (infested){
-                                System.out.println("Infested");
-                                c = ' ';
+                                sprites.add(new Stationary("statue", x , y - 1));
+                                c = 'O';
                                 break;
                             }
                             c = 'N';
@@ -173,17 +179,22 @@ public class World extends JPanel{
                             NPCs[x][y - 1] = hysperia;
                             sprites.add(hysperia);
                             break;
-                        case 'O':
-                            if (infested) c = 'O';
-                            else c = ' ';
-                            break;
                         case 'W':
                             // TODO code to parse and add a wormer shamen
+                            break;
+                        case 'D':
+                            //TODO code to spawn a dark worm
                             break;
                     }
                 }
                 else if (c != ' '){
-                    sprites.add(new Stationary(symbolMap.get(c), x , y - 1));
+                    // This basically makes snowy textures snowy if needed
+                    String imageName = symbolMap.get(c);
+                    if (infested && imageFileExists(imageName + "snow")){
+                       // System.out.println(imageName + "snow exists");
+                        imageName = imageName + "snow";
+                    } //System.out.println(imageName);
+                    sprites.add(new Stationary(imageName, x , y - 1));
                 }
                 squares[x][y - 1] = c;
             }
@@ -216,6 +227,10 @@ public class World extends JPanel{
         symbolMap.put('V', "villager");
         symbolMap.put('B', "blacksmith");
         symbolMap.put('W', "wiseman");
+        symbolMap.put('O', "statue");
+        symbolMap.put('w', "wormercorpse");
+        symbolMap.put('h', "thatchedhut");
+        symbolMap.put('*', "black");
     }
     
     /**
@@ -242,6 +257,7 @@ public class World extends JPanel{
     
     public void killWormer(Wormer wormer, int x, int y){
         sprites.remove(wormer);
+        sprites.add(new Stationary(symbolMap.get('w'), x, y));
         wormers[x][y] = null;
     }
     
@@ -331,6 +347,18 @@ public class World extends JPanel{
         }
     }
     
+    private boolean imageFileExists(String s){
+        s = "src/sprites/lib/images/" + s + ".png";
+        File tmpDir = new File(s);
+        return tmpDir.exists();
+    }
+    
+    private boolean tileFileExists(String s){
+        s = "src/sprites/lib/tiles/" + s + ".png";
+        File tmpDir = new File(s);
+        return tmpDir.exists();
+    }
+    
     /**
      * This method will be called when the player presses an arrow key.
      * Its job is to check whether the player can move where he/she wants
@@ -346,6 +374,7 @@ public class World extends JPanel{
                 // check whether the square is occupiable
                 if (isOccupiable(hypotheticalX, y)){
                     player.left();
+                    x = hypotheticalX;
                 } else {
                    // maybe add code for what to do if a square is unoccupiable 
                 }
@@ -355,6 +384,7 @@ public class World extends JPanel{
                 // check whether the square is occupiable
                 if (isOccupiable(hypotheticalX, y)){
                     player.right();
+                    x = hypotheticalX;
                 } else {
                    // maybe add code for what to do if a square is unoccupiable 
                 }
@@ -364,6 +394,7 @@ public class World extends JPanel{
                 // check whether the square is occupiable
                 if (isOccupiable(x, hypotheticalY)){
                     player.up();
+                    y = hypotheticalY;
                 } else {
                    // maybe add code for what to do if a square is unoccupiable 
                 }
@@ -373,10 +404,17 @@ public class World extends JPanel{
                 // check whether the square is occupiable
                 if (isOccupiable(x, hypotheticalY)){
                     player.down();
+                    y = hypotheticalY;
                 } else {
                    // maybe add code for what to do if a square is unoccupiable 
                 }
                 break;
+        }
+        Path p;
+        if ((p = paths[x][y]) != null){
+            try{
+                loadMap(p.destName, p.destX, p.destY);
+            } catch (Exception e){}
         }
     }
     
@@ -447,16 +485,16 @@ public class World extends JPanel{
         //private static final String PREFIX = "src/world/lib/maps/";
         
         int destX, destY;
-        String destURL;
+        String destName;
         
         public Path(int destX, int destY, String locName){
             this.destX = destX;
             this.destY = destY;
-            this.destURL = PREFIX + locName + SUFFIX;
+            this.destName = locName;
         }        
         
-        public String getDestURL(){
-            return destURL;
+        public String getDestName(){
+            return destName;
         }
     }
 }

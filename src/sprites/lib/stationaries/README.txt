@@ -1,1 +1,0 @@
-Hello y'all. This file should be used to store any image that will be stationary, like trees and buildings. thx b
