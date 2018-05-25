@@ -48,13 +48,13 @@ public class TextBox extends JPanel{
             return;
         }
         
-        if (currentText.getMenuText() != null) {
+        if (mt != null) {
             //the issue, according to the debugger, is that menutext objects 
             //aren't being instantiated to the textbox when called.
-            mt = currentText.getMenuText();
             s = null;
             if (mt.getMenu() == true && (key == KeyEvent.VK_UP
-                    || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_ENTER ||
+                    || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_ENTER
+                    || key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT ||
                     key == KeyEvent.VK_X)) {
                 if (mt.getSpeaking() == true) {
                     if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_ENTER) {
