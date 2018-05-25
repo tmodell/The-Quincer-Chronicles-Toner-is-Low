@@ -27,6 +27,7 @@ public class MenuText {
     private String [] continent;
     private String target;
     private boolean isMenu = false;
+    private boolean isActive = false;
     private boolean isNext = false;
     private boolean isSpeaking = false;
     private int cursPos = 0;
@@ -40,6 +41,7 @@ public class MenuText {
         } catch (IOException e) {
             
         }
+        isActive = true;
         isMenu = true;
         isSpeaking = true;
     }
@@ -59,10 +61,22 @@ public class MenuText {
         continent = parts.toArray(new String[parts.size()]);
     }
     
+    public void apply(String help) {
+        
+    }
+    
     //This section includes the control booleans and the data values that must
     //be kept consistent, plus all the get and set methods.
     public boolean getMenu() {
         return isMenu;
+    }
+    
+    public boolean getActive() {
+        return isActive;
+    }
+    
+    public void setActive(boolean set) {
+        isActive = set;
     }
     
     public String getPartsOfParts(int index) {
