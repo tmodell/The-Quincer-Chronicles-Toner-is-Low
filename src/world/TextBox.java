@@ -29,6 +29,7 @@ public class TextBox extends JPanel{
     MenuText mt;
     
     Image background;
+    Image cursor;
     
     String s;
     String name;
@@ -37,6 +38,8 @@ public class TextBox extends JPanel{
         super();
         this.frame = frame;
         setPreferredSize(new Dimension(1664 , 184));
+        
+        cursor = new ImageIcon("src/world/lib/cursor.png").getImage();
         
         background = new ImageIcon("src/world/lib/textbox.png").getImage();
         //setBackground(Color.RED);
@@ -52,7 +55,7 @@ public class TextBox extends JPanel{
             //the issue, according to the debugger, is that menutext objects 
             //aren't being instantiated to the textbox when called.
             s = null;
-            if (mt.getMenu() == true && (key == KeyEvent.VK_UP
+            if (mt.getActive() == true && (key == KeyEvent.VK_UP
                     || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_ENTER
                     || key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT ||
                     key == KeyEvent.VK_X)) {
@@ -61,7 +64,9 @@ public class TextBox extends JPanel{
                         mt.setNext(true);
                         mt.setSpeaking(false);
                         repaint();
-                    }
+                    } else if (key == KeyEvent.VK_X) {
+                        mt.setActive(false);
+                        repaint();
                 } else if (mt.getSpeaking() == false) {
                     if (key == KeyEvent.VK_UP) {
                         mt.setCursPos(-1);
@@ -70,12 +75,12 @@ public class TextBox extends JPanel{
                         mt.setCursPos(1);
                         repaint();
                     } else if (key == KeyEvent.VK_X) {
-                        mt.setMenu(false);
+                        mt.setActive(false);
                         repaint();
                     } else if (mt.getMenu() == true && 
                             key == KeyEvent.VK_ENTER) {
                         mt.setMenu(false);
-                        System.out.println(mt.getOutputs(
+                        mt.apply(mt.getOutputs(
                                 mt.getCursPos()));
                         mt.setNext(true);
                         repaint();
@@ -110,8 +115,8 @@ public class TextBox extends JPanel{
         }
     }
     
-    public void setMenuText(MenuText mt){
-        this.mt = mt;
+    public void setMenuText(MenuText mens){
+        this.mt = mens;
     }
     
     public void startInteraction(AdvancableText text){
@@ -148,15 +153,8 @@ public class TextBox extends JPanel{
                 g.drawString("z: Yes    x: No", 100, 150);
             }
         } else if (currentText != null && mt != null && 
-                mt.getMenu() == true) {
-            System.out.println("I actually tried!");
+                mt.getActive() == true) {
             
-            int vertPos = (int) Math.round(Toolkit.getDefaultToolkit()
-                    .getScreenSize().getHeight());
-            
-            Image bob = Toolkit.getDefaultToolkit().getImage(
-                    "./src/npcinteraction.lib/cursor.png");
-        
             int dialogPos = 0;
 
             if (mt.getNext() == true) {
@@ -196,11 +194,12 @@ public class TextBox extends JPanel{
             } else {
                 g.drawString(I, 30, 50);
                 mt.setSpeaking(true);
+                mt.setMenu(false);
             }
             mt.setNext(false);
 
             if (mt.getMenu() == true) {
-                g.drawImage(bob, 35, 50 + mt.getCursPos() * 25, 
+                    g.drawImage(cursor, 35, mt.getCursPos() * 25, 
                         this);
             }
         }
