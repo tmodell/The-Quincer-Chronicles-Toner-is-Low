@@ -40,9 +40,7 @@ public class TextBox extends JPanel{
         
         background = new ImageIcon("src/world/lib/textbox.png").getImage();
         //setBackground(Color.RED);
-        
-        //TextComponent textMenu = new TextComponent();
-        //this.frame.add(textMenu);
+
     }
     
     public void handleInteractionKey (int key){
@@ -50,7 +48,9 @@ public class TextBox extends JPanel{
             return;
         }
         
-        if (mt != null) {
+        if (currentText.getMenuText() != null) {
+            mt = currentText.getMenuText();
+            s = null;
             if (mt.getMenu() == true && (key == KeyEvent.VK_UP
                     || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_ENTER ||
                     key == KeyEvent.VK_X)) {
@@ -126,6 +126,10 @@ public class TextBox extends JPanel{
     public void displayText(String text){
         this.s = text;
         repaint();
+    }
+    
+    public void setText(String text) {
+        this.s = text;
     }
     
     @Override
