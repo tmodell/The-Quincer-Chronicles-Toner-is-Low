@@ -12,7 +12,7 @@ public class Player extends Movable{
         "src/sprites/lib/images/quincerfront.png", "src/sprites/lib/images/quincerfront.png"};
     public static final int DEFAULT_HEALTH = 200;
     public static final int DEFAULT_DAMAGE = 25;
-    public static final int DEFAULT_COOLDOWN = 1000;
+    public static final int DEFAULT_COOLDOWN = 900;
     public static final int DEFAULT_MONEY = 100;
     
     World world;
@@ -23,8 +23,8 @@ public class Player extends Movable{
     int cooldown = DEFAULT_COOLDOWN;
     int money = DEFAULT_MONEY;
     
-    long time;
-    long deltatime;
+    double time;
+    double deltatime;
     
     public Player(int x, int y, World world){
         super(PLAYER_IMAGE_URLS[0]);
@@ -57,9 +57,9 @@ public class Player extends Movable{
     
     public void receiveStrike(int damage){
         health -= damage;
-//        String s;
         if (health <= 0) kill();
-        //System.out.println(health);
+//        String s;
+//        System.out.println(health);
 //        s = health < 0 ? "dead" : Integer.toString(health);
 //        System.out.println(s);
     }
@@ -89,9 +89,10 @@ public class Player extends Movable{
         
         //Needlessly complicated but it works.
         //Relationship for damage and time between key presses.
-        if(deltatime <= 250){attackdmg = 1;}
-        else if(deltatime > 250 && deltatime < cooldown){attackdmg = (int)((double)damage*Math.pow((double)damage/2,(deltatime-cooldown)/(cooldown-250)));}
-        
+        if(deltatime <= 250){attackdmg = 2;}
+        else if(deltatime < cooldown){attackdmg = (int)((double)damage * Math.pow(damage/3,(deltatime-cooldown)/(cooldown-250)));}
+        System.out.println(deltatime);
+        System.out.println(attackdmg);
         int destX = getXInFront();
         int destY = getYInFront();
         
