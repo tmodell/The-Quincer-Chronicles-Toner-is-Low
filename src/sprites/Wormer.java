@@ -6,6 +6,12 @@
 package sprites;
 
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import world.*;
 /**
@@ -23,6 +29,8 @@ public class Wormer extends Movable{
     static final int DEFAULT_HEALTH = 100;
     static final int DEFAULT_DAMAGE = 10;
     static final int DEFAULT_COOLDOWN = 1000;
+    
+    BufferedImage[] images;
     
     World world;
     Player player;
@@ -49,6 +57,14 @@ public class Wormer extends Movable{
         cooldown = DEFAULT_COOLDOWN;
         
         this.player = world.getPlayer();
+        
+        try{
+           images[Movable.ORIENTATION_UP] = ImageIO.read(new File("src/sprites/lib/images.wormerfront.png"));
+           images[Movable.ORIENTATION_LEFT] = ImageIO.read(new File("src/sprites/lib/images.wormerfront.png"));
+           images[Movable.ORIENTATION_RIGHT] = ImageIO.read(new File("src/sprites/lib/images.wormerfront.png"));
+           images[Movable.ORIENTATION_DOWN] = ImageIO.read(new File("src/sprites/lib/images.wormerfront.png"));
+        } catch (IOException e){}
+        
         
         //thread = new WormerThread(this);
         //thread.start();
@@ -156,68 +172,10 @@ public class Wormer extends Movable{
 //            System.out.println(s);
     }
     
-//    private class WormerThread extends Thread{
-//        Wormer wormer;
-//        
-//        WormerThread(Wormer wormer){
-//            this.wormer = wormer;
-//        }
-//        
-//        /**
-//         * Move towards the player and return whether the wormer should attack.
-//         * @return Whether or not the wormer needs to attack
-//         */
-//        public boolean moveTowardsPlayer(){
-//            // Find distance between player and wormer
-//            int dx = x - player.getX();
-//            System.out.println(dx);
-//            int dy = y - player.getY();
-//            System.out.println(dy);
-//            int distance = (int)(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
-//            System.out.println();
-//            if (distance > 5) return false;
-//            if (distance == 1) return true;
-//            
-//            //TODO this code has no way of handling obstacles
-//            if (dx > dy){
-//                if (dx > 0) left();
-//                else right();
-//            } else{
-//                if (dy > 0) up();
-//                else down();
-//            }
-//            
-//            return false;
-//        }
-//        
-//        /**
-//         * Call this method when the Wormer has been attacked
-//         * @param damage How much damage to do to the wormer (poor guy)
-//         */
-//        
-//        
-//        /**
-//         * This method will attack the user
-//         */
-//        public void attack(){
-//            int destX = getXInFront(), destY = getYInFront();
-//            world.WormerAttack(destX, destY, damage);
-//        }
-//        
-//        // TODO this wormer ai needs alot of work
-//        @Override
-//        public void run(){
-//            while(alive){
-//                boolean attack = moveTowardsPlayer();
-//                if (attack) {
-//                    attack();
-//                }
-//                try{
-//                    Thread.sleep(cooldown);
-//                } catch (InterruptedException e) {/*lazy exception handling*/}
-//            }
-//        }
-//    }
+    @Override
+    public Image getImage(){
+        return images[orientation];
+    }
     
     @Override
     public void left(){
