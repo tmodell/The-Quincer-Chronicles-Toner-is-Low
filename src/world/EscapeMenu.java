@@ -12,5 +12,5 @@ import javax.swing.*;
  * @author alber
  */
 public class EscapeMenu extends JPanel {
-    
+    JButton resume, save, saveExit;
 }

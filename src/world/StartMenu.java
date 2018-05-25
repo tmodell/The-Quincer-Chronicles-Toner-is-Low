@@ -56,6 +56,8 @@ public class StartMenu extends JPanel{
             }
         });
         
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        
         add(header);
         add(start);
         add(settings);
