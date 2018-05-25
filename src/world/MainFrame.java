@@ -142,6 +142,10 @@ public class MainFrame extends JFrame{
         return world;
     }
     
+    public TextBox getTextBox(){
+        return box;
+    }
+    
     public Save getSave(){
         return save;
     }

@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.Scanner;
 
 import sprites.Player;
+import world.TextBox;
 
 /**
  *
@@ -20,6 +21,8 @@ public class AdvancableText {
     TreeNode topNode, currentNode;
     Player player;
     String name;
+    
+    TextBox box;
     
     //Test purposes only
 //    public static void main(String[] args) throws IOException{
@@ -69,6 +72,8 @@ public class AdvancableText {
         }
         
         player = tonerislow.TonerIsLow.getMainFrame().getWorld().getPlayer();
+        box = tonerislow.TonerIsLow.getMainFrame().getTextBox();
+        
         this.name = name;
         
         topNode = new TreeNode(s, ">");
@@ -133,8 +138,9 @@ public class AdvancableText {
     
     private String checkMenu(String s){
         if (s.contains ("~m")){
-            s.replace("~m", "");
+            s = s.replace("~m", "");
             MenuText menu = new MenuText(s);
+            box.setMenuText(menu);
             s = null;
         }
         

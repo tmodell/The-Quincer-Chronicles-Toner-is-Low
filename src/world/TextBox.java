@@ -46,7 +46,7 @@ public class TextBox extends JPanel{
     }
     
     public void handleInteractionKey (int key){
-        if (currentText == null){
+        if (currentText == null && mt == null){
             return;
         }
         
@@ -85,27 +85,31 @@ public class TextBox extends JPanel{
             switch (key){
                 case KeyEvent.VK_SPACE:
                     if (optionCount < 2){
-                        String s = currentText.nextLine();
+                        s = currentText.nextLine();
                         if (s == null) {
                             currentText = null;
                         }
-                        displayText(s);
+                        repaint();
                     }
                     break;
                 case KeyEvent.VK_Z:
                     if (optionCount == 2){
-                        String s = currentText.nextLine(1);
-                        displayText(s);
+                        s = currentText.nextLine(1);
+                        repaint();
                     }
                     break;
                 case KeyEvent.VK_X:
                     if (optionCount == 2){
-                        String s = currentText.nextLine(2);
-                        displayText(s);
+                        s = currentText.nextLine(2);
+                        repaint();
                     }
                     break;
             }
         }
+    }
+    
+    public void setMenuText(MenuText mt){
+        this.mt = mt;
     }
     
     public void startInteraction(AdvancableText text){
