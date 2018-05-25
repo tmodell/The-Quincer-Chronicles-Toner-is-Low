@@ -6,6 +6,7 @@
 package sprites;
 
 import javax.swing.ImageIcon;
+import static sprites.Sprite.GRID_SIZE;
 
 /**
  *
@@ -18,7 +19,7 @@ public abstract class Movable extends Sprite{
     public static final int ORIENTATION_LEFT = 2;
     public static final int ORIENTATION_RIGHT = 3;
     
-    private static boolean alreadyMoving= false;
+    private boolean alreadyMoving= false;
     
     int orientation = 0;
     
@@ -64,22 +65,15 @@ public abstract class Movable extends Sprite{
             new Thread(){
                 @Override
                 public void run(){
-                    for (int i=0; i<10; i++){
-                        if (getOffsetX < -(GRID_SIZE-(GRID_SIZE/4))){
-                            x -= 1;
-                            getOffsetX = 0;
-                        } else {
-                            getOffsetX -= (GRID_SIZE/10);
-                        }
-                        try {
+                    x -= 1;
+                    getOffsetX = 64;
+                    while(getOffsetX > 0){
+                        getOffsetX -= GRID_SIZE/10;
+                        try{
                             Thread.sleep(10);
-                        } catch (InterruptedException e){  
-                            e.printStackTrace();
-                        }
+                        } catch(Exception e){}
                     }
-                    if (((GRID_SIZE/4)-getOffsetX) < 0){
-                    getOffsetX = 0; 
-                    }
+                    getOffsetX = 0;
                     alreadyMoving = false;
                 }
             }.start();
@@ -93,22 +87,15 @@ public abstract class Movable extends Sprite{
             new Thread(){
                 @Override
                 public void run(){
-                    for (int i=0; i<10; i++){
-                        if (getOffsetX > (GRID_SIZE-(GRID_SIZE/4))){
-                            x += 1;
-                            getOffsetX = 0;
-                        } else {
-                            getOffsetX += (GRID_SIZE/10);
-                        }
-                        try {
+                    x += 1;
+                    getOffsetX = -64;
+                    while(getOffsetX < 0){
+                        getOffsetX += GRID_SIZE/10;
+                        try{
                             Thread.sleep(10);
-                        } catch (InterruptedException e){  
-                            e.printStackTrace();
-                        }
+                        } catch(Exception e){}
                     }
-                    if (((GRID_SIZE/4)-getOffsetX) < 0){
-                    getOffsetX = 0; 
-                    }
+                    getOffsetX = 0;
                     alreadyMoving = false;
                 }
             }.start();
@@ -122,22 +109,15 @@ public abstract class Movable extends Sprite{
             new Thread(){
                 @Override
                 public void run(){
-                    for (int i=0; i<10; i++){
-                        if (getOffsetY > (GRID_SIZE-(GRID_SIZE/4))){
-                            y += 1;
-                            getOffsetY = 0;
-                        } else {
-                            getOffsetY += (GRID_SIZE/10);
-                        }
-                        try {
+                    y += 1;
+                    getOffsetY = -64;
+                    while(getOffsetY < 0){
+                        getOffsetY += GRID_SIZE/10;
+                        try{
                             Thread.sleep(10);
-                        } catch (InterruptedException e){  
-                            e.printStackTrace();
-                        }
+                        } catch(Exception e){}
                     }
-                    if (((GRID_SIZE/4)-getOffsetY) < 0){
-                    getOffsetY = 0; 
-                    }
+                    getOffsetY = 0;
                     alreadyMoving = false;
                 }
             }.start();
@@ -151,22 +131,15 @@ public abstract class Movable extends Sprite{
             new Thread(){
                 @Override
                 public void run(){
-                    for (int i=0; i<10; i++){
-                        if (getOffsetY < -(GRID_SIZE-(GRID_SIZE/4))){
-                            y -= 1;
-                            getOffsetY = 0;
-                        } else {
-                            getOffsetY -= (GRID_SIZE/10);
-                        }
-                        try {
+                    y -= 1;
+                    getOffsetY = 64;
+                    while(getOffsetY > 0){
+                        getOffsetY -= GRID_SIZE/10;
+                        try{
                             Thread.sleep(10);
-                        } catch (InterruptedException e){  
-                            e.printStackTrace();
-                        }
+                        } catch(Exception e){}
                     }
-                    if (((GRID_SIZE/4)-getOffsetY) < 0){
-                        getOffsetY = 0; 
-                    }
+                    getOffsetY = 0;
                     alreadyMoving = false;
                 }
             }.start();
