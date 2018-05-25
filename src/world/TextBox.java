@@ -49,6 +49,8 @@ public class TextBox extends JPanel{
         }
         
         if (currentText.getMenuText() != null) {
+            //the issue, according to the debugger, is that menutext objects 
+            //aren't being instantiated to the textbox when called.
             mt = currentText.getMenuText();
             s = null;
             if (mt.getMenu() == true && (key == KeyEvent.VK_UP
@@ -97,7 +99,7 @@ public class TextBox extends JPanel{
                         s = currentText.nextLine(1);
                         repaint();
                     }
-                    break;
+                    break;mt
                 case KeyEvent.VK_X:
                     if (optionCount == 2){
                         s = currentText.nextLine(2);
