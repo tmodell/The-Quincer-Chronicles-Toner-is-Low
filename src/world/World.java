@@ -301,6 +301,11 @@ public class World extends JPanel{
         }
     }
     
+    public void moveWormer(Wormer wormer, int oldX, int oldY, int newX, int newY){
+        wormers[oldX][oldY] = null;
+        wormers[newX][newY] = wormer;
+    }
+    
     public void playerInteraction(){
         int x = player.getX(), y = player.getY(), orientation = player.getOrientation();
         switch (orientation){

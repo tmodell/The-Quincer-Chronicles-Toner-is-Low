@@ -60,12 +60,12 @@ public abstract class Movable extends Sprite{
     // TODO add code to notify the world about movements
     public void left(){
         if (!alreadyMoving){
+            x -= 1;
             alreadyMoving = true;
             orientation = ORIENTATION_LEFT;
             new Thread(){
                 @Override
                 public void run(){
-                    x -= 1;
                     getOffsetX = 64;
                     while(getOffsetX > 0){
                         getOffsetX -= GRID_SIZE/10;
@@ -82,12 +82,12 @@ public abstract class Movable extends Sprite{
     
     public void right(){
         if (!alreadyMoving){
+            x += 1;
             alreadyMoving = true;
             orientation = ORIENTATION_RIGHT;
             new Thread(){
                 @Override
                 public void run(){
-                    x += 1;
                     getOffsetX = -64;
                     while(getOffsetX < 0){
                         getOffsetX += GRID_SIZE/10;
@@ -104,12 +104,12 @@ public abstract class Movable extends Sprite{
     
     public void down(){
         if (!alreadyMoving){
+            y += 1;
             alreadyMoving = true;
             orientation = ORIENTATION_DOWN;
             new Thread(){
                 @Override
                 public void run(){
-                    y += 1;
                     getOffsetY = -64;
                     while(getOffsetY < 0){
                         getOffsetY += GRID_SIZE/10;
@@ -126,12 +126,12 @@ public abstract class Movable extends Sprite{
     
     public void up(){
         if (!alreadyMoving){
+            y -= 1;
             alreadyMoving = true;
             orientation = ORIENTATION_UP;
             new Thread(){
                 @Override
                 public void run(){
-                    y -= 1;
                     getOffsetY = 64;
                     while(getOffsetY > 0){
                         getOffsetY -= GRID_SIZE/10;

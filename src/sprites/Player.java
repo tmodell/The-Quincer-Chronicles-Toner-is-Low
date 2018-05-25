@@ -59,7 +59,7 @@ public class Player extends Movable{
         health -= damage;
 //        String s;
         if (health <= 0) kill();
-        System.out.println(health);
+        //System.out.println(health);
 //        s = health < 0 ? "dead" : Integer.toString(health);
 //        System.out.println(s);
     }

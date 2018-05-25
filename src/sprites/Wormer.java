@@ -194,6 +194,9 @@ public class Wormer extends Movable{
         super.left();
         ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
         image = ii.getImage();
+        int x = getX(), oldX = x + 1;
+        int y = getY();
+        world.moveWormer(this, oldX, y, x, y);
     }
     
     @Override
@@ -201,6 +204,9 @@ public class Wormer extends Movable{
         super.right();
         ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
         image = ii.getImage();
+        int x = getX(), oldX = x - 1;
+        int y = getY();
+        world.moveWormer(this, oldX, y, x, y);
     }
     
     @Override
@@ -208,6 +214,9 @@ public class Wormer extends Movable{
         super.up();
         ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
         image = ii.getImage();
+        int x = getX();
+        int y = getY(), oldY = y + 1;
+        world.moveWormer(this, x, oldY, x, y);
     }
     
     @Override
@@ -215,5 +224,8 @@ public class Wormer extends Movable{
         super.down();
         ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
         image = ii.getImage();
+        int x = getX();
+        int y = getY(), oldY = y - 1;
+        world.moveWormer(this, x, oldY, x, y);
     }
 }
