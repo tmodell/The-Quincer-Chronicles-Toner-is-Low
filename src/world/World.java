@@ -12,9 +12,14 @@ import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import sprites.*;
 import npcinteraction.*;
+import sound.SoundFXController;
 import tonerislow.TonerIsLow;
 
 /**
@@ -458,6 +463,11 @@ public class World extends JPanel{
     public void handleCombatKey(int key){
         int hypotheticalX, hypotheticalY, x = player.getX(), y = player.getY();
         needsSort = true;
+        try { //Plays attack sound
+            SoundFXController.swordFX();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+        }
         switch (key){
             case KeyEvent.VK_A:
                 hypotheticalX = x - 1;
