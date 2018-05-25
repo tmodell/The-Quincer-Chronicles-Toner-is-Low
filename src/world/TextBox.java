@@ -175,13 +175,13 @@ public class TextBox extends JPanel{
                     for (String K : J.split("_")) {
                         if (L % 2 != 1) {
                             if (L == 0) {
-                                g.drawString(K.substring(1), 50, vertPos - 160 
+                                g.drawString(K.substring(1), 50, 50
                                         + dialogPos * 25);
                                 dialogPos++;
                                 mt.setMenu(true);
                                 L++;
                             } else {
-                                g.drawString(K, 50, vertPos - 160 
+                                g.drawString(K, 50, 50
                                         + dialogPos * 25);
                                 dialogPos++;
                                 mt.setMenu(true);
@@ -194,13 +194,13 @@ public class TextBox extends JPanel{
                     }
                 }
             } else {
-                g.drawString(I, 35, vertPos - 160);
+                g.drawString(I, 30, 50);
                 mt.setSpeaking(true);
             }
             mt.setNext(false);
 
             if (mt.getMenu() == true) {
-                g.drawImage(bob, 35, 350 + mt.getCursPos() * 25, 
+                g.drawImage(bob, 35, 50 + mt.getCursPos() * 25, 
                         this);
             }
         }
