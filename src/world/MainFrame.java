@@ -25,6 +25,7 @@ import tonerislow.Save;
 public class MainFrame extends JFrame{
     
     JPanel mainPanel;
+    StartMenu start;
     
     World world;
     TextBox box;
@@ -38,6 +39,8 @@ public class MainFrame extends JFrame{
         super();
         
         this.save  = save;
+        
+        start = new StartMenu();
         
         mainPanel = new JPanel();
         world = new World(this);
@@ -70,7 +73,7 @@ public class MainFrame extends JFrame{
         box.setBounds(256,896,1664,184);
         bar.setBounds(0,0,256,1080);
         
-        getContentPane().add(mainPanel);
+        getContentPane().add(start);
         
 //        getContentPane().add(world, BorderLayout.CENTER);
 //        getContentPane().add(box, BorderLayout.SOUTH);
