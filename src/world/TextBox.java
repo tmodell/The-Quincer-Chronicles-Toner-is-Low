@@ -99,7 +99,7 @@ public class TextBox extends JPanel{
                         s = currentText.nextLine(1);
                         repaint();
                     }
-                    break;mt
+                    break;
                 case KeyEvent.VK_X:
                     if (optionCount == 2){
                         s = currentText.nextLine(2);
