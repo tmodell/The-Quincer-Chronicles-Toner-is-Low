@@ -1,0 +1,5 @@
+Music:
+trackOne: Main Menu
+trackTwo: Traveling
+trackThree: Village
+trackFour: Dungeon
