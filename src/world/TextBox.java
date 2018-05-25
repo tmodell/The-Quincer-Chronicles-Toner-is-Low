@@ -147,30 +147,26 @@ public class TextBox extends JPanel{
             if (currentText.getOptionCount() > 1) {
                 g.drawString("z: Yes    x: No", 100, 150);
             }
-        } else if (currentText != null && currentText.getMenuText() != null && 
-                currentText.getMenuText().getMenu() == true) {
-            mt = currentText.getMenuText();
+        } else if (currentText != null && mt != null && 
+                mt.getMenu() == true) {
+            System.out.println("I actually tried!");
             
             int vertPos = (int) Math.round(Toolkit.getDefaultToolkit()
                     .getScreenSize().getHeight());
             
             Image bob = Toolkit.getDefaultToolkit().getImage(
                     "./src/npcinteraction.lib/cursor.png");
-            
-            String[] hold = new String[3];
-            
-            mt.setIteration(mt.getIteration());
         
             int dialogPos = 0;
 
             if (mt.getNext() == true) {
                 mt.setSpeechPos(mt.getSpeechPos() + 1 <= 
-                        hold.length - 1 ? 
+                        mt.getParts().length - 1 ? 
                         mt.getSpeechPos() + 1 : 
                         mt.getSpeechPos());
             }
 
-            String I = hold[mt.getSpeechPos()];
+            String I = mt.getPartsOfParts(mt.getSpeechPos());
             if (I.contains("/'/")) {
                 int L = 0;
                 mt.setMaxPos(Character.getNumericValue(

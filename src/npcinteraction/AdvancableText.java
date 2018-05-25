@@ -88,9 +88,6 @@ public class AdvancableText {
     // we can do yes/no interactions
     
     public String nextLine(int n){
-        //Neither nextLine is ever called, and that is why the menu never comes
-        //up. I have no idea how to solve this, but I will start with figuring
-        //out how any text actually gets displayed.
         currentNode = currentNode.getChild(n);
         if (currentNode == null) {
             return null;
