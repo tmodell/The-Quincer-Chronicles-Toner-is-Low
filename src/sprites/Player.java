@@ -59,7 +59,7 @@ public class Player extends Movable{
         health -= damage;
 //        String s;
         if (health <= 0) kill();
-        System.out.println(health);
+        //System.out.println(health);
 //        s = health < 0 ? "dead" : Integer.toString(health);
 //        System.out.println(s);
     }
@@ -97,6 +97,13 @@ public class Player extends Movable{
         
         world.PlayerAttack(destX, destY, attackdmg);
         
+    }
+    
+    @Override
+    public void setOrientation(int orientation){
+        super.setOrientation(orientation);
+        ImageIcon ii = new ImageIcon(PLAYER_IMAGE_URLS[orientation]);
+        image = ii.getImage();
     }
     
     public int getMoney(){

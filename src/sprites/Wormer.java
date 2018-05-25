@@ -28,7 +28,7 @@ public class Wormer extends Movable{
     
     private volatile boolean alive = true;
     
-    WormerThread thread;
+    //WormerThread thread;
     
     /**
      * Creates a Wormer with default health
@@ -44,8 +44,8 @@ public class Wormer extends Movable{
         
         this.player = world.getPlayer();
         
-        thread = new WormerThread(this);
-        thread.start();
+        //thread = new WormerThread(this);
+        //thread.start();
     }
     
     /**
@@ -61,10 +61,10 @@ public class Wormer extends Movable{
         this.health = health;
         this.damage = damage;
         
-        //this.player = world.getPlayer();
+        this.player = world.getPlayer();
         
-        thread = new WormerThread(this);
-        thread.start();
+        //thread = new WormerThread(this);
+        //thread.start();
         
         this.x = x;
         this.y = y;
@@ -75,6 +75,49 @@ public class Wormer extends Movable{
         world.killWormer(this, x, y);
     }
 
+    /**
+     * Move towards the player and return whether the wormer should attack.
+     * @return Whether or not the wormer needs to attack
+     */
+    public boolean moveTowardsPlayer(){
+        // Find distance between player and wormer
+        int dx = x - player.getX();
+        //System.out.println(dx);
+        int dy = y - player.getY();
+        //System.out.println(dy);
+        int distance = (int)(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
+        System.out.println(distance);
+        //System.out.println();
+        if (distance > 5) return false;
+        if (distance == 1) return true;
+
+        //TODO this code has no way of handling obstacles
+        if (dx > dy){
+            if (dx > 0) left();
+            else right();
+        } else{
+            if (dy > 0) up();
+            else down();
+        }
+
+        return false;
+    }
+
+    /**
+     * This method will attack the user
+     */
+    public void attack(){
+        int destX = getXInFront(), destY = getYInFront();
+        world.WormerAttack(destX, destY, damage);
+    }
+    
+    public void refresh(){
+        //System.out.println("Refreshing");
+        boolean attack = moveTowardsPlayer();
+        if (attack) attack();
+        
+    }
+        
     public void receiveStrike(int damage){
             health -= damage;
 //            String s;
@@ -83,68 +126,68 @@ public class Wormer extends Movable{
 //            System.out.println(s);
     }
     
-    private class WormerThread extends Thread{
-        Wormer wormer;
-        
-        WormerThread(Wormer wormer){
-            this.wormer = wormer;
-        }
-        
-        /**
-         * Move towards the player and return whether the wormer should attack.
-         * @return Whether or not the wormer needs to attack
-         */
-        public boolean moveTowardsPlayer(){
-            // Find distance between player and wormer
-            int dx = x - player.getX();
-            System.out.println(dx);
-            int dy = y - player.getY();
-            System.out.println(dy);
-            int distance = (int)(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
-            System.out.println();
-            if (distance > 5) return false;
-            if (distance == 1) return true;
-            
-            //TODO this code has no way of handling obstacles
-            if (dx > dy){
-                if (dx > 0) left();
-                else right();
-            } else{
-                if (dy > 0) up();
-                else down();
-            }
-            
-            return false;
-        }
-        
-        /**
-         * Call this method when the Wormer has been attacked
-         * @param damage How much damage to do to the wormer (poor guy)
-         */
-        
-        
-        /**
-         * This method will attack the user
-         */
-        public void attack(){
-            int destX = getXInFront(), destY = getYInFront();
-            world.WormerAttack(destX, destY, damage);
-        }
-        
-        // TODO this wormer ai needs alot of work
-        @Override
-        public void run(){
-            while(alive){
-                boolean attack = moveTowardsPlayer();
-                if (attack) {
-                    attack();
-                }
-                try{
-                    Thread.sleep(cooldown);
-                } catch (InterruptedException e) {/*lazy exception handling*/}
-            }
-        }
-    }
+//    private class WormerThread extends Thread{
+//        Wormer wormer;
+//        
+//        WormerThread(Wormer wormer){
+//            this.wormer = wormer;
+//        }
+//        
+//        /**
+//         * Move towards the player and return whether the wormer should attack.
+//         * @return Whether or not the wormer needs to attack
+//         */
+//        public boolean moveTowardsPlayer(){
+//            // Find distance between player and wormer
+//            int dx = x - player.getX();
+//            System.out.println(dx);
+//            int dy = y - player.getY();
+//            System.out.println(dy);
+//            int distance = (int)(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
+//            System.out.println();
+//            if (distance > 5) return false;
+//            if (distance == 1) return true;
+//            
+//            //TODO this code has no way of handling obstacles
+//            if (dx > dy){
+//                if (dx > 0) left();
+//                else right();
+//            } else{
+//                if (dy > 0) up();
+//                else down();
+//            }
+//            
+//            return false;
+//        }
+//        
+//        /**
+//         * Call this method when the Wormer has been attacked
+//         * @param damage How much damage to do to the wormer (poor guy)
+//         */
+//        
+//        
+//        /**
+//         * This method will attack the user
+//         */
+//        public void attack(){
+//            int destX = getXInFront(), destY = getYInFront();
+//            world.WormerAttack(destX, destY, damage);
+//        }
+//        
+//        // TODO this wormer ai needs alot of work
+//        @Override
+//        public void run(){
+//            while(alive){
+//                boolean attack = moveTowardsPlayer();
+//                if (attack) {
+//                    attack();
+//                }
+//                try{
+//                    Thread.sleep(cooldown);
+//                } catch (InterruptedException e) {/*lazy exception handling*/}
+//            }
+//        }
+//    }
     
     @Override
     public void left(){

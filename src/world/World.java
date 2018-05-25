@@ -7,6 +7,7 @@ package world;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class World extends JPanel{
     
     int shamenNum;
     boolean needsSort = false;
+    int wormerRefreshCount = 0;
     
     volatile boolean repainting = true;
     
@@ -65,6 +67,22 @@ public class World extends JPanel{
         populateSymbolMap();
         
         player = new Player(0, 0, this);
+        
+        Timer t = new Timer(20, new AbstractAction(){
+            
+            int count = 0;
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                repaint();
+                if (count++ > 50){
+                    count = 0;
+                    refreshWormers();
+                }
+            }
+            
+        });
+        t.start();
         
         // the following loop is for testing purposes only
 //        for(int i = 0; i < 500; i++){
@@ -274,6 +292,15 @@ public class World extends JPanel{
 //        int wormerCount = emptyCount
     }
     
+    public void refreshWormers(){
+        // Iterate through each wormer
+        for (Wormer[] list: wormers){
+            for (Wormer wormer: list){
+                if (wormer != null) wormer.refresh();
+            }
+        }
+    }
+    
     public void playerInteraction(){
         int x = player.getX(), y = player.getY(), orientation = player.getOrientation();
         switch (orientation){
@@ -315,6 +342,11 @@ public class World extends JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         
+        //if (wormerRefreshCount++ > 10){
+            //wormerRefreshCount = 0;
+            //refreshWormers();
+        //}
+        
         long time = System.currentTimeMillis();
         //System.out.println("Painting");
         for (int x = 0; x < WIDTH; x++){
@@ -330,11 +362,11 @@ public class World extends JPanel{
             g.drawImage(x.getImage(), x.getRealX() + x.getOffsetX(), x.getRealY() + x.getOffsetY(), null);
         }
         
-        int delay = (int)(System.currentTimeMillis() - time) + 20;
-        try{
-            Thread.sleep(delay);
-        } catch (Exception e){}
-        repaint();
+//        int delay = (int)(System.currentTimeMillis() - time) + 20;
+//        try{
+//            Thread.sleep(delay);
+//        } catch (Exception e){}
+//        repaint();
     }
     
     private void sortSprites(){
@@ -376,7 +408,7 @@ public class World extends JPanel{
                     player.left();
                     x = hypotheticalX;
                 } else {
-                   // maybe add code for what to do if a square is unoccupiable 
+                   player.setOrientation(Movable.ORIENTATION_LEFT);
                 }
                 break;
             case KeyEvent.VK_RIGHT:
@@ -386,7 +418,7 @@ public class World extends JPanel{
                     player.right();
                     x = hypotheticalX;
                 } else {
-                   // maybe add code for what to do if a square is unoccupiable 
+                   player.setOrientation(Movable.ORIENTATION_RIGHT);
                 }
                 break;
             case KeyEvent.VK_UP:
@@ -396,7 +428,7 @@ public class World extends JPanel{
                     player.up();
                     y = hypotheticalY;
                 } else {
-                   // maybe add code for what to do if a square is unoccupiable 
+                   player.setOrientation(Movable.ORIENTATION_UP);
                 }
                 break;
             case KeyEvent.VK_DOWN:
@@ -406,7 +438,7 @@ public class World extends JPanel{
                     player.down();
                     y = hypotheticalY;
                 } else {
-                   // maybe add code for what to do if a square is unoccupiable 
+                   player.setOrientation(Movable.ORIENTATION_DOWN);
                 }
                 break;
         }

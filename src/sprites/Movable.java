@@ -30,6 +30,10 @@ public abstract class Movable extends Sprite{
         return orientation;
     }
     
+    public void setOrientation(int orientation){
+        this.orientation = orientation;
+    }
+    
     public int getXInFront(){
         switch(orientation){
             case ORIENTATION_LEFT:
