@@ -86,13 +86,13 @@ public class Wormer extends Movable{
         int dy = y - player.getY();
         //System.out.println(dy);
         int distance = (int)(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
-        System.out.println(distance);
+        //System.out.println();
         //System.out.println();
         if (distance > 5) return false;
-        if (distance == 1) return true;
+        if (distance == 1 && (dx == 0 || dy == 0)) return true;
 
         //TODO this code has no way of handling obstacles
-        if (dx > dy){
+        if (Math.abs(dx) > Math.abs(dy)){
             if (dx > 0) left();
             else right();
         } else{
