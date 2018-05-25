@@ -40,7 +40,7 @@ public class MainFrame extends JFrame{
         
         this.save  = save;
         
-        start = new StartMenu();
+        start = new StartMenu(this);
         
         mainPanel = new JPanel();
         world = new World(this);
@@ -57,8 +57,10 @@ public class MainFrame extends JFrame{
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        world.setFocusable(true);
-        world.addKeyListener(new Listener(this));
+        world.setFocusable(false);
+        
+        setFocusable(true);
+        addKeyListener(new Listener(this));
 
         box.setFocusable(false);
         bar.setFocusable(false);
@@ -110,6 +112,16 @@ public class MainFrame extends JFrame{
         setVisible(true);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    public void displayGame(){
+        getContentPane().removeAll();
+        getContentPane().add(mainPanel);
+        
+        world.setFocusable(true);
+        
+        mainPanel.setVisible(false);
+        mainPanel.setVisible(true);
     }
     
     public void handleKeyPush(KeyEvent ke){

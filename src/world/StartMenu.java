@@ -18,7 +18,10 @@ import javax.swing.*;
 public class StartMenu extends JPanel{
     JButton start, exit, settings;
     JLabel header;
-    public StartMenu(){
+    
+    //World world;
+    MainFrame mainFrame;
+    public StartMenu(MainFrame frame){
         setPreferredSize(new Dimension(1920, 1080));
         start = new JButton("Start Game");
         exit = new JButton("Exit Game");
@@ -26,11 +29,13 @@ public class StartMenu extends JPanel{
         header = new JLabel("Quincer Chronicles: Toner is Low");
         header.setFont(new Font("", Font.BOLD, 30));
         
+        this.mainFrame = frame;
+        
         start.addActionListener(new ActionListener(){
            
             @Override
             public void actionPerformed(ActionEvent e){
-                // TODO start code
+                mainFrame.displayGame();
             }
         });
         exit.addActionListener(new ActionListener(){
