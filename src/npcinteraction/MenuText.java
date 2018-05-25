@@ -40,6 +40,8 @@ public class MenuText {
         } catch (IOException e) {
             
         }
+        isMenu = true;
+        isSpeaking = true;
     }
     
     //This section is the reader, which imports the content of the file and
@@ -54,13 +56,21 @@ public class MenuText {
                 parts.add(I);
             }
         }
-         continent = parts.toArray(new String[parts.size()]);
+        continent = parts.toArray(new String[parts.size()]);
     }
     
     //This section includes the control booleans and the data values that must
     //be kept consistent, plus all the get and set methods.
     public boolean getMenu() {
         return isMenu;
+    }
+    
+    public String getPartsOfParts(int index) {
+        return continent[index];
+    }
+    
+    public String [] getParts() {
+        return continent;
     }
     
     public void setMenu(boolean newMenu) {

@@ -89,8 +89,9 @@ public class AdvancableText {
     
     public String nextLine(int n){
         currentNode = currentNode.getChild(n);
-        if (currentNode == null) return null;
-        else {
+        if (currentNode == null) {
+            return null;
+        } else {
             String s = currentNode.getMessage();
             s = checkHealthIncrease(s);
             s = checkHealthRestore(s);
