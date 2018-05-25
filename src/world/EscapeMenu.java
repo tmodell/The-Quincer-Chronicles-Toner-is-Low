@@ -8,7 +8,7 @@ package world;
 import javax.swing.*;
 
 /**
- *
+ * Probably this will not be used
  * @author alber
  */
 public class EscapeMenu extends JPanel {

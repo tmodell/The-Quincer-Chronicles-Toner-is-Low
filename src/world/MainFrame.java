@@ -115,6 +115,14 @@ public class MainFrame extends JFrame{
     }
     
     public void displayGame(){
+        try { //Stop current music, stop loop, and play track Three (village)
+            MusicController.stopAudio();
+            MusicController.stopLooping();
+            MusicController.trackThree();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         getContentPane().removeAll();
         getContentPane().add(mainPanel);
         
