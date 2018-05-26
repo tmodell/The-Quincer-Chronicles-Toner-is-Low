@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.LineUnavailableException;
@@ -286,15 +287,29 @@ public class World extends JPanel{
     
     // TODO complete method to spawn wormers
     public void spawnWormers(){
-//        int emptyCount = 0;
-//        // 2d for loop
-//        for (char[] c: squares){
-//            for (char d: c){
-//                if (d == ' ') emptyCount ++;
-//            }
-//        }
-//        
-//        int wormerCount = emptyCount
+        int emptyCount = 0;
+        System.out.println("Spawning wormers.");
+        // counts how many empty squares are in the map
+        for (char[] c: squares){
+            for (char d: c){
+                if (d == ' ') emptyCount ++;
+            }
+        }
+        
+        int wormerCount = emptyCount / 50;
+        
+        Random r = new Random();
+        int count = 0;
+        while (count < wormerCount){
+            count++;
+            int x = r.nextInt(WIDTH);
+            int y = r.nextInt(HEIGHT);
+            if (isOccupiable(x, y)){
+                Wormer w = new Wormer(this, 100, 10, x, y);
+                sprites.add(w);
+                wormers[x][y] = w;
+            } else count--;
+        }
     }
     
     public void refreshWormers(){

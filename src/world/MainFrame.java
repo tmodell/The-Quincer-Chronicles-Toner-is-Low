@@ -169,6 +169,10 @@ public class MainFrame extends JFrame{
         return box;
     }
     
+    public SideBar getSideBar(){
+        return bar;
+    }
+    
     public Save getSave(){
         return save;
     }

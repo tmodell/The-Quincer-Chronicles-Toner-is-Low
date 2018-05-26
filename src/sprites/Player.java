@@ -58,6 +58,8 @@ public class Player extends Movable{
     public void receiveStrike(int damage){
         health -= damage;
         if (health <= 0) kill();
+        
+        world.getFrame().getSideBar().update();
 //        String s;
 //        System.out.println(health);
 //        s = health < 0 ? "dead" : Integer.toString(health);

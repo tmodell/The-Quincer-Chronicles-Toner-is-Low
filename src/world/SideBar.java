@@ -2,6 +2,7 @@ package world;
 
 import java.awt.*;
 import javax.swing.*;
+import sprites.Player;
 /**
  * This will have a bunch of side stuff in it heh
  * @author alber
@@ -10,6 +11,8 @@ public class SideBar extends JPanel{
     private static final String IMAGE_URL = "src/world/lib/sidebar.png";
     
     MainFrame frame;
+    
+    Player player;
     
     Image background;
     
@@ -21,7 +24,8 @@ public class SideBar extends JPanel{
         setBackground(Color.BLUE);
         
         background = new ImageIcon(IMAGE_URL).getImage();
-        //repaint();
+        
+        player = frame.getWorld().getPlayer();
     }
     
     @Override
@@ -29,5 +33,18 @@ public class SideBar extends JPanel{
         super.paintComponent(g);
         
         g.drawImage(background, 0, 0, null);
+        
+        float healthPercent = (float)player.getHealth()/(float)player.getMaxHealth();
+        
+        if (healthPercent > .5) g.setColor(Color.GREEN);
+        else if (healthPercent > 0.25) g.setColor(Color.YELLOW);
+        else g.setColor(Color.RED);
+        
+        int healthBarLength = (int)(healthPercent * 198);
+        g.fillRect(25, 393, healthBarLength, 48);
+    }
+    
+    public void update(){
+        repaint();
     }
 }
