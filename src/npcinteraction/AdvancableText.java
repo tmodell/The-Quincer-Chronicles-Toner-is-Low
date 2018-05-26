@@ -79,7 +79,7 @@ public class AdvancableText {
         this.name = name;
         
         topNode = new TreeNode(s, ">");
-        currentNode = topNode;
+        currentNode = new TreeNode(topNode);
         
         menu = null;
     }
@@ -210,6 +210,11 @@ public class AdvancableText {
                     break;
                 
             }
+        }
+        
+        public TreeNode(TreeNode node){
+            child1 = node;
+            child2 = null;
         }
         
         public TreeNode getChild(int num){

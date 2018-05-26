@@ -112,7 +112,7 @@ public class Menu {
             player.givePotions(potion);
             if (player.getDamage() < health)player.setDamage(damage);
             tonerislow.TonerIsLow.getMainFrame().getSideBar().update();
-        } else quit = true;
+        } //else quit = true;
         if (quit) return true;
         return false;
     }

@@ -1,5 +1,5 @@
-Hello! I'm the alchemist.
->You saved my father from impending doom. 
+Hello! I'm the alchemist. Alchemy is my middle name.
+>Just kidding. It's Gerard.
 ->Would you like some potions?
--->~p
+-->~malchemistmenu
 -->You don't like potions huh? OK.
