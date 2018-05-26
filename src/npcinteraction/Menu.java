@@ -17,22 +17,22 @@ import sprites.*;
  * @author alber
  */
 public class Menu {
-    private static final String CURSOR_IMAGE_URL = "url";
+
+    private static final String PREFIX = "src/npcinteraction/lib/";
+    private static final String SUFFIX = ".txt";
     
     String[] options;
     
     int cursorIndex;
     int maxCursorIndex;
-    
-    Image cursor;
-    
+        
     Player player;
     
-    public Menu(String url, Player player) throws IOException{
+    public Menu(String fileName, Player player, String name) throws IOException{
         BufferedReader inputStream = null;
         String s = "";
         try{
-            inputStream = new BufferedReader(new FileReader(url));
+            inputStream = new BufferedReader(new FileReader(PREFIX + fileName + SUFFIX));
             String l;
             while ((l = inputStream.readLine()) != null){
                 s = s + l + "\n";
@@ -45,9 +45,7 @@ public class Menu {
         options = s.split("/n");
         cursorIndex = 0;
         maxCursorIndex = options.length - 1;
-        
-        cursor = new ImageIcon(CURSOR_IMAGE_URL).getImage();
-        
+                
         this.player = player;
     }
     
@@ -59,6 +57,14 @@ public class Menu {
     public void right(){
         cursorIndex += 1;
         if (cursorIndex > maxCursorIndex) cursorIndex = maxCursorIndex;
+    }
+    
+    public int getCursorPos(){
+        return cursorIndex;
+    }
+    
+    public String[] getOptions(){
+        return options;
     }
     
     /**

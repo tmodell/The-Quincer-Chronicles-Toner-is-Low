@@ -8,6 +8,7 @@ package tonerislow;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -60,6 +61,7 @@ public class Save implements Serializable {
                     shamen2 = temp.isShamenAlive(2);
                     shamen3 = temp.isShamenAlive(3);
                     playerRoom = temp.getPlayerRoom();
+                    potions = temp.getPotions();
                     ois.close();
             }
         } catch(Exception e) {}
@@ -70,6 +72,8 @@ public class Save implements Serializable {
         playerX = player.getX();
         playerY = player.getY();
         money = player.getMoney();
+        health = player.getHealth();
+        potions = player.getPotionCount();
         maxHealth = player.getMaxHealth();
         playerRoom = player.getWorld().getMap();
         
@@ -78,7 +82,7 @@ public class Save implements Serializable {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
             oos.writeObject(this);
             oos.close();
-        } catch (Exception e){}
+        } catch (IOException e){}
     }
     
     public void setPlayer(Player player){

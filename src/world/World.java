@@ -81,7 +81,7 @@ public class World extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-                if (count++ > 30){
+                if (count++ > 20){
                     count = 0;
                     refreshWormers();
                 }
@@ -329,21 +329,7 @@ public class World extends JPanel{
     }
     
     public void playerInteraction(){
-        int x = player.getX(), y = player.getY(), orientation = player.getOrientation();
-        switch (orientation){
-            case Movable.ORIENTATION_UP:
-                y--;
-                break;
-            case Movable.ORIENTATION_DOWN:
-                y++;
-                break;
-            case Movable.ORIENTATION_LEFT:
-                x--;
-                break;
-            case Movable.ORIENTATION_RIGHT:
-                x++;
-                break;
-        }
+        int x = player.getXInFront(), y = player.getYInFront();
         
         if (squares[x][y] == 'N'){
             AdvancableText at = NPCs[x][y].getInteraction();

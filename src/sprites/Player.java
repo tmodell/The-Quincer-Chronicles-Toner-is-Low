@@ -87,7 +87,7 @@ public class Player extends Movable{
     }
 
     public void usePotion(){
-        if (health == maxHealth) return;
+        if (health == maxHealth || potionCount < 1) return;
         potionCount--;
         health += 50;
         if (health > maxHealth) health = maxHealth;

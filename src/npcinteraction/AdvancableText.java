@@ -22,6 +22,8 @@ public class AdvancableText {
     Player player;
     String name;
     
+    Menu menu;
+    
     TextBox box;
     
     //Test purposes only
@@ -78,14 +80,17 @@ public class AdvancableText {
         
         topNode = new TreeNode(s, ">");
         currentNode = topNode;
+        
+        menu = null;
     }
     
     public String getName(){
         return name;
     }
     
-    // It may behoove us to use a tree to represent the conversations so that
-    // we can do yes/no interactions
+    public Menu getMenu(){
+        return menu;
+    }
     
     public String nextLine(int n){
         currentNode = currentNode.getChild(n);
@@ -140,8 +145,7 @@ public class AdvancableText {
     private String checkMenu(String s){
         if (s.contains ("~m")){
             s = s.replace("~m", "");
-            MenuText menu = new MenuText(s);
-            box.setMenuText(menu);
+            try{ menu = new Menu(s, player, name);}catch(Exception e){}
             s = null;
         }
         
@@ -153,7 +157,6 @@ public class AdvancableText {
             int index = s.indexOf("~") + 2;
             s = s.substring(index, s.length());
             String url = s;
-            // TODO code to open a menu
         }
         return s;
     }

@@ -32,8 +32,9 @@ public class TextBox extends JPanel{
     Image cursor;
     
     String s;
+    String[] ss;
     String name;
-    
+        
     public TextBox(MainFrame frame){
         super();
         this.frame = frame;
@@ -47,79 +48,78 @@ public class TextBox extends JPanel{
     }
     
     public void handleInteractionKey (int key){
-        if (currentText == null && mt == null){
+        if (currentText == null && menu == null){
             return;
         }
-        
-        if (mt != null) {
-            //the issue, according to the debugger, is that menutext objects 
-            //aren't being instantiated to the textbox when called.
-            s = null;
-            if (mt.getActive() == true && (key == KeyEvent.VK_UP
-                    || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_ENTER
-                    || key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT ||
-                    key == KeyEvent.VK_X)) {
-                if (mt.getSpeaking() == true) {
-                    if (key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_ENTER) {
-                        mt.setNext(true);
-                        mt.setSpeaking(false);
-                        repaint();
-                    } else if (key == KeyEvent.VK_X) {
-                        mt.setActive(false);
-                        repaint();
-                } else if (mt.getSpeaking() == false) {
-                    if (key == KeyEvent.VK_UP) {
-                        mt.setCursPos(-1);
-                        repaint();
-                    } else if (key == KeyEvent.VK_DOWN) {
-                        mt.setCursPos(1);
-                        repaint();
-                    } else if (key == KeyEvent.VK_X) {
-                        mt.setActive(false);
-                        repaint();
-                    } else if (mt.getMenu() == true && 
-                            key == KeyEvent.VK_ENTER) {
-                        mt.setMenu(false);
-                        mt.apply(mt.getOutputs(
-                                mt.getCursPos()));
-                        mt.setNext(true);
-                        repaint();
+        int optionCount = 0;
+        if (currentText != null)  optionCount = currentText.getOptionCount();
+        switch (key){
+        case KeyEvent.VK_SPACE:
+            if (optionCount < 2){
+                s = currentText.nextLine();
+            }
+            
+            if (s == null) {
+                menu = currentText.getMenu();
+                if (menu != null){
+                    ss = menu.getOptions();
+                }
+                currentText = null;
+            }
+            break;
+        case KeyEvent.VK_Z:
+            if (optionCount > 2){
+                s = currentText.nextLine(1);
+            } else{
+                s = currentText.nextLine();
+            }
+            
+            if (s == null) {
+                System.out.println("NULL B");
+                menu = currentText.getMenu();
+                if (menu != null){
+                    System.out.println("menu isn't null");
+                    ss = menu.getOptions();
+                    for (String s: ss){
+                        System.out.println(s);
                     }
                 }
+                currentText = null;
             }
-        } else {
-            int optionCount = currentText.getOptionCount();
-            switch (key){
-                case KeyEvent.VK_SPACE:
-                    if (optionCount < 2){
-                        s = currentText.nextLine();
-                        if (s == null) {
-                            currentText = null;
-                        }
-                        repaint();
-                    }
-                    break;
-                case KeyEvent.VK_Z:
-                    if (optionCount == 2){
-                        s = currentText.nextLine(1);
-                        repaint();
-                    }
-                    break;
-                case KeyEvent.VK_X:
-                    if (optionCount == 2){
-                        s = currentText.nextLine(2);
-                        repaint();
-                    }
-                    break;
+            break;
+        case KeyEvent.VK_X:
+            if (optionCount == 2){
+                s = currentText.nextLine(2);
+            } else {
+                s = currentText.nextLine(1);
+            }
+            
+            if (s == null) {
+                menu = currentText.getMenu();
+                if (menu != null){
+                    ss = menu.getOptions();
                 }
+                currentText = null;
             }
+            break;
+        case KeyEvent.VK_LEFT:
+            if (menu == null) break;
+            menu.left();
+            break;
+        case KeyEvent.VK_RIGHT:
+            if (menu == null) break;
+            menu.right();
+            break;
+        case KeyEvent.VK_ENTER:
+            if (menu == null) break;
+            menu.press();
+            break;
         }
+        
+        
+        repaint();
     }
-    
-    public void setMenuText(MenuText mens){
-        this.mt = mens;
-    }
-    
+   
     public void startInteraction(AdvancableText text){
         currentText = text;
         displayText(currentText.nextLine());
@@ -128,7 +128,7 @@ public class TextBox extends JPanel{
     }
     
     public boolean active(){
-        return currentText != null;
+        return currentText != null || menu != null;
     }
     
     public void displayText(String text){
@@ -142,10 +142,20 @@ public class TextBox extends JPanel{
     
     @Override
     public void paintComponent(Graphics g){
+        g.drawImage(background, 0, 0, null);
+        
+        if (currentText == null && menu == null){
+            return;
+        }
+        
         g.setColor(Color.WHITE);
         g.setFont(new Font("", Font.BOLD, 30));
         
-        g.drawImage(background, 0, 0, null);
+        /*
+        Alec, I'm implementing my menu because i figured we needed NPC interactions as we start to set up the story
+        If you'd like to work on yours I've copied this class as "TextBoxCopy"
+        */
+        
         if (s != null){
             g.drawString(name, 30, 50);
             g.setFont(new Font("", Font.PLAIN, 30));
@@ -153,56 +163,18 @@ public class TextBox extends JPanel{
             if (currentText.getOptionCount() > 1) {
                 g.drawString("z: Yes    x: No", 100, 150);
             }
-        } else if (currentText != null && mt != null && 
-                mt.getActive() == true) {
-            
-            int dialogPos = 0;
-
-            if (mt.getNext() == true) {
-                mt.setSpeechPos(mt.getSpeechPos() + 1 <= 
-                        mt.getParts().length - 1 ? 
-                        mt.getSpeechPos() + 1 : 
-                        mt.getSpeechPos());
+        }
+        if (ss != null){
+            g.drawString(name, 30, 50);
+            g.setFont(new Font("", Font.PLAIN, 30));
+            int x = 100;
+            for (String str: ss){
+                g.drawString(str, x, 100);
+                x += 500;
             }
-
-            String I = mt.getPartsOfParts(mt.getSpeechPos());
-            if (I.contains("/'/")) {
-                int L = 0;
-                mt.setMaxPos(Character.getNumericValue(
-                        I.charAt(0)));
-                for (String J : I.split("/'/")) {
-                    for (String K : J.split("_")) {
-                        if (L % 2 != 1) {
-                            if (L == 0) {
-                                g.drawString(K.substring(1), 50, 50
-                                        + dialogPos * 25);
-                                dialogPos++;
-                                mt.setMenu(true);
-                                L++;
-                            } else {
-                                g.drawString(K, 50, 50
-                                        + dialogPos * 25);
-                                dialogPos++;
-                                mt.setMenu(true);
-                                L++;
-                            }
-                        } else {
-                            mt.addToOutputs(K);
-                            L++;
-                        }
-                    }
-                }
-            } else {
-                g.drawString(I, 30, 50);
-                mt.setSpeaking(true);
-                mt.setMenu(false);
-            }
-            mt.setNext(false);
-
-            if (mt.getMenu() == true) {
-                    g.drawImage(cursor, 35, mt.getCursPos() * 25, 
-                        this);
-            }
+            int cursorX = (menu.getCursorPos() * 500) + 80;
+            g.drawImage(cursor, cursorX, 100, null);
+            g.drawString("Enter: select", 100, 150);
         }
     }
 }
