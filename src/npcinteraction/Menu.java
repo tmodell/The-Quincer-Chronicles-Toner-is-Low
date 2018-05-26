@@ -21,7 +21,7 @@ public class Menu {
     private static final String PREFIX = "src/npcinteraction/lib/";
     private static final String SUFFIX = ".txt";
     
-    String[] options;
+    String[] options, actions;
     
     int cursorIndex;
     int maxCursorIndex;
@@ -29,20 +29,30 @@ public class Menu {
     Player player;
     
     public Menu(String fileName, Player player, String name) throws IOException{
+        options = new String[3];
+        actions = new String[3];
+        
         BufferedReader inputStream = null;
-        String s = "";
         try{
             inputStream = new BufferedReader(new FileReader(PREFIX + fileName + SUFFIX));
             String l;
+            int count = 0;
             while ((l = inputStream.readLine()) != null){
-                s = s + l + "\n";
+                String[] split = l.split(",");
+                options[count] = split[0];
+                actions[count] = split[1];
+                count++;
             }
-        } catch(Exception e){}//NOT lazy i promise
+        } catch(Exception e){e.printStackTrace();}//NOT lazy i promise
         finally{
             if (inputStream != null) inputStream.close();
         }
         
-        options = s.split("/n");
+        System.out.println("making thing");
+        for (String s: actions){
+            System.out.println(s);
+        }
+        
         cursorIndex = 0;
         maxCursorIndex = options.length - 1;
                 
@@ -72,8 +82,8 @@ public class Menu {
      * @return Whether the interaction is over
      */
     public boolean press(){
-        String s = options[cursorIndex];
-        String[] split = s.split(",");
+        String s = actions[cursorIndex];
+        String[] split = s.split(";");
         int buy = 0, health = 0, potion = 0, damage = 0;
         boolean quit = false;
         for (String str: split){
@@ -101,6 +111,7 @@ public class Menu {
             if (player.getMaxHealth() < health)player.setMaxHealth(health);
             player.givePotions(potion);
             if (player.getDamage() < health)player.setDamage(damage);
+            tonerislow.TonerIsLow.getMainFrame().getSideBar().update();
         } else quit = true;
         if (quit) return true;
         return false;

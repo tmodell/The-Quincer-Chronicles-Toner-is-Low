@@ -40,7 +40,7 @@ public class TextBox extends JPanel{
         this.frame = frame;
         setPreferredSize(new Dimension(1664 , 184));
         
-        cursor = new ImageIcon("src/world/lib/cursor.png").getImage();
+        cursor = new ImageIcon("src/npcinteraction/lib/cursor.png").getImage();
         
         background = new ImageIcon("src/world/lib/textbox.png").getImage();
         //setBackground(Color.RED);
@@ -112,7 +112,11 @@ public class TextBox extends JPanel{
             break;
         case KeyEvent.VK_ENTER:
             if (menu == null) break;
-            menu.press();
+            boolean quit = menu.press();
+            if (quit){
+                menu = null;
+                ss = null;
+            }
             break;
         }
         
@@ -165,15 +169,17 @@ public class TextBox extends JPanel{
             }
         }
         if (ss != null){
+            //System.out.println("kill");
             g.drawString(name, 30, 50);
             g.setFont(new Font("", Font.PLAIN, 30));
             int x = 100;
             for (String str: ss){
+                //System.out.println("leng " + ss.length);
                 g.drawString(str, x, 100);
                 x += 500;
             }
-            int cursorX = (menu.getCursorPos() * 500) + 80;
-            g.drawImage(cursor, cursorX, 100, null);
+            int cursorX = (menu.getCursorPos() * 500) + 70;
+            g.drawImage(cursor, cursorX, 85, null);
             g.drawString("Enter: select", 100, 150);
         }
     }

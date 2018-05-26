@@ -227,8 +227,8 @@ public class World extends JPanel{
         
         // Hardcode wormer
         Wormer w = new Wormer(this, 100, 10, 20, 5);
-        sprites.add(w);
-        wormers[20][5] = w;
+        //sprites.add(w);
+        //wormers[20][5] = w;
         
         repainting = true;
     }
