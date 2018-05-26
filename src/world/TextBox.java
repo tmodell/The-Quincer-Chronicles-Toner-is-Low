@@ -111,6 +111,7 @@ public class TextBox extends JPanel{
                         repaint();
                     }
                     break;
+                }
             }
         }
     }
