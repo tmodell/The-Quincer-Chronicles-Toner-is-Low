@@ -116,10 +116,11 @@ public class SideBar extends JPanel{
         g.fillRect(25, 393, healthBarLength, 48);
         
         String potions = Integer.toString(player.getPotionCount());
+        String money = Integer.toString(player.getMoney());
         g.setColor(Color.WHITE);
         g.setFont(new Font("Old English Text MT", Font.BOLD, 50));
         g.drawString(potions, 120, 598);
-        
+        g.drawString(money, 120, 695);
         
     }
     

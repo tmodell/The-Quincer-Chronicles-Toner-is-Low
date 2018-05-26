@@ -41,6 +41,10 @@ public class Player extends Movable{
         save = tonerislow.TonerIsLow.getSave();
         
         save.setPlayer(this);
+        
+        money = save.getMoney();
+        health = save.getHealth();
+        maxHealth = save.getMaxHealth();
     }
     
     public void restoreHealth(){
