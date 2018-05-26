@@ -81,7 +81,7 @@ public class World extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-                if (count++ > 10){
+                if (count++ > 30){
                     count = 0;
                     refreshWormers();
                 }
@@ -485,8 +485,8 @@ public class World extends JPanel{
         }
         switch (key){
             case KeyEvent.VK_A:
+                player.setOrientation(player.ORIENTATION_LEFT);
                 hypotheticalX = x - 1;
-                // check whether the square is occupiable
                 if (wormerAtPos(hypotheticalX, y)){
                     player.attack();
                 } else if (wormerAtPos(x+1, y)) {
@@ -496,8 +496,8 @@ public class World extends JPanel{
                 }
                 break;
             case KeyEvent.VK_D:
+                player.setOrientation(player.ORIENTATION_RIGHT);
                 hypotheticalX = x + 1;
-                // check whether the square is occupiable
                 if (wormerAtPos(hypotheticalX, y)){
                     player.attack();
                 } else if (wormerAtPos(x-1, y)) {
@@ -507,8 +507,8 @@ public class World extends JPanel{
                 }
                 break;
             case KeyEvent.VK_W:
+                player.setOrientation(player.ORIENTATION_UP);
                 hypotheticalY = y - 1;
-                // check whether the square is occupiable
                 if (wormerAtPos(x, hypotheticalY)){
                     player.attack();
                 } else if (wormerAtPos(x, y+1)) {
@@ -518,8 +518,8 @@ public class World extends JPanel{
                 }
                 break;
             case KeyEvent.VK_S:
+                player.setOrientation(player.ORIENTATION_DOWN);
                 hypotheticalY = y + 1;
-                // check whether the square is occupiable
                 if (wormerAtPos(x, hypotheticalY)){
                     player.attack();
                 } else if (wormerAtPos(x, y-1)) {

@@ -124,7 +124,12 @@ public class Wormer extends Movable{
         if (distance == 1 && (dx == 0 || dy == 0)) return true;
 
         //TODO this code has no way of handling obstacles
-        if (Math.abs(dx) > Math.abs(dy)){
+        if (Math.abs(dx) == Math.abs(dy)){
+            if (dx > 0 && world.isOccupiable(x - 1, y)) left();
+            else if (dx < 0 && world.isOccupiable(x + 1, y)) right();
+            else if (dy > 0 && world.isOccupiable(x, y - 1)) up();
+            else if (dy < 0 && world.isOccupiable(x, y + 1)) down();
+        } else if (Math.abs(dx) > Math.abs(dy)){
             if (dx > 0) {
                 if(world.isOccupiable(x - 1, y)) left();
                 else if (world.isOccupiable(x, y + 1)) down();
