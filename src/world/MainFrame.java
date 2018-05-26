@@ -153,6 +153,10 @@ public class MainFrame extends JFrame{
             if (key == KeyEvent.VK_SPACE){
                 world.playerInteraction();
             }
+            
+            if (key == KeyEvent.VK_Q){
+                world.getPlayer().usePotion();
+            }
         // what to do if the user is in an npc interaction.
         }else{
             //interaction

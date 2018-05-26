@@ -26,6 +26,8 @@ public class Player extends Movable{
     double time;
     double deltatime;
     
+    int potionCount = 100;
+    
     public Player(int x, int y, World world){
         super(PLAYER_IMAGE_URLS[0]);
         this.x = x;
@@ -65,9 +67,13 @@ public class Player extends Movable{
 //        s = health < 0 ? "dead" : Integer.toString(health);
 //        System.out.println(s);
     }
-    
-    public void givePotion(int n){
-        //TODO code to give the player n potions
+
+    public void usePotion(){
+        if (health == maxHealth) return;
+        potionCount--;
+        health += 50;
+        if (health > maxHealth) health = maxHealth;
+        world.getFrame().getSideBar().update();
     }
     
     public void kill(){
@@ -107,6 +113,14 @@ public class Player extends Movable{
         super.setOrientation(orientation);
         ImageIcon ii = new ImageIcon(PLAYER_IMAGE_URLS[orientation]);
         image = ii.getImage();
+    }
+    
+    public int getPotionCount(){
+        return potionCount;
+    }
+    
+    public void givePotions(int num){
+        potionCount += num;
     }
     
     public int getMoney(){

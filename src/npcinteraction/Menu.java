@@ -93,7 +93,7 @@ public class Menu {
         if (player.getMoney() >= buy){
             player.setMoney(player.getMoney() - buy);
             if (player.getMaxHealth() < health)player.setMaxHealth(health);
-            player.givePotion(potion);
+            player.givePotions(potion);
             if (player.getDamage() < health)player.setDamage(damage);
         } else quit = true;
         if (quit) return true;
