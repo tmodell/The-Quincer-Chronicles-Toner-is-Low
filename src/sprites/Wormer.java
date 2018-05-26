@@ -22,12 +22,6 @@ import world.*;
 public class Wormer extends Movable{
     static final String[] WORMER_IMAGE_URLS = {"src/sprites/lib/images/wormerfront.png", "src/sprites/lib/images/wormerfront.png", 
         "src/sprites/lib/images/wormerfront.png", "src/sprites/lib/images/wormerfront.png"};
-//            , "src/sprites/lib/images/wormerfront90.png", "src/sprites/lib/images/wormerfront90.png", 
-//        "src/sprites/lib/images/wormerfront90.png", "src/sprites/lib/images/wormerfront90.png", "src/sprites/lib/images/wormerfront75.png", "src/sprites/lib/images/wormerfront75.png", 
-//        "src/sprites/lib/images/wormerfront75.png", "src/sprites/lib/images/wormerfront75.png", "src/sprites/lib/images/wormerfront50.png", "src/sprites/lib/images/wormerfront50.png", 
-//        "src/sprites/lib/images/wormerfront50.png", "src/sprites/lib/images/wormerfront50.png", "src/sprites/lib/images/wormerfront25.png", "src/sprites/lib/images/wormerfront25.png", 
-//        "src/sprites/lib/images/wormerfront25.png", "src/sprites/lib/images/wormerfront25.png", "src/sprites/lib/images/wormerfront10.png", "src/sprites/lib/images/wormerfront10.png", 
-//        "src/sprites/lib/images/wormerfront10.png", "src/sprites/lib/images/wormerfront10.png"};
     static final int DEFAULT_HEALTH = 100;
     static final int DEFAULT_DAMAGE = 10;
     static final int DEFAULT_COOLDOWN = 1000;

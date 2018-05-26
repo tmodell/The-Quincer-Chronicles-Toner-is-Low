@@ -1,6 +1,12 @@
 package sprites;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
+import sound.SoundFXController;
 import tonerislow.Save;
 import world.World;
 
@@ -116,6 +122,11 @@ public class Player extends Movable{
         int destY = getYInFront();
         
         world.PlayerAttack(destX, destY, attackdmg);
+        try { //Plays attack sound
+            SoundFXController.swordFX();
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     

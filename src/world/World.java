@@ -480,16 +480,13 @@ public class World extends JPanel{
     public void handleCombatKey(int key){
         int hypotheticalX, hypotheticalY, x = player.getX(), y = player.getY();
         needsSort = true;
-        try { //Plays attack sound
-            SoundFXController.swordFX();
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
-            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         switch (key){
             case KeyEvent.VK_A:
-                player.setOrientation(player.ORIENTATION_LEFT);
+                
                 hypotheticalX = x - 1;
                 if (wormerAtPos(hypotheticalX, y)){
+                    player.setOrientation(player.ORIENTATION_LEFT);
                     player.attack();
                 } else if (wormerAtPos(x+1, y)) {
                     //some way to block attacks
@@ -498,9 +495,10 @@ public class World extends JPanel{
                 }
                 break;
             case KeyEvent.VK_D:
-                player.setOrientation(player.ORIENTATION_RIGHT);
+                
                 hypotheticalX = x + 1;
                 if (wormerAtPos(hypotheticalX, y)){
+                    player.setOrientation(player.ORIENTATION_RIGHT);
                     player.attack();
                 } else if (wormerAtPos(x-1, y)) {
                     //some way to block attacks
@@ -509,9 +507,10 @@ public class World extends JPanel{
                 }
                 break;
             case KeyEvent.VK_W:
-                player.setOrientation(player.ORIENTATION_UP);
+                
                 hypotheticalY = y - 1;
                 if (wormerAtPos(x, hypotheticalY)){
+                    player.setOrientation(player.ORIENTATION_UP);
                     player.attack();
                 } else if (wormerAtPos(x, y+1)) {
                     //some way to block attacks
@@ -520,9 +519,10 @@ public class World extends JPanel{
                 }
                 break;
             case KeyEvent.VK_S:
-                player.setOrientation(player.ORIENTATION_DOWN);
+                
                 hypotheticalY = y + 1;
                 if (wormerAtPos(x, hypotheticalY)){
+                    player.setOrientation(player.ORIENTATION_DOWN);
                     player.attack();
                 } else if (wormerAtPos(x, y-1)) {
                     //some way to block attacks

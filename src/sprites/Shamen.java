@@ -5,7 +5,12 @@
  */
 package sprites;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import static sprites.Wormer.WORMER_IMAGE_URLS;
 import world.World;
 
 /**
@@ -13,7 +18,8 @@ import world.World;
  * @author alber
  */
 public class Shamen extends Wormer{
-    private static final String IMAGE_URL = "src/sprites/lib/images/shamen.png";
+    static final String[] SHAMEN_IMAGE_URLS = {"src/sprites/lib/images/shamenfront.png", "src/sprites/lib/images/shamenfront.png", 
+        "src/sprites/lib/images/shamenfront.png", "src/sprites/lib/images/shamenfront.png"};
     
     int shamenNum;
     
@@ -22,8 +28,12 @@ public class Shamen extends Wormer{
         
         this.shamenNum = shamenNum;
         
-        ImageIcon ii = new ImageIcon(IMAGE_URL);
-        image = ii.getImage();
+        try{
+           images[Movable.ORIENTATION_UP] = ImageIO.read(new File(SHAMEN_IMAGE_URLS[ORIENTATION_UP]));
+           images[Movable.ORIENTATION_LEFT] = ImageIO.read(new File(SHAMEN_IMAGE_URLS[ORIENTATION_LEFT]));
+           images[Movable.ORIENTATION_RIGHT] = ImageIO.read(new File(SHAMEN_IMAGE_URLS[ORIENTATION_RIGHT]));
+           images[Movable.ORIENTATION_DOWN] = ImageIO.read(new File(SHAMEN_IMAGE_URLS[ORIENTATION_DOWN]));
+        } catch (IOException e){}
     }
     
     @Override
