@@ -41,7 +41,8 @@ public class SideBar extends JPanel{
             
             @Override
             public void mouseClicked(MouseEvent e) {
-                //TODO add functionality
+                save.setIcon(inactive);
+                tonerislow.TonerIsLow.getSave().save();
             }
 
             @Override
@@ -70,7 +71,8 @@ public class SideBar extends JPanel{
             
             @Override
             public void mouseClicked(MouseEvent e) {
-                //TODO add functionality
+                exit.setIcon(inactive);
+                // TODO add logic
             }
 
             @Override

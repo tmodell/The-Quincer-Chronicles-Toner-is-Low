@@ -1,6 +1,7 @@
 package sprites;
 
 import javax.swing.ImageIcon;
+import tonerislow.Save;
 import world.World;
 
 /**
@@ -28,12 +29,18 @@ public class Player extends Movable{
     
     int potionCount = 100;
     
+    Save save;
+    
     public Player(int x, int y, World world){
         super(PLAYER_IMAGE_URLS[0]);
         this.x = x;
         this.y = y;
         
         this.world = world;
+        
+        save = tonerislow.TonerIsLow.getSave();
+        
+        save.setPlayer(this);
     }
     
     public void restoreHealth(){

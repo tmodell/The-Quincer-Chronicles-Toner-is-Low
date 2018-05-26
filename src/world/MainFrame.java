@@ -104,7 +104,7 @@ public class MainFrame extends JFrame{
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         try{
-            world.loadMap("test", 11, 11);
+            world.loadMap(save.getPlayerRoom(), save.getPlayerX(), save.getPlayerY());
         } catch (Exception e){}
         
         if (DEVELOPER_DEBUG){
