@@ -19,7 +19,7 @@ import sprites.Player;
  * @author albert.wilcox
  */
 public class Save implements Serializable {
-    private int playerX, playerY, money, maxHealth, health;
+    private int playerX, playerY, money, maxHealth, health, potions;
     private boolean shamen1, shamen2, shamen3;
     private String playerRoom;
         
@@ -44,6 +44,7 @@ public class Save implements Serializable {
                     shamen2 = true;
                     shamen3 = true;
                     playerRoom = DEFAULT_ROOM;// TODO update this
+                    potions = 100;
                     oos.writeObject(this);
                     oos.close();
             } else {
@@ -155,5 +156,13 @@ public class Save implements Serializable {
     
     public void setHealth(int n){
         this.health = n;
+    }
+    
+    public void setPotions(int n){
+        this.potions = n;
+    }
+    
+    public int getPotions(){
+        return potions;
     }
 }

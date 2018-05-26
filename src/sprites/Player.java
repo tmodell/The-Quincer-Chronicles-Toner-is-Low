@@ -33,7 +33,7 @@ public class Player extends Movable{
     double time;
     double deltatime;
     
-    int potionCount = 100;
+    int potionCount;
     
     Save save;
     
@@ -51,6 +51,7 @@ public class Player extends Movable{
         money = save.getMoney();
         health = save.getHealth();
         maxHealth = save.getMaxHealth();
+        potionCount = save.getPotions();
     }
     
     public void restoreHealth(){
