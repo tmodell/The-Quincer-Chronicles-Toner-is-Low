@@ -57,13 +57,20 @@ public class MainFrame extends JFrame{
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        world.setFocusable(false);
+//        try {
+//            // Set System L&F
+//            UIManager.setLookAndFeel(
+//            UIManager.getSystemLookAndFeelClassName());
+//	} catch (Exception e){} 
+        
+        
         
         setFocusable(true);
         addKeyListener(new Listener(this));
 
         box.setFocusable(false);
         bar.setFocusable(false);
+        world.setFocusable(false);
                 
         mainPanel.setLayout(null);
         

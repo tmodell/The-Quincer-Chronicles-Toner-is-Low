@@ -9,7 +9,7 @@ import world.World;
  */
 public class Player extends Movable{
     static final String[] PLAYER_IMAGE_URLS = {"src/sprites/lib/images/quincerfront.png", "src/sprites/lib/images/quincerfront.png", 
-        "src/sprites/lib/images/quincerfront.png", "src/sprites/lib/images/quincerfront.png"};
+        "src/sprites/lib/images/quincerleft.png", "src/sprites/lib/images/quincerright.png"};
     public static final int DEFAULT_HEALTH = 200;
     public static final int DEFAULT_DAMAGE = 25;
     public static final int DEFAULT_COOLDOWN = 900;
