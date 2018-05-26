@@ -6,6 +6,7 @@
 package sprites;
 
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -20,12 +21,13 @@ import world.*;
  */
 public class Wormer extends Movable{
     static final String[] WORMER_IMAGE_URLS = {"src/sprites/lib/images/wormerfront.png", "src/sprites/lib/images/wormerfront.png", 
-        "src/sprites/lib/images/wormerfront.png", "src/sprites/lib/images/wormerfront.png", "src/sprites/lib/images/wormerfront90.png", "src/sprites/lib/images/wormerfront90.png", 
-        "src/sprites/lib/images/wormerfront90.png", "src/sprites/lib/images/wormerfront90.png", "src/sprites/lib/images/wormerfront75.png", "src/sprites/lib/images/wormerfront75.png", 
-        "src/sprites/lib/images/wormerfront75.png", "src/sprites/lib/images/wormerfront75.png", "src/sprites/lib/images/wormerfront50.png", "src/sprites/lib/images/wormerfront50.png", 
-        "src/sprites/lib/images/wormerfront50.png", "src/sprites/lib/images/wormerfront50.png", "src/sprites/lib/images/wormerfront25.png", "src/sprites/lib/images/wormerfront25.png", 
-        "src/sprites/lib/images/wormerfront25.png", "src/sprites/lib/images/wormerfront25.png", "src/sprites/lib/images/wormerfront10.png", "src/sprites/lib/images/wormerfront10.png", 
-        "src/sprites/lib/images/wormerfront10.png", "src/sprites/lib/images/wormerfront10.png"};
+        "src/sprites/lib/images/wormerfront.png", "src/sprites/lib/images/wormerfront.png"};
+//            , "src/sprites/lib/images/wormerfront90.png", "src/sprites/lib/images/wormerfront90.png", 
+//        "src/sprites/lib/images/wormerfront90.png", "src/sprites/lib/images/wormerfront90.png", "src/sprites/lib/images/wormerfront75.png", "src/sprites/lib/images/wormerfront75.png", 
+//        "src/sprites/lib/images/wormerfront75.png", "src/sprites/lib/images/wormerfront75.png", "src/sprites/lib/images/wormerfront50.png", "src/sprites/lib/images/wormerfront50.png", 
+//        "src/sprites/lib/images/wormerfront50.png", "src/sprites/lib/images/wormerfront50.png", "src/sprites/lib/images/wormerfront25.png", "src/sprites/lib/images/wormerfront25.png", 
+//        "src/sprites/lib/images/wormerfront25.png", "src/sprites/lib/images/wormerfront25.png", "src/sprites/lib/images/wormerfront10.png", "src/sprites/lib/images/wormerfront10.png", 
+//        "src/sprites/lib/images/wormerfront10.png", "src/sprites/lib/images/wormerfront10.png"};
     static final int DEFAULT_HEALTH = 100;
     static final int DEFAULT_DAMAGE = 10;
     static final int DEFAULT_COOLDOWN = 1000;
@@ -168,12 +170,12 @@ public class Wormer extends Movable{
             health -= damage;
             
             orientation = getOrientation();
-            if (health <= 0) { kill(); }
-            else if (health <= maxhealth / 10){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[20+orientation]); image = ii.getImage(); }
-            else if (health <= maxhealth / 4){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[16+orientation]); image = ii.getImage(); }
-            else if (health <= maxhealth / 2){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[12+orientation]); image = ii.getImage(); }
-            else if (health <= 3 * maxhealth / 4){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[8+orientation]); image = ii.getImage(); }
-            else{ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[4+orientation]); image = ii.getImage(); }
+            if (health <= 0) kill();
+//            else if (health <= maxhealth / 10){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[20+orientation]); image = ii.getImage(); }
+//            else if (health <= maxhealth / 4){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[16+orientation]); image = ii.getImage(); }
+//            else if (health <= maxhealth / 2){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[12+orientation]); image = ii.getImage(); }
+//            else if (health <= 3 * maxhealth / 4){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[8+orientation]); image = ii.getImage(); }
+//            else{ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[4+orientation]); image = ii.getImage(); }
 //            String s;
 //            s = health <= 0 ? "dead" : Integer.toString(health);
 //            System.out.println(s);
@@ -181,6 +183,16 @@ public class Wormer extends Movable{
     
     @Override
     public Image getImage(){
+        BufferedImage image = images[orientation];
+        Graphics2D  g = (Graphics2D) image.getGraphics();
+        
+        int aliveLength = (int)(((float)health/(float)maxhealth) * 60);
+        
+        g.setColor(Color.GREEN);
+        g.fillRect(2, 1, aliveLength, 6);
+        g.setColor(Color.RED);
+        g.fillRect(2 + aliveLength, 1, 60 - aliveLength, 6);
+        
         return images[orientation];
     }
     
