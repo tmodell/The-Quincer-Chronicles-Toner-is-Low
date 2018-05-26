@@ -30,7 +30,7 @@ public class Wormer extends Movable{
     static final int DEFAULT_DAMAGE = 10;
     static final int DEFAULT_COOLDOWN = 1000;
     
-    BufferedImage[] images;
+    BufferedImage[] images = new BufferedImage[4];
     
     World world;
     Player player;
@@ -59,10 +59,10 @@ public class Wormer extends Movable{
         this.player = world.getPlayer();
         
         try{
-           images[Movable.ORIENTATION_UP] = ImageIO.read(new File("src/sprites/lib/images.wormerfront.png"));
-           images[Movable.ORIENTATION_LEFT] = ImageIO.read(new File("src/sprites/lib/images.wormerfront.png"));
-           images[Movable.ORIENTATION_RIGHT] = ImageIO.read(new File("src/sprites/lib/images.wormerfront.png"));
-           images[Movable.ORIENTATION_DOWN] = ImageIO.read(new File("src/sprites/lib/images.wormerfront.png"));
+           images[Movable.ORIENTATION_UP] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_UP]));
+           images[Movable.ORIENTATION_LEFT] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_LEFT]));
+           images[Movable.ORIENTATION_RIGHT] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_RIGHT]));
+           images[Movable.ORIENTATION_DOWN] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_DOWN]));
         } catch (IOException e){}
         
         
@@ -88,6 +88,13 @@ public class Wormer extends Movable{
         
         //thread = new WormerThread(this);
         //thread.start();
+        
+        try{
+           images[Movable.ORIENTATION_UP] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_UP]));
+           images[Movable.ORIENTATION_LEFT] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_LEFT]));
+           images[Movable.ORIENTATION_RIGHT] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_RIGHT]));
+           images[Movable.ORIENTATION_DOWN] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_DOWN]));
+        } catch (IOException e){}
         
         this.x = x;
         this.y = y;
