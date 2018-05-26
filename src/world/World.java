@@ -242,19 +242,21 @@ public class World extends JPanel{
      */
     private void populateSymbolMap(){
         symbolMap.put('T', "tree");
-        symbolMap.put('H', "house");
+        symbolMap.put('H', "stonehouse");
         symbolMap.put('.', null);
         symbolMap.put('A', "alchemist");
-        symbolMap.put('C', "alchemistcart");
+        symbolMap.put('C', "cart");
         symbolMap.put('Y', "hysperia");
         symbolMap.put('L', "villageleader");
         symbolMap.put('V', "villager");
         symbolMap.put('B', "blacksmith");
-        symbolMap.put('W', "wiseman");
+        symbolMap.put('W', "lledo");
         symbolMap.put('O', "statue");
         symbolMap.put('w', "wormercorpse");
         symbolMap.put('h', "thatchedhut");
         symbolMap.put('*', "black");
+        symbolMap.put('f', "fire");
+        symbolMap.put('b', "stonebasilica");
     }
     
     /**
