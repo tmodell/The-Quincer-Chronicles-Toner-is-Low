@@ -108,9 +108,9 @@ public class Menu {
         }
         if (player.getMoney() >= buy){
             player.setMoney(player.getMoney() - buy);
-            if (player.getMaxHealth() < health)player.setMaxHealth(health);
+            player.setMaxHealth(player.getMaxHealth() + health);
             player.givePotions(potion);
-            if (player.getDamage() < health)player.setDamage(damage);
+            player.setDamage(player.getDamage() + damage);
             tonerislow.TonerIsLow.getMainFrame().getSideBar().update();
         } //else quit = true;
         if (quit) return true;

@@ -1,5 +1,4 @@
-Huh? Oh it's you again.
->I got this jack suit of armor.
-->Would you like to check it out?
--->~h
--->Your loss.
+Greetings traveler. I can upgrade your sword and armor.
+>Would you like to enter my shop?
+->~mblacksmithmenu
+->Oh. Well have fun fighting wormers without upgrades.
