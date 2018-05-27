@@ -149,7 +149,10 @@ public class World extends JPanel{
             tileName = tileName + "snow";
         }
         
-        int wormerCount = Integer.parseInt(line1Split[2]);
+        int wormerCount = 0;
+        try{
+            wormerCount = Integer.parseInt(line1Split[2]);
+        } catch (Exception e){}
         
         //System.out.println(tileName);
         ImageIcon ii = new ImageIcon("src/sprites/lib/tiles/" + tileName + ".png");
