@@ -21,7 +21,7 @@ import sprites.Player;
  */
 public class Save implements Serializable {
     private int playerX, playerY, money, maxHealth, health, potions;
-    private boolean shamen1, shamen2, shamen3;
+    private boolean shaman1, shaman2, shaman3, shaman4;
     private String playerRoom;
         
     private static final String FILE_NAME = "save.ser";
@@ -41,9 +41,9 @@ public class Save implements Serializable {
                     money = Player.DEFAULT_MONEY;
                     maxHealth = Player.DEFAULT_HEALTH;
                     health = maxHealth;
-                    shamen1 = true;
-                    shamen2 = true;
-                    shamen3 = true;
+                    shaman1 = true;
+                    shaman2 = true;
+                    shaman3 = true;
                     playerRoom = DEFAULT_ROOM;// TODO update this
                     potions = 100;
                     oos.writeObject(this);
@@ -57,9 +57,9 @@ public class Save implements Serializable {
                     money = temp.getMoney();
                     maxHealth = temp.getMaxHealth();
                     health = temp.getHealth();
-                    shamen1 = temp.isShamenAlive(1);
-                    shamen2 = temp.isShamenAlive(2);
-                    shamen3 = temp.isShamenAlive(3);
+                    shaman1 = temp.isShamenAlive(1);
+                    shaman2 = temp.isShamenAlive(2);
+                    shaman3 = temp.isShamenAlive(3);
                     playerRoom = temp.getPlayerRoom();
                     potions = temp.getPotions();
                     ois.close();
@@ -107,14 +107,18 @@ public class Save implements Serializable {
     
     public boolean isShamenAlive(int n){
         switch(n){
+            case -1:
+                return true;
             case 0:
                 return false;
             case 1:
-                return shamen1;
+                return shaman1;
             case 2:
-                return shamen2;
+                return shaman2;
             case 3:
-                return shamen3;
+                return shaman3;
+            case 4:
+                return shaman4;
         }
         return false;
     }
@@ -122,11 +126,17 @@ public class Save implements Serializable {
     public void setShamenAlive(int n, boolean b){
         switch(n){
             case 1:
-                shamen1 = b;
+                shaman1 = b;
+                break;
             case 2:
-                shamen2 = b;
+                shaman2 = b;
+                break;
             case 3:
-                shamen3 = b;
+                shaman3 = b;
+                break;
+            case 4:
+                shaman4 = b;
+                break;
         }
     }
     
