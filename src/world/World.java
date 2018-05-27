@@ -226,6 +226,11 @@ public class World extends JPanel{
                             sprites.add(guard);
                             break;
                         case 'V':
+                            if (infested){
+                                sprites.add(new Stationary("statue", x , y - 1));
+                                c = 'O';
+                                break;
+                            }
                             c = 'N';
                             Random rand = new Random();
                             int n = rand.nextInt(VILLAGER_POSSIBILITY_COUNT) + 1;
