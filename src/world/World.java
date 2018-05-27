@@ -21,6 +21,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import sprites.*;
 import npcinteraction.*;
 import sound.SoundFXController;
+import tonerislow.Save;
 import tonerislow.TonerIsLow;
 
 /**
@@ -48,6 +49,7 @@ public class World extends JPanel{
     MainFrame frame;
     Image tile;
     String map;
+    Save save;
     
     int shamenNum;
     boolean needsSort = false;
@@ -68,6 +70,7 @@ public class World extends JPanel{
         wormers = new Wormer[WIDTH][HEIGHT];
         
         this.frame = frame;
+        this.save = tonerislow.TonerIsLow.getSave();
         
         symbolMap = new HashMap <Character, String>();
         populateSymbolMap();
@@ -134,7 +137,7 @@ public class World extends JPanel{
         String[] line1Split = lines[0].split(",");
         
         shamenNum = Integer.parseInt(line1Split[0]);
-        boolean infested = TonerIsLow.getSave().isShamenAlive(shamenNum);
+        boolean infested = TonerIsLow.getSave().isShamanAlive(shamenNum);
         
         // Figure out which tile to paint on
         String tileName = line1Split[1];
@@ -192,7 +195,7 @@ public class World extends JPanel{
                             }
                             c = 'N';
                             char symbool = escapeSplit[1].charAt(0);
-                            System.out.println(symbool);
+                            //System.out.println(symbool);
                             String interactionFileName = escapeSplit[2];
                             String nam = escapeSplit[3];
                             NPC npc = new NPC(symbolMap.get(symbool), interactionFileName, nam, x, y - 1);
@@ -205,6 +208,16 @@ public class World extends JPanel{
                             Hysperia hysperia = new Hysperia(x, y - 1);
                             NPCs[x][y - 1] = hysperia;
                             sprites.add(hysperia);
+                            break;
+                        case 'G':
+                            // If none of the three shamans are alive don't spawn
+                            if (!(save.isShamanAlive(1) || save.isShamanAlive(2) || save.isShamanAlive(3))){
+                                c = ' ';
+                                break;
+                            }
+                            NPC guard = new NPC("wormerfront", "guard", "Guard", x, y - 1);
+                            NPCs[x][y - 1] = guard;
+                            sprites.add(guard);
                             break;
                         case 'W':
                             // TODO code to parse and add a wormer shamen
