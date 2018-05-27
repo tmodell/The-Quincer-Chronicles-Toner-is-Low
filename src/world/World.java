@@ -37,6 +37,9 @@ public class World extends JPanel{
     private static final String PREFIX = "src/world/lib/maps/";
     private static final String SUFFIX = ".csv";
     
+    // How many villager dialogue files there are
+    private static final int VILLAGER_POSSIBILITY_COUNT = 10;
+    
     //The sprites arraylist is used for rendering. It contains all the items in the subsequent ALs as well
     ArrayList<Sprite> sprites;
     
@@ -219,6 +222,15 @@ public class World extends JPanel{
                             NPCs[x][y - 1] = guard;
                             sprites.add(guard);
                             break;
+                        case 'V':
+                            c = 'N';
+                            Random rand = new Random();
+                            int n = rand.nextInt(VILLAGER_POSSIBILITY_COUNT);
+                            String numString = Integer.toString(n);
+                            String interaction = "villager" + numString;
+                            NPC villager = new NPC("villager", interaction, "Villager", x, y - 1);
+                            NPCs[x][y - 1] = villager;
+                            sprites.add(villager);
                         case 'W':
                             // TODO code to parse and add a wormer shamen
                             break;
