@@ -225,10 +225,10 @@ public class World extends JPanel{
                         case 'V':
                             c = 'N';
                             Random rand = new Random();
-                            int n = rand.nextInt(VILLAGER_POSSIBILITY_COUNT);
+                            int n = rand.nextInt(VILLAGER_POSSIBILITY_COUNT) + 1;
                             String numString = Integer.toString(n);
                             String interaction = "villager" + numString;
-                            NPC villager = new NPC("villager", interaction, "Villager", x, y - 1);
+                            NPC villager = new NPC("villageleader", interaction, "Villager", x, y - 1);
                             NPCs[x][y - 1] = villager;
                             sprites.add(villager);
                         case 'W':
