@@ -38,7 +38,7 @@ public class World extends JPanel{
     private static final String SUFFIX = ".csv";
     
     // How many villager dialogue files there are
-    private static final int VILLAGER_POSSIBILITY_COUNT = 10;
+    private static final int VILLAGER_POSSIBILITY_COUNT = 23;
     
     //The sprites arraylist is used for rendering. It contains all the items in the subsequent ALs as well
     ArrayList<Sprite> sprites;
