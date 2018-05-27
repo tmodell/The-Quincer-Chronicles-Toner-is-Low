@@ -57,9 +57,9 @@ public class Save implements Serializable {
                     money = temp.getMoney();
                     maxHealth = temp.getMaxHealth();
                     health = temp.getHealth();
-                    shaman1 = temp.isShamenAlive(1);
-                    shaman2 = temp.isShamenAlive(2);
-                    shaman3 = temp.isShamenAlive(3);
+                    shaman1 = temp.isShamanAlive(1);
+                    shaman2 = temp.isShamanAlive(2);
+                    shaman3 = temp.isShamanAlive(3);
                     playerRoom = temp.getPlayerRoom();
                     potions = temp.getPotions();
                     ois.close();
@@ -105,7 +105,7 @@ public class Save implements Serializable {
         this.playerY = y;
     }
     
-    public boolean isShamenAlive(int n){
+    public boolean isShamanAlive(int n){
         switch(n){
             case -1:
                 return true;
@@ -123,7 +123,7 @@ public class Save implements Serializable {
         return false;
     }
     
-    public void setShamenAlive(int n, boolean b){
+    public void setShamanAlive(int n, boolean b){
         switch(n){
             case 1:
                 shaman1 = b;
