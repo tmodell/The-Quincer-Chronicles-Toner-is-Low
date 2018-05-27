@@ -166,7 +166,9 @@ public class TextBox extends JPanel{
             g.drawString(s, 100, 100);
             if (currentText.getOptionCount() > 1) {
                 g.drawString("z: Yes    x: No", 100, 150);
-            }
+            } //else{
+                //g.drawString("Space: Next", 100, 150);
+            //}
         }
         if (ss != null){
             //System.out.println("kill");
@@ -180,7 +182,7 @@ public class TextBox extends JPanel{
             }
             int cursorX = (menu.getCursorPos() * 500) + 70;
             g.drawImage(cursor, cursorX, 85, null);
-            g.drawString("Enter: select", 100, 150);
+            g.drawString("Use Enter and Arrow Keys to Select", 100, 150);
         }
     }
 }

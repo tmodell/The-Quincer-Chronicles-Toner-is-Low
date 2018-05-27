@@ -120,6 +120,15 @@ public class SideBar extends JPanel{
         g.setColor(Color.WHITE);
         g.setFont(new Font("Old English Text MT", Font.BOLD, 50));
         g.drawString(potions, 120, 598);
+        int mon;
+        if ((mon = player.getMoney()) > 9999){
+            int i = mon / 1000;
+            money = Integer.toString(i) + "k";
+        } else if (mon > 999){
+            int i1 = player.getMoney()/1000;
+            int i2 = (player.getMoney()/100) - 10;
+            money = Integer.toString(i1) + "." + Integer.toString(i2) + "k";
+        }
         g.drawString(money, 120, 695);
         
     }
