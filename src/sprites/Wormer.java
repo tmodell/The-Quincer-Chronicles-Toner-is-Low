@@ -20,8 +20,8 @@ import world.*;
  * @author albert.wilcox
  */
 public class Wormer extends Movable{
-    static final String[] WORMER_IMAGE_URLS = {"src/sprites/lib/images/wormerfront.png", "src/sprites/lib/images/wormerfront.png", 
-        "src/sprites/lib/images/wormerfront.png", "src/sprites/lib/images/wormerfront.png"};
+    static final String[] WORMER_IMAGE_URLS = {"src/sprites/lib/images/wormerfront.png", "src/sprites/lib/images/wormerback.png", 
+        "src/sprites/lib/images/wormerleft.png", "src/sprites/lib/images/wormerright.png"};
     static final int DEFAULT_HEALTH = 100;
     static final int DEFAULT_DAMAGE = 10;
     static final int DEFAULT_COOLDOWN = 1000;
