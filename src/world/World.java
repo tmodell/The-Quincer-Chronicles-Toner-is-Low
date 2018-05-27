@@ -132,6 +132,7 @@ public class World extends JPanel{
         
         // Find out whether the map is infested by wormers
         String[] line1Split = lines[0].split(",");
+        
         shamenNum = Integer.parseInt(line1Split[0]);
         boolean infested = TonerIsLow.getSave().isShamenAlive(shamenNum);
         
@@ -141,6 +142,8 @@ public class World extends JPanel{
            // System.out.println(tileName + "snow exists");
             tileName = tileName + "snow";
         }
+        
+        int wormerCount = Integer.parseInt(line1Split[2]);
         
         //System.out.println(tileName);
         ImageIcon ii = new ImageIcon("src/sprites/lib/tiles/" + tileName + ".png");
@@ -223,7 +226,7 @@ public class World extends JPanel{
                 squares[x][y - 1] = c;
             }
         } 
-        if (infested) spawnWormers();
+        if (infested) spawnWormers(wormerCount);
         
         // Hardcode wormer
         Wormer w = new Wormer(this, 100, 10, 20, 5);
@@ -288,18 +291,7 @@ public class World extends JPanel{
     }
     
     // TODO complete method to spawn wormers
-    public void spawnWormers(){
-        int emptyCount = 0;
-        System.out.println("Spawning wormers.");
-        // counts how many empty squares are in the map
-        for (char[] c: squares){
-            for (char d: c){
-                if (d == ' ') emptyCount ++;
-            }
-        }
-        
-        int wormerCount = emptyCount / 50;
-        
+    public void spawnWormers(int wormerCount){
         Random r = new Random();
         int count = 0;
         while (count < wormerCount){
