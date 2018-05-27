@@ -44,25 +44,29 @@ public class Save implements Serializable {
                     shaman1 = true;
                     shaman2 = true;
                     shaman3 = true;
+                    shaman4 = true;
                     playerRoom = DEFAULT_ROOM;// TODO update this
                     potions = 100;
                     oos.writeObject(this);
                     oos.close();
             } else {
                     // This code is executed if it already exists
-                    ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME));
-                    Save temp = (Save) ois.readObject();
-                    playerX = temp.getPlayerX();
-                    playerY = temp.getPlayerY();
-                    money = temp.getMoney();
-                    maxHealth = temp.getMaxHealth();
-                    health = temp.getHealth();
-                    shaman1 = temp.isShamanAlive(1);
-                    shaman2 = temp.isShamanAlive(2);
-                    shaman3 = temp.isShamanAlive(3);
-                    playerRoom = temp.getPlayerRoom();
-                    potions = temp.getPotions();
-                    ois.close();
+                    try{
+                        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME));
+                        Save temp = (Save) ois.readObject();
+                        playerX = temp.getPlayerX();
+                        playerY = temp.getPlayerY();
+                        money = temp.getMoney();
+                        maxHealth = temp.getMaxHealth();
+                        health = temp.getHealth();
+                        shaman1 = temp.isShamanAlive(1);
+                        shaman2 = temp.isShamanAlive(2);
+                        shaman3 = temp.isShamanAlive(3);
+                        shaman4 = temp.isShamanAlive(4);
+                        playerRoom = temp.getPlayerRoom();
+                        potions = temp.getPotions();
+                        ois.close();
+                    } catch(Exception e){e.printStackTrace();}
             }
         } catch(Exception e) {}
     }
