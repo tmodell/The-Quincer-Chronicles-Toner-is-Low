@@ -1,0 +1,15 @@
+1,grass,4,,,,,,,,,,,,,,,,,,,,,,,
+X,X,X,X,X,X,X,X,X,X,X,X,%P;;12;12;citysouth,%P;;13;12;citysouth,X,X,X,X,X,X,X,X,X,X,X,X
+X,X,X,X,X,X,X,X,X,X,X,X,%G,%G,X,X,X,X,X,X,X,X,X,X,X,X
+T,T,T,T,T,T,,,,T,,,,,,,,T,,,T,T,T,T,T,T
+T,T,T,T,,T,T,,T,,,,,,,,,,T,,,,T,T,T,T
+T,T,T,,,,,,,,,,,,,,,,,,T,T,,T,T,T
+T,T,,T,,,,,,,,,,,,,,,,,,,,,T,T
+%P;;24;7;trail3,,,,,,,,,,,,T,T,,,,,,,,%N;s;t7warning;Sign,,,,%P;;1;10;trail7
+%P;;24;8;trail3,,,,,,,,,,,,T,T,T,,,,,,,,,,,%P;;1;11;trail7
+T,T,,,T,T,,,,,,,,T,,,,,,,,,,,T,T
+T,T,T,,,,,,,,,,,,,,,,,,,T,,T,T,T
+T,T,T,T,T,,T,,T,T,,,,,,,T,,T,,,T,T,T,T,T
+T,T,T,T,T,,,T,T,K,T,K,,,T,T,K,K,T,,T,T,T,T,T,T
+T,T,T,T,T,T,T,K,K,K,K,K,,,K,K,K,K,K,T,T,T,T,T,T,T
+T,T,T,T,T,T,K,K,K,K,K,K,%P;;22;1;trail2,%P;;23;1;trail2,K,K,K,K,K,K,T,T,T,T,T,T

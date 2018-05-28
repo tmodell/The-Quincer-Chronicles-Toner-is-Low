@@ -1,0 +1,15 @@
+1,grass,4,,,,,,,,,,,,,,,,,,,,,,,
+T,T,%P;;21;12;village1,%P;;22;12;village1,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,,,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,,,,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,,,,T,T,T,T,T,T,T,T,T,T,T,,,,,,,,T,T,T
+T,T,,,,,,T,T,T,T,T,T,T,T,T,,,,,,,,,T,T
+T,T,,,,,,,,T,T,T,T,T,T,,,,,T,,,,,,T
+T,T,,,,,,,,T,T,T,T,,,,,T,T,T,T,T,,,,T
+T,T,T,,,T,,,,,,,,,,,,T,,,T,T,,,,T
+T,T,T,,,T,T,,,,,,,,,,T,T,T,,,T,T,,,T
+T,T,T,,,,,,,,,,,,,T,T,T,T,,,T,T,T,,T
+T,T,T,T,,,,,,,T,T,,,,T,,,,,,,,,,T
+T,T,T,T,T,T,,,,,,T,T,T,T,T,,,T,,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,,,,T,T,T,T,T,T,,,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,%P;;1;0;trail3,%P;;2;0;trail3,T,T,T,T,T,T,T,T,T,T,T,T,T,T
