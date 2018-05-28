@@ -1,10 +1,12 @@
 Greetings. I am old and thus very wise.
 >Would you like to hear advice for your quest?
-->First, you need to free the villages around the city.
--->To do this you need to kill each village's Wormer Shaman.
---->Once you've freed all three villages, you can enter the city and fight the Dark Wurm.
----->Once you sleigh the Dark Wurm, you've won the game.
------>Oops it seems I've broken the fourth wall...
+->To free Mysteria, you must sleigh the Dark Wurm, who is locked deep in the city.
+-->As you likely know, the gates to the city are locked.
+--->Luckily, there is a somewhat secret entrance that no one has found somehow.
+---->South of Village 3, there is a well which will take you into the sewer.
+----->That sewer will lead you to a well inside the city walls.
+------>Beware, in the city the wormers will be stronger than those you've faced so far.
+------->I wish you luck hero.
 ->Oh. Then would you like to hear a joke?
 -->How can you tell if your girlfriend or dog loves you more?
 --->...
