@@ -22,6 +22,8 @@ public class Player extends Movable{
     public static final int DEFAULT_COOLDOWN = 900;
     public static final int DEFAULT_MONEY = 100;
     
+    public static final int POTION_RESTORATION = 50;
+    
     World world;
     
     int maxHealth = DEFAULT_HEALTH;
@@ -89,7 +91,7 @@ public class Player extends Movable{
     public void usePotion(){
         if (health == maxHealth || potionCount < 1) return;
         potionCount--;
-        health += 50;
+        health += POTION_RESTORATION;
         if (health > maxHealth) health = maxHealth;
         world.getFrame().getSideBar().update();
     }
@@ -152,6 +154,11 @@ public class Player extends Movable{
     
     public void setMoney(int money){
         this.money = money;
+    }
+    
+    public void giveMoney(int amount){
+        money+= amount;
+        world.getFrame().getSideBar().update();
     }
     
     public int getMaxHealth(){

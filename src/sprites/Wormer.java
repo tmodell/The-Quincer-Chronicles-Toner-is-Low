@@ -25,6 +25,7 @@ public class Wormer extends Movable{
     static final int DEFAULT_HEALTH = 100;
     static final int DEFAULT_DAMAGE = 10;
     static final int DEFAULT_COOLDOWN = 1000;
+    static final int DEFAULT_REWARD = 50;
     
     BufferedImage[] images = new BufferedImage[4];
     
@@ -32,9 +33,10 @@ public class Wormer extends Movable{
     Player player;
     
     int health;
-    int maxhealth;
+    int maxHealth;
     int damage;
     int cooldown;
+    int reward;
     
     private volatile boolean alive = true;
     
@@ -44,46 +46,17 @@ public class Wormer extends Movable{
      * Creates a Wormer with default health
      * @param world The world
      */
-    public Wormer(World world, int x, int y){
+    public Wormer(World world, int x, int y, int shaman){
         super(WORMER_IMAGE_URLS[0]);
         this.world = world;
         
-        health = DEFAULT_HEALTH;
-        damage = DEFAULT_DAMAGE;
+        maxHealth = DEFAULT_HEALTH * shaman;
+        health = DEFAULT_HEALTH * shaman;
+        damage = DEFAULT_DAMAGE * shaman;
         cooldown = DEFAULT_COOLDOWN;
+        reward = DEFAULT_REWARD * shaman;
         
         this.player = world.getPlayer();
-        
-        try{
-           images[Movable.ORIENTATION_UP] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_UP]));
-           images[Movable.ORIENTATION_LEFT] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_LEFT]));
-           images[Movable.ORIENTATION_RIGHT] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_RIGHT]));
-           images[Movable.ORIENTATION_DOWN] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_DOWN]));
-        } catch (IOException e){}
-        
-        
-        //thread = new WormerThread(this);
-        //thread.start();
-    }
-    
-    /**
-     * Creates a wormer with custom health
-     * @param world Za warudo
-     * @param health The wormer's heath
-     * @param damage The wormer's damage
-     */
-    public Wormer(World world, int health, int damage, int x, int y){
-        super(WORMER_IMAGE_URLS[0]);
-        
-        this.world = world;
-        this.maxhealth = health;
-        this.health = health;
-        this.damage = damage;
-        
-        this.player = world.getPlayer();
-        
-        //thread = new WormerThread(this);
-        //thread.start();
         
         try{
            images[Movable.ORIENTATION_UP] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_UP]));
@@ -94,11 +67,44 @@ public class Wormer extends Movable{
         
         this.x = x;
         this.y = y;
+        //thread = new WormerThread(this);
+        //thread.start();
     }
+    
+    /**
+     * Creates a wormer with custom health
+     * @param world Za warudo
+     * @param health The wormer's heath
+     * @param damage The wormer's damage
+     */
+//    public Wormer(World world, int health, int damage, int x, int y){
+//        super(WORMER_IMAGE_URLS[0]);
+//        
+//        this.world = world;
+//        this.maxHealth = health;
+//        this.health = health;
+//        this.damage = damage;
+//        
+//        this.player = world.getPlayer();
+//        
+//        //thread = new WormerThread(this);
+//        //thread.start();
+//        
+//        try{
+//           images[Movable.ORIENTATION_UP] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_UP]));
+//           images[Movable.ORIENTATION_LEFT] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_LEFT]));
+//           images[Movable.ORIENTATION_RIGHT] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_RIGHT]));
+//           images[Movable.ORIENTATION_DOWN] = ImageIO.read(new File(WORMER_IMAGE_URLS[ORIENTATION_DOWN]));
+//        } catch (IOException e){}
+//        
+//        this.x = x;
+//        this.y = y;
+//    }
     
     public void kill(){
         alive = false;
         world.killWormer(this, x, y);
+        player.giveMoney(reward);
     }
 
     /**
@@ -170,10 +176,10 @@ public class Wormer extends Movable{
             
             orientation = getOrientation();
             if (health <= 0) kill();
-//            else if (health <= maxhealth / 10){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[20+orientation]); image = ii.getImage(); }
-//            else if (health <= maxhealth / 4){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[16+orientation]); image = ii.getImage(); }
-//            else if (health <= maxhealth / 2){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[12+orientation]); image = ii.getImage(); }
-//            else if (health <= 3 * maxhealth / 4){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[8+orientation]); image = ii.getImage(); }
+//            else if (health <= maxHealth / 10){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[20+orientation]); image = ii.getImage(); }
+//            else if (health <= maxHealth / 4){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[16+orientation]); image = ii.getImage(); }
+//            else if (health <= maxHealth / 2){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[12+orientation]); image = ii.getImage(); }
+//            else if (health <= 3 * maxHealth / 4){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[8+orientation]); image = ii.getImage(); }
 //            else{ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[4+orientation]); image = ii.getImage(); }
 //            String s;
 //            s = health <= 0 ? "dead" : Integer.toString(health);
@@ -185,7 +191,7 @@ public class Wormer extends Movable{
         BufferedImage image = images[orientation];
         Graphics2D  g = (Graphics2D) image.getGraphics();
         
-        int aliveLength = (int)(((float)health/(float)maxhealth) * 60);
+        int aliveLength = (int)(((float)health/(float)maxHealth) * 60);
         
         g.setColor(Color.GREEN);
         g.fillRect(2, 1, aliveLength, 6);
@@ -198,40 +204,40 @@ public class Wormer extends Movable{
     @Override
     public void left(){
         super.left();
-        ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
-        image = ii.getImage();
         int x = getX(), oldX = x + 1;
         int y = getY();
         world.moveWormer(this, oldX, y, x, y);
+        //ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
+        //image = ii.getImage();
     }
     
     @Override
     public void right(){
         super.right();
-        ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
-        image = ii.getImage();
         int x = getX(), oldX = x - 1;
         int y = getY();
         world.moveWormer(this, oldX, y, x, y);
+        //ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
+        //image = ii.getImage();
     }
     
     @Override
     public void up(){
         super.up();
-        ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
-        image = ii.getImage();
         int x = getX();
         int y = getY(), oldY = y + 1;
         world.moveWormer(this, x, oldY, x, y);
+        //ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
+        //image = ii.getImage();
     }
     
     @Override
     public void down(){
         super.down();
-        ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
-        image = ii.getImage();
         int x = getX();
         int y = getY(), oldY = y - 1;
         world.moveWormer(this, x, oldY, x, y);
+        //ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[orientation]);
+        //image = ii.getImage();
     }
 }

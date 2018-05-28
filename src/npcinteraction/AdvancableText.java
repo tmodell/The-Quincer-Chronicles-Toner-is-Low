@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.Scanner;
 
 import sprites.Player;
+import world.SideBar;
 import world.TextBox;
 
 /**
@@ -25,6 +26,7 @@ public class AdvancableText {
     Menu menu;
     
     TextBox box;
+    SideBar bar;
     
     //Test purposes only
 //    public static void main(String[] args) throws IOException{
@@ -75,6 +77,7 @@ public class AdvancableText {
         
         player = tonerislow.TonerIsLow.getMainFrame().getWorld().getPlayer();
         box = tonerislow.TonerIsLow.getMainFrame().getTextBox();
+        bar = tonerislow.TonerIsLow.getMainFrame().getSideBar();
         
         this.name = name;
         
@@ -98,10 +101,7 @@ public class AdvancableText {
             return null;
         } else {
             String s = currentNode.getMessage();
-            s = checkHealthIncrease(s);
             s = checkHealthRestore(s);
-            s = checkDamageIncrease(s);
-            s = checkBuy(s);
             s = checkMenu(s);
             return s;
         }
@@ -112,32 +112,11 @@ public class AdvancableText {
         return s;
     }
     
-    private String checkHealthIncrease(String s){
-        if (s.contains("~h")){
-            int index = s.indexOf("~");
-            s = s.replace("~h", "");
-            String sub = s.substring(index, s.length());
-            int dH = Integer.parseInt(sub);
-            player.setMaxHealth(dH);
-        }
-        return s;
-    }
-    
     private String checkHealthRestore(String s){
         if (s.contains("~r")){
             s = s.replace("~r", "Health Restored.");
             player.restoreHealth();
-        }
-        return s;
-    }
-    
-    private String checkDamageIncrease(String s){
-        if (s.contains("~d")){
-            int index = s.indexOf("~");
-            s = s.replace("~d", "");
-            String sub = s.substring(index, s.length());
-            int dD = Integer.parseInt(sub);
-            player.setDamage(dD);
+            bar.update();
         }
         return s;
     }
@@ -149,15 +128,6 @@ public class AdvancableText {
             s = null;
         }
         
-        return s;
-    }
-    
-    private String checkBuy(String s){
-        if (s.contains("~b")){
-            int index = s.indexOf("~") + 2;
-            s = s.substring(index, s.length());
-            String url = s;
-        }
         return s;
     }
     
