@@ -280,11 +280,11 @@ public class World extends JPanel{
         symbolMap.put('T', "tree");
         symbolMap.put('H', "stonehouse");
         symbolMap.put('.', null);
-        symbolMap.put('A', "villageleader");
+        symbolMap.put('A', "villageleader");//TODO change to alchemist
         symbolMap.put('C', "cart");
         symbolMap.put('Y', "hysperia");
         symbolMap.put('L', "villageleader");
-        symbolMap.put('V', "villageleader");
+        symbolMap.put('V', "villageleader");//TODO change to villager
         symbolMap.put('B', "blacksmith");
         symbolMap.put('W', "lledo");
         symbolMap.put('O', "statue");
@@ -297,10 +297,11 @@ public class World extends JPanel{
         symbolMap.put('K', "tree");
         symbolMap.put('X', "stonewall");
         symbolMap.put('b', "stonebasilica");
-        symbolMap.put('M', "cavemouth");
+        symbolMap.put('M', "black");//TODO change to cavemouth
         symbolMap.put('J', "longhouse");
-        symbolMap.put('n', "mine");
         symbolMap.put('Q', "stonebuilding");
+        symbolMap.put('l', "black");// TODO change to well
+        symbolMap.put('n', "black");//TODO change to mine
     }
     
     /**
