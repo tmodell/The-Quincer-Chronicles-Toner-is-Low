@@ -321,6 +321,8 @@ public class World extends JPanel{
         symbolMap.put('Q', "stonebuilding");
         symbolMap.put('l', "black");// TODO change to well
         symbolMap.put('n', "black");//TODO change to mine
+        symbolMap.put('t', "tower");
+        symbolMap.put('m', "stalagmite");
     }
     
     public void handlePlayerDeath(){
