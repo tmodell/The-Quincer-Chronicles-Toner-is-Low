@@ -157,6 +157,10 @@ public class Save implements Serializable {
         }
     }
     
+    public boolean allShamansDead(){
+        return !(shaman1 || shaman2 || shaman3 || shaman4);
+    }
+    
     public String getPlayerRoom(){
         return playerRoom;
     }
