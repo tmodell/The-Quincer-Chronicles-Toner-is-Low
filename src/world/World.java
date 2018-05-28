@@ -165,7 +165,7 @@ public class World extends JPanel{
         for (int y = 1; y < 15; y++){
             //System.out.println(lines[y]);
             String[] commaSplit = lines[y].split(",");
-            for (int x = 0; x < WIDTH; x++){
+            for (int x = 0; x < WIDTH; x++){try{
                 //System.out.println("\ny: " + y + " \nx: " + x);
                 char c;
                 //System.out.println(1);
@@ -256,7 +256,7 @@ public class World extends JPanel{
                     } //System.out.println(imageName);
                     sprites.add(new Stationary(imageName, x , y - 1));
                 }
-                squares[x][y - 1] = c;
+                squares[x][y - 1] = c;}catch(Exception e){e.printStackTrace();}
             }
         } 
         if (infested) spawnWormers(wormerCount);
@@ -284,7 +284,7 @@ public class World extends JPanel{
         symbolMap.put('C', "cart");
         symbolMap.put('Y', "hysperia");
         symbolMap.put('L', "villageleader");
-        symbolMap.put('V', "villager");
+        symbolMap.put('V', "villageleader");
         symbolMap.put('B', "blacksmith");
         symbolMap.put('W', "lledo");
         symbolMap.put('O', "statue");
@@ -293,6 +293,8 @@ public class World extends JPanel{
         symbolMap.put('*', "black");
         symbolMap.put('f', "fire");
         symbolMap.put('b', "stonebasilica");
+        symbolMap.put('R', "ship");
+        symbolMap.put('K', "tree");
     }
     
     /**
