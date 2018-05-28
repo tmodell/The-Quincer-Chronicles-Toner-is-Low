@@ -1,12 +1,12 @@
-1,snow,5,,,,,,,,,,,,,,,,,,,,,,,
-T,%P;;24;8;trail4,%P;;24;7;trail4,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+1,grass,5,,,,,,,,,,,,,,,,,,,,,,,
+T,%P;;10;12;trail4,%P;;11;12;trail4,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
 T,,,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
 T,,,,,,T,T,,,,,,,,,T,T,T,T,T,T,T,T,T,T
 T,T,,,,,,,,,,,,,,,,,,,T,T,T,T,T,T
 T,T,,,,,,,,,,,,,,,,,,,,,T,T,T,T
 T,T,T,,,,,,,,,,,,,,,,,,,,,T,T,T
-T,T,,,,,,,,,,,,,,,,,,,,,,,,%P;;1;7;crossroads
-T,T,T,,,,,,,,,,,,,,,,,,,,,,,%P;;1;8;crossroads
+T,T,,,,,,,,,,,,,,,,,,,,,,,,%P;;1;6;crossroads
+T,T,T,,,,,,,,,,,,,,,,,,,,,,,%P;;1;7;crossroads
 T,T,T,T,T,,,,,,,,,,,,,,,,,,,T,T,T
 T,T,T,T,T,T,,,,,,,,,,,,,,,,,T,T,T,T
 T,T,T,T,T,T,T,T,,,,,,,,,,,,,,T,T,T,T,T
