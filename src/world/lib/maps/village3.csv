@@ -5,7 +5,7 @@ T,T,,,,,,T,T,T,T,T,%N;B;blacksmith;Blacksmith,,,%N;A;alchemist;Alchemist,C,.,T,T
 T,T,,,,,,,,%V,,,,,,%V,,,.,.,.,.,.,.,T,T
 T,T,T,,,,,,,,,,,,,,,,J,.,%P;;12;8;village3townhall,%P;;13;8;village3townhall,.,.,T,T
 T,T,T,,,,,,,,,,.,.,.,,,,,,,,,,T,T
-T,T,T,T,,,,%V,,,,,h,%P;;12;10;village3house2,.,%V,,,,,,,,,T,T
+T,T,T,T,,,,%S;village3,,,,,h,%P;;12;10;village3house2,.,%V,,,,,,,,,T,T
 T,T,T,T,,,,,,,,,,,,,,.,.,.,,,%V,,T,T
 T,T,T,,,,,,,%V,,,,,,,,h,%P;;12;10;village3house3,.,,,,,T,T
 T,T,T,,,,,,,,,.,.,.,,,,,,,,,,T,T,T

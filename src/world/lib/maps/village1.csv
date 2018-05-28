@@ -7,7 +7,7 @@ T,J,.,%P;;12;8;village1townhall,%P;;13;8;village1townhall,.,.,,,,,,%V,,.,.,.,,T,
 T,,,,,,,.,.,.,,,,,h,%P;;12;10;village1house5,.,,%V,,,,T,T,T,T
 T,,,,%N;L;villageleader;Village Leader,,,h,%P;;12;10;village1house2,.,,,,,,,,,,,,,,T,T,T
 T,T,,,,,,,,,,%V,,,,,,,,,,,,%V,T,T
-T,T,,.,.,.,,,,,,,.,.,.,,,,,%V,,,,,,T
+T,T,,.,.,.,,,,,,,.,.,.,,,,,%S;village1,,,,,,T
 T,T,,h,%P;;12;10;village1house1,.,,,.,.,.,,h,%P;;12;10;village1house4,.,,,,,,,,,,,T
 T,T,,,,,,,h,%P;;12;10;village1house3,.,,,,,,,,,,,,T,T,T,T
 T,T,T,,,,,,,,,,,,,T,T,,,,,,,T,T,T
