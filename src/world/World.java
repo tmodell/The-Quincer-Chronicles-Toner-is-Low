@@ -38,7 +38,7 @@ public class World extends JPanel{
     private static final String SUFFIX = ".csv";
     
     // How many villager dialogue files there are
-    private static final int VILLAGER_POSSIBILITY_COUNT = 23;
+    private static final int VILLAGER_POSSIBILITY_COUNT = 30;
     
     //The sprites arraylist is used for rendering. It contains all the items in the subsequent ALs as well
     ArrayList<Sprite> sprites;
@@ -54,7 +54,7 @@ public class World extends JPanel{
     String map;
     Save save;
     
-    int shamenNum;
+    int shamanNum;
     boolean needsSort = false;
     int wormerRefreshCount = 0;
     
@@ -139,8 +139,8 @@ public class World extends JPanel{
         // Find out whether the map is infested by wormers
         String[] line1Split = lines[0].split(",");
         
-        shamenNum = Integer.parseInt(line1Split[0]);
-        boolean infested = TonerIsLow.getSave().isShamanAlive(shamenNum);
+        shamanNum = Integer.parseInt(line1Split[0]);
+        boolean infested = TonerIsLow.getSave().isShamanAlive(shamanNum);
         
         // Figure out which tile to paint on
         String tileName = line1Split[1];
@@ -239,8 +239,18 @@ public class World extends JPanel{
                             NPC villager = new NPC("villageleader", interaction, "Villager", x, y - 1);
                             NPCs[x][y - 1] = villager;
                             sprites.add(villager);
+                            break;
                         case 'W':
-                            // TODO code to parse and add a wormer shamen
+                            System.out.println("Processing shaman.");
+                            int shamanNum = Integer.parseInt(escapeSplit[1]);
+                            if (!save.isShamanAlive(shamanNum)){
+                                c = ' ';
+                                break;
+                            }
+                            Shaman shaman = new Shaman(this, x, y - 1, shamanNum);
+                            sprites.add(shaman);
+                            wormers[x][y - 1] = shaman;
+                            c = ' ';
                             break;
                         case 'D':
                             //TODO code to spawn a dark worm
@@ -262,7 +272,7 @@ public class World extends JPanel{
         if (infested) spawnWormers(wormerCount);
         
         // Hardcode wormer
-        Wormer w = new Wormer(this, 100, 10, 20, 5);
+        //Wormer w = new Wormer(this, 100, 10, 20, 5);
         //sprites.add(w);
         //wormers[20][5] = w;
         
@@ -304,6 +314,10 @@ public class World extends JPanel{
         symbolMap.put('n', "black");//TODO change to mine
     }
     
+    public void handlePlayerDeath(){
+        
+    }
+    
     /**
      * This method is called when the player attacks
      * @param x
@@ -341,7 +355,7 @@ public class World extends JPanel{
             int x = r.nextInt(WIDTH);
             int y = r.nextInt(HEIGHT);
             if (isOccupiable(x, y)){
-                Wormer w = new Wormer(this, 100, 10, x, y);
+                Wormer w = new Wormer(this, x, y, shamanNum);
                 sprites.add(w);
                 wormers[x][y] = w;
             } else count--;
