@@ -5,10 +5,10 @@ T,T,,,T,T,T,T,T,T,T,T,T,T,%N;A;alchemist;Alchemist,C,.,T,T,T,T,T,T,T,T,T
 T,T,,,T,T,,,T,T,T,%N;B;blacksmith;Blacksmith,,,,,,.,.,.,.,.,.,T,T,T
 T,T,T,,,,,,,%V,,,,,,,,J,.,%P;;12;8;village2townhall,%P;;13;8;village2townhall,.,.,T,T,T
 T,T,T,T,,,,,,,,,.,.,.,,,,,,,,,%V,T,T
-T,T,T,T,,,%V,,,,,,h,%P;;11;10;village2house2,.,,,%V,,,,,,,T,T
+T,T,T,T,,,%V,,,,,,h,%P;;12;10;village2house2,.,,,%V,,,,,,,T,T
 T,T,.,T,,,,,.,.,.,,,,,,,,,,.,.,.,,T,T
-T,T,.,T,T,T,,,h,%P;;11;10;village2house1,.,,,,%V,,.,.,.,,h,%P;;11;10;village2house4,.,,T,T
-%P;;24;1;trail5,,T,T,%V,,,,,,,,,,,,h,%P;;11;10;village2house3,.,,,,,,T,T
+T,T,.,T,T,T,,,h,%P;;12;10;village2house1,.,,,,%V,,.,.,.,,h,%P;;12;10;village2house4,.,,T,T
+%P;;24;1;trail5,,T,T,%V,,,,,,,,,,,,h,%P;;12;10;village2house3,.,,,,,,T,T
 %P;;24;1;trail5,,,,,,,,,,,T,,,,,,,,,%V,,,,T,T
 T,T,,,,,,,T,T,T,T,T,T,,,,,,,,,,T,T,T
 T,T,T,,,T,T,T,T,T,T,T,T,T,T,T,T,,,,,,T,T,T,T

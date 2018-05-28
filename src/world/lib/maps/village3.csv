@@ -5,11 +5,11 @@ T,T,,,,,,T,T,T,T,T,%N;B;blacksmith;Blacksmith,,,%N;A;alchemist;Alchemist,C,.,T,T
 T,T,,,,,,,,%V,,,,,,%V,,,.,.,.,.,.,.,T,T
 T,T,T,,,,,,,,,,,,,,,,J,.,%P;;12;8;village3townhall,%P;;13;8;village3townhall,.,.,T,T
 T,T,T,,,,,,,,,,.,.,.,,,,,,,,,,T,T
-T,T,T,T,,,,%V,,,,,h,%P;;11;10;village3house2,.,%V,,,,,,,,,T,T
+T,T,T,T,,,,%V,,,,,h,%P;;12;10;village3house2,.,%V,,,,,,,,,T,T
 T,T,T,T,,,,,,,,,,,,,,.,.,.,,,%V,,T,T
-T,T,T,,,,,,,%V,,,,,,,,h,%P;;11;10;village3house3,.,,,,,T,T
+T,T,T,,,,,,,%V,,,,,,,,h,%P;;12;10;village3house3,.,,,,,T,T
 T,T,T,,,,,,,,,.,.,.,,,,,,,,,,T,T,T
-T,T,,,,,,,,,,h,%P;;11;10;village3house1,.,,,,,,,,.,.,.,T,T
-T,,,,,,T,T,T,,,,,,,T,,,,,,h,%P;;11;10;village3house4,.,T,T
+T,T,,,,,,,,,,h,%P;;12;10;village3house1,.,,,,,,,,.,.,.,T,T
+T,,,,,,T,T,T,,,,,,,T,,,,,,h,%P;;12;10;village3house4,.,T,T
 T,,,,T,T,T,T,T,T,T,T,T,T,T,T,T,,,,,,,,T,T
 T,%P;;2;1;mineentrance,%P;;3;1;mineentrance,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
