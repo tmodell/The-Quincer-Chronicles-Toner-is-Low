@@ -3,8 +3,8 @@ T,T,"""P;;19;12;village2","""P;;20;12;village2",T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,
 T,,,,,,,,,,,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
 T,,,,,,T,T,T,,,T,T,,,,,,,,T,T,T,T,T,T
 T,,,,T,T,T,T,T,T,,,,,,T,T,T,T,,T,T,T,T,T,T
-T,,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,,,,,T,T,T,T,T
-T,,,T,T,T,T,T,T,T,T,T,T,T,T,T,,,,,,,%P;M;22;7;cave3,T,T,T
+T,,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,,,,,.,.,.,T,T
+T,,,T,T,T,T,T,T,T,T,T,T,T,T,T,,,,,,M,%P;;22;7;cave3,.,T,T
 T,T,,,T,T,T,T,T,T,T,T,T,T,T,T,,,,,,,,T,T,T
 T,T,T,,T,T,T,T,T,T,T,T,T,T,T,T,,,,,,,,T,T,T
 T,T,T,,,T,T,,,,,,,,,,,,,,,,,T,T,T

@@ -1,13 +1,13 @@
 1,grass,4,,,,,,,,,,,,,,,,,,,,,,,
 X,X,X,X,X,X,X,X,X,X,X,X,%P;;12;12;citysouth,%P;;13;12;citysouth,X,X,X,X,X,X,X,X,X,X,X,X
-X,X,X,X,X,X,X,X,X,X,X,X,%G,%G,X,X,X,X,X,X,X,X,X,X,X,X
+X,X,X,X,X,X,X,X,X,X,X,X,%G;yep,%G,X,X,X,X,X,X,X,X,X,X,X,X
 T,T,T,T,T,T,,,,T,,,,,,,,T,,,T,T,T,T,T,T
 T,T,T,T,,T,T,,T,,,,,,,,,,T,,,,T,T,T,T
 T,T,T,,,,,,,,,,,,,,,,,,T,T,,T,T,T
 T,T,,T,,,,,,,,,,,,,,,,,,,,,T,T
 %P;;24;6;trail3,,,,,,,,,,,,T,T,,,,,,,,%S;t7warning,,,,%P;;1;10;trail7
 %P;;24;7;trail3,,,,,,,,,,,,T,T,T,,,,,,,,,,,%P;;1;11;trail7
-T,T,,,T,T,,,,,,,,T,,,,,,,,,,,T,T
+T,T,,,T,T,,,,,,,,%S;crossroadssign,,,,,,,,,,,T,T
 T,T,T,,,,,,,,,,,,,,,,,,,T,,T,T,T
 T,T,T,T,T,,T,,T,T,,,,,,,T,,T,,,T,T,T,T,T
 T,T,T,T,T,,,T,T,K,T,K,,,T,T,K,K,T,,T,T,T,T,T,T
