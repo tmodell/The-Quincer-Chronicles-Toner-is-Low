@@ -236,7 +236,7 @@ public class World extends JPanel{
                             int n = rand.nextInt(VILLAGER_POSSIBILITY_COUNT) + 1;
                             String numString = Integer.toString(n);
                             String interaction = "villagers/villager" + numString;
-                            NPC villager = new NPC("villageleader", interaction, "Villager", x, y - 1);
+                            NPC villager = new NPC(symbolMap.get('V'), interaction, "Villager", x, y - 1);
                             NPCs[x][y - 1] = villager;
                             sprites.add(villager);
                             break;
@@ -251,6 +251,13 @@ public class World extends JPanel{
                             sprites.add(shaman);
                             wormers[x][y - 1] = shaman;
                             c = ' ';
+                            break;
+                        case 'S':
+                            String fileName = escapeSplit[1];
+                            NPC sign = new NPC("sign", fileName, "Sign", x, y - 1);
+                            c = 'N';
+                            NPCs[x][y - 1] = sign;
+                            sprites.add(sign);
                             break;
                         case 'D':
                             //TODO code to spawn a dark worm
@@ -275,6 +282,8 @@ public class World extends JPanel{
         //Wormer w = new Wormer(this, 100, 10, 20, 5);
         //sprites.add(w);
         //wormers[20][5] = w;
+        
+        sortSprites();
         
         repainting = true;
     }
