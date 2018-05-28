@@ -280,7 +280,7 @@ public class World extends JPanel{
         symbolMap.put('T', "tree");
         symbolMap.put('H', "stonehouse");
         symbolMap.put('.', null);
-        symbolMap.put('A', "alchemist");
+        symbolMap.put('A', "villageleader");
         symbolMap.put('C', "cart");
         symbolMap.put('Y', "hysperia");
         symbolMap.put('L', "villageleader");
@@ -295,6 +295,12 @@ public class World extends JPanel{
         symbolMap.put('b', "stonebasilica");
         symbolMap.put('R', "ship");
         symbolMap.put('K', "tree");
+        symbolMap.put('X', "stonewall");
+        symbolMap.put('b', "stonebasilica");
+        symbolMap.put('M', "cavemouth");
+        symbolMap.put('J', "longhouse");
+        symbolMap.put('n', "mine");
+        symbolMap.put('Q', "stonebuilding");
     }
     
     /**
