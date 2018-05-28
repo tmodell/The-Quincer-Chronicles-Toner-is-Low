@@ -1,0 +1,4 @@
+Wow. You've killed the three shamans.
+>Now all you have to do is kill the Dark Wurm.
+->He stays in the castle at the north end of the city.
+-->Unfortunately the gates are locked and no one knows how to get in.
