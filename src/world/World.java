@@ -216,14 +216,24 @@ public class World extends JPanel{
                             sprites.add(hysperia);
                             break;
                         case 'G':
-                            // If none of the three shamans are alive don't spawn
-                            if (!(save.isShamanAlive(1) || save.isShamanAlive(2) || save.isShamanAlive(3))){
+                            String file = "gate";
+                            
+                            // If all shamans are dead
+                            if (save.allShamansDead()){
+                                System.out.println("They're dead alright!");
                                 c = ' ';
+                                if (escapeSplit.length > 1){
+                                    file += "unlocked";
+                                    Stationary stat = new Stationary(file, x, y - 1);
+                                    sprites.add(stat);
+                                }
                                 break;
                             }
-                            NPC guard = new NPC("wormerfront", "guard", "Guard", x, y - 1);
-                            NPCs[x][y - 1] = guard;
-                            sprites.add(guard);
+                            c = '.';
+                            if (escapeSplit.length > 1){
+                                Stationary stat = new Stationary(file, x, y - 1);
+                                sprites.add(stat);
+                            }
                             break;
                         case 'V':
                             if (infested){
@@ -316,7 +326,7 @@ public class World extends JPanel{
         symbolMap.put('K', "black");//TODO change to rock face
         symbolMap.put('X', "stonewall");
         symbolMap.put('b', "stonebasilica");
-        symbolMap.put('M', "black");//TODO change to cavemouth
+        symbolMap.put('M', "cavemouth");//TODO change to cavemouth
         symbolMap.put('J', "longhouse");
         symbolMap.put('Q', "stonebuilding");
         symbolMap.put('l', "black");// TODO change to well
