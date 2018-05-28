@@ -41,10 +41,10 @@ public class Save implements Serializable {
                     money = Player.DEFAULT_MONEY;
                     maxHealth = Player.DEFAULT_HEALTH;
                     health = maxHealth;
-                    shaman1 = false;
-                    shaman2 = false;
-                    shaman3 = false;
-                    shaman4 = false;
+                    shaman1 = true;
+                    shaman2 = true;
+                    shaman3 = true;
+                    shaman4 = true;
                     playerRoom = DEFAULT_ROOM;// TODO update this
                     potions = 100;
                     oos.writeObject(this);
