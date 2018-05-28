@@ -21,6 +21,7 @@ public class Player extends Movable{
     public static final int DEFAULT_DAMAGE = 25;
     public static final int DEFAULT_COOLDOWN = 900;
     public static final int DEFAULT_MONEY = 100;
+    public static final int DEFAULT_POTIONS = 20;
     
     public static final int POTION_RESTORATION = 50;
     
@@ -54,6 +55,7 @@ public class Player extends Movable{
         health = save.getHealth();
         maxHealth = save.getMaxHealth();
         potionCount = save.getPotions();
+        damage = save.getDamage();
     }
     
     public void restoreHealth(){

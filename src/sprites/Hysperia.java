@@ -6,7 +6,9 @@
 package sprites;
 
 
+import java.io.IOException;
 import npcinteraction.*;
+import tonerislow.Save;
 /**
  * Hysperia had to have her own class because the interaction folk wanted her
  * dialogue to change at various points in the story.
@@ -15,17 +17,29 @@ import npcinteraction.*;
  */
 public class Hysperia extends NPC{
     
-    private static final String IMAGE_URL = "src/sprites/lib/characters/hysperia.png";
     private static final String NAME = "Princess Hysperia";
     
     public Hysperia(int x, int y) {
-        super(IMAGE_URL, null, NAME, x, y);
+        super("hysperia", null, NAME, x, y);
     }
     
     @Override
     public AdvancableText getInteraction(){
-        //TODO code to return Hysperia's interaction.
-        return null;
+        Save s = tonerislow.TonerIsLow.getSave();
+        int count = 1;
+        if (!s.isShamanAlive(1))count++;
+        if (!s.isShamanAlive(2))count++;
+        if (!s.isShamanAlive(3))count++;
+        if (!s.isShamanAlive(4))count++;
+        
+        String url = "src/npcinteraction/lib/hysperia" + Integer.toString(count) + ".txt";
+        
+        AdvancableText at = null;
+        try{
+            at = new AdvancableText(url, NAME);
+        } catch (IOException e) {e.printStackTrace();}
+        
+        return at;
     }
     
 }

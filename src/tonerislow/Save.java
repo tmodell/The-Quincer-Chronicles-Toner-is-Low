@@ -20,7 +20,7 @@ import sprites.Player;
  * @author albert.wilcox
  */
 public class Save implements Serializable {
-    private int playerX, playerY, money, maxHealth, health, potions;
+    private int playerX, playerY, money, maxHealth, health, potions, damage;
     private boolean shaman1, shaman2, shaman3, shaman4;
     private String playerRoom;
         
@@ -41,12 +41,13 @@ public class Save implements Serializable {
                     money = Player.DEFAULT_MONEY;
                     maxHealth = Player.DEFAULT_HEALTH;
                     health = maxHealth;
+                    damage = Player.DEFAULT_DAMAGE;
                     shaman1 = true;
                     shaman2 = true;
                     shaman3 = true;
                     shaman4 = true;
                     playerRoom = DEFAULT_ROOM;// TODO update this
-                    potions = 100;
+                    potions = Player.DEFAULT_POTIONS;
                     oos.writeObject(this);
                     oos.close();
             } else {
@@ -59,6 +60,7 @@ public class Save implements Serializable {
                         money = temp.getMoney();
                         maxHealth = temp.getMaxHealth();
                         health = temp.getHealth();
+                        damage = temp.getDamage();
                         shaman1 = temp.isShamanAlive(1);
                         shaman2 = temp.isShamanAlive(2);
                         shaman3 = temp.isShamanAlive(3);
@@ -80,6 +82,7 @@ public class Save implements Serializable {
         potions = player.getPotionCount();
         maxHealth = player.getMaxHealth();
         playerRoom = player.getWorld().getMap();
+        damage = player.getDamage();
         
         // Now save this object
         try{
@@ -91,6 +94,14 @@ public class Save implements Serializable {
     
     public void setPlayer(Player player){
         this.player = player;
+    }
+    
+    public void setDamage(int damage){
+        this.damage = damage;
+    }
+    
+    public int getDamage(){
+        return damage;
     }
     
     public int getPlayerX(){

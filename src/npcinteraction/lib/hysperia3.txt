@@ -1,0 +1,6 @@
+Traveler is that you?
+>Oh dear. Sorry I'm not even in my best clothes
+->Traveler you have done so much for me and I have not so much for you
+-->I'll pay you back somehow. 
+--->I'm to weak to fight. Would you please traveler, I wouldn't ask anyone else
+ 
