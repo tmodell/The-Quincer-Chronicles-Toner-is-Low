@@ -27,6 +27,8 @@ public class Save implements Serializable {
     private static final String FILE_NAME = "save.ser";
     private static final String DEFAULT_ROOM = "village0";
     
+    private static boolean DEBUG = true;
+    
     private transient Player player;
     
     public Save() {
@@ -42,10 +44,10 @@ public class Save implements Serializable {
                     maxHealth = Player.DEFAULT_HEALTH;
                     health = maxHealth;
                     damage = Player.DEFAULT_DAMAGE;
-                    shaman1 = true;
-                    shaman2 = true;
-                    shaman3 = true;
-                    shaman4 = true;
+                    shaman1 = !DEBUG;
+                    shaman2 = !DEBUG;
+                    shaman3 = !DEBUG;
+                    shaman4 = !DEBUG;
                     playerRoom = DEFAULT_ROOM;// TODO update this
                     potions = Player.DEFAULT_POTIONS;
                     oos.writeObject(this);
