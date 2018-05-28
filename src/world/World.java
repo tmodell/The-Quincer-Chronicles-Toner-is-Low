@@ -303,7 +303,7 @@ public class World extends JPanel{
         symbolMap.put('C', "cart");
         symbolMap.put('Y', "hysperia");
         symbolMap.put('L', "villageleader");
-        symbolMap.put('V', "villageleader");//TODO change to villager
+        symbolMap.put('V', "black");//TODO change to villager
         symbolMap.put('B', "blacksmith");
         symbolMap.put('W', "lledo");
         symbolMap.put('O', "statue");
@@ -313,7 +313,7 @@ public class World extends JPanel{
         symbolMap.put('f', "fire");
         symbolMap.put('b', "stonebasilica");
         symbolMap.put('R', "ship");
-        symbolMap.put('K', "tree");
+        symbolMap.put('K', "black");//TODO change to rock face
         symbolMap.put('X', "stonewall");
         symbolMap.put('b', "stonebasilica");
         symbolMap.put('M', "black");//TODO change to cavemouth
