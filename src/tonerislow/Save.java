@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -35,44 +36,63 @@ public class Save implements Serializable {
         File f = new File(FILE_NAME);
         try {
             if (f.createNewFile()) {
-                    // This code is executed if it successfully creates the new file (meaning it didn't exist)
-                    // This code saves this object to the file
-                    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
-                    playerX = 9;
-                    playerY = 11;
-                    money = Player.DEFAULT_MONEY;
-                    maxHealth = Player.DEFAULT_HEALTH;
-                    health = maxHealth;
-                    damage = Player.DEFAULT_DAMAGE;
-                    shaman1 = !DEBUG;
-                    shaman2 = !DEBUG;
-                    shaman3 = !DEBUG;
-                    shaman4 = !DEBUG;
-                    playerRoom = DEFAULT_ROOM;// TODO update this
-                    potions = Player.DEFAULT_POTIONS;
-                    oos.writeObject(this);
-                    oos.close();
+                // This code is executed if it successfully creates the new file (meaning it didn't exist)
+                // This code saves this object to the file
+                ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
+                playerX = 9;
+                playerY = 11;
+                money = Player.DEFAULT_MONEY;
+                maxHealth = Player.DEFAULT_HEALTH;
+                health = maxHealth;
+                damage = Player.DEFAULT_DAMAGE;
+                shaman1 = !DEBUG;
+                shaman2 = !DEBUG;
+                shaman3 = !DEBUG;
+                shaman4 = !DEBUG;
+                playerRoom = DEFAULT_ROOM;// TODO update this
+                potions = Player.DEFAULT_POTIONS;
+                oos.writeObject(this);
+                oos.close();
             } else {
-                    // This code is executed if it already exists
-                    try{
-                        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME));
-                        Save temp = (Save) ois.readObject();
-                        playerX = temp.getPlayerX();
-                        playerY = temp.getPlayerY();
-                        money = temp.getMoney();
-                        maxHealth = temp.getMaxHealth();
-                        health = temp.getHealth();
-                        damage = temp.getDamage();
-                        shaman1 = temp.isShamanAlive(1);
-                        shaman2 = temp.isShamanAlive(2);
-                        shaman3 = temp.isShamanAlive(3);
-                        shaman4 = temp.isShamanAlive(4);
-                        playerRoom = temp.getPlayerRoom();
-                        potions = temp.getPotions();
-                        ois.close();
-                    } catch(Exception e){e.printStackTrace();}
+                // This code is executed if it already exists
+                try{
+                    ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME));
+                    Save temp = (Save) ois.readObject();
+                    playerX = temp.getPlayerX();
+                    playerY = temp.getPlayerY();
+                    money = temp.getMoney();
+                    maxHealth = temp.getMaxHealth();
+                    health = temp.getHealth();
+                    damage = temp.getDamage();
+                    shaman1 = temp.isShamanAlive(1);
+                    shaman2 = temp.isShamanAlive(2);
+                    shaman3 = temp.isShamanAlive(3);
+                    shaman4 = temp.isShamanAlive(4);
+                    playerRoom = temp.getPlayerRoom();
+                    potions = temp.getPotions();
+                    ois.close();
+                } catch(Exception e){
+                    if (e instanceof InvalidClassException){
+                        System.out.println("I found an old save.ser file and am replacing it.");
+                        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
+                        playerX = 9;
+                        playerY = 11;
+                        money = Player.DEFAULT_MONEY;
+                        maxHealth = Player.DEFAULT_HEALTH;
+                        health = maxHealth;
+                        damage = Player.DEFAULT_DAMAGE;
+                        shaman1 = !DEBUG;
+                        shaman2 = !DEBUG;
+                        shaman3 = !DEBUG;
+                        shaman4 = !DEBUG;
+                        playerRoom = DEFAULT_ROOM;// TODO update this
+                        potions = Player.DEFAULT_POTIONS;
+                        oos.writeObject(this);
+                        oos.close();
+                    }else{e.printStackTrace();}
+                }
             }
-        } catch(Exception e) {}
+        } catch(Exception e) {e.printStackTrace();}
     }
     
     public void save(){
