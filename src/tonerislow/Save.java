@@ -25,7 +25,7 @@ public class Save implements Serializable {
     private String playerRoom;
         
     private static final String FILE_NAME = "save.ser";
-    private static final String DEFAULT_ROOM = "test";
+    private static final String DEFAULT_ROOM = "village0";
     
     private transient Player player;
     
@@ -36,7 +36,7 @@ public class Save implements Serializable {
                     // This code is executed if it successfully creates the new file (meaning it didn't exist)
                     // This code saves this object to the file
                     ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
-                    playerX = 11;
+                    playerX = 9;
                     playerY = 11;
                     money = Player.DEFAULT_MONEY;
                     maxHealth = Player.DEFAULT_HEALTH;
