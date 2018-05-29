@@ -83,8 +83,9 @@ public class Player extends Movable{
         if (health > maxHealth) health = maxHealth;
     }
     
-    public void upgradeArmor(){
+    public void upgradeArmor(){        
         maxHealth += ARMOR_UPGRADE;
+        health += ARMOR_UPGRADE;
         armorLevel++;
     }
     
