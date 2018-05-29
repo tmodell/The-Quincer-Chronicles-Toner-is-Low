@@ -95,10 +95,10 @@ public class SideBar extends JPanel{
         });
         
         add(exit);
-        add(save);
+        //add(save);
         
-        save.setBounds(28, 820, 200, 70);
-        exit.setBounds(28, 915, 200, 70);
+        //save.setBounds(28, 820, 200, 70);
+        exit.setBounds(28, 930, 200, 70);
     }
     
     @Override
@@ -118,19 +118,32 @@ public class SideBar extends JPanel{
         
         String potions = Integer.toString(player.getPotionCount());
         String money = Integer.toString(player.getMoney());
+        String armor = Integer.toString(player.getArmorLevel());
+        String sword = Integer.toString(player.getSwordLevel());
         g.setColor(Color.WHITE);
         g.setFont(new Font("Old English Text MT", Font.BOLD, 50));
+        int pot;
+        if ((pot = player.getPotionCount()) > 9999){
+            int i = pot / 1000;
+            potions = Integer.toString(pot) + "k";
+        } else if (pot > 999){
+            int i1 = pot/1000;
+            int i2 = (pot/100) - (i1 * 10);
+            potions = Integer.toString(i1) + "." + Integer.toString(i2) + "k";
+        }
         g.drawString(potions, 120, 598);
         int mon;
         if ((mon = player.getMoney()) > 9999){
             int i = mon / 1000;
             money = Integer.toString(i) + "k";
         } else if (mon > 999){
-            int i1 = player.getMoney()/1000;
-            int i2 = (player.getMoney()/100) - 10;
+            int i1 = mon/1000;
+            int i2 = (mon/100) - (i1 * 10);
             money = Integer.toString(i1) + "." + Integer.toString(i2) + "k";
         }
         g.drawString(money, 120, 695);
+        g.drawString(sword, 120, 792);
+        g.drawString(armor, 120, 889);
         
     }
     
