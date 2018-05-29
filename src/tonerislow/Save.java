@@ -21,7 +21,8 @@ import sprites.Player;
  * @author albert.wilcox
  */
 public class Save implements Serializable {
-    private int playerX, playerY, money, maxHealth, health, potions, damage;
+    private int playerX, playerY, money, maxHealth, health, potions, damage, armorLevel, swordLevel;
+
     private boolean shaman1, shaman2, shaman3, shaman4;
     private String playerRoom;
         
@@ -51,6 +52,8 @@ public class Save implements Serializable {
                 shaman4 = !DEBUG;
                 playerRoom = DEFAULT_ROOM;// TODO update this
                 potions = Player.DEFAULT_POTIONS;
+                armorLevel = 1;
+                swordLevel = 1;
                 oos.writeObject(this);
                 oos.close();
             } else {
@@ -68,6 +71,8 @@ public class Save implements Serializable {
                     shaman2 = temp.isShamanAlive(2);
                     shaman3 = temp.isShamanAlive(3);
                     shaman4 = temp.isShamanAlive(4);
+                    armorLevel = temp.getArmorLevel();
+                    swordLevel = temp.getSwordLevel();
                     playerRoom = temp.getPlayerRoom();
                     potions = temp.getPotions();
                     ois.close();
@@ -85,6 +90,8 @@ public class Save implements Serializable {
                         shaman2 = !DEBUG;
                         shaman3 = !DEBUG;
                         shaman4 = !DEBUG;
+                        armorLevel = 1;
+                        swordLevel = 1;
                         playerRoom = DEFAULT_ROOM;// TODO update this
                         potions = Player.DEFAULT_POTIONS;
                         oos.writeObject(this);
@@ -105,6 +112,8 @@ public class Save implements Serializable {
         maxHealth = player.getMaxHealth();
         playerRoom = player.getWorld().getMap();
         damage = player.getDamage();
+        armorLevel = player.getArmorLevel();
+        swordLevel = player.getSwordLevel();
         
         // Now save this object
         try{
@@ -112,6 +121,22 @@ public class Save implements Serializable {
             oos.writeObject(this);
             oos.close();
         } catch (IOException e){}
+    }
+    
+    public void setArmorLevel(int armorLevel) {
+        this.armorLevel = armorLevel;
+    }
+
+    public void setSwordLevel(int swordLevel) {
+        this.swordLevel = swordLevel;
+    }
+
+    public int getArmorLevel() {
+        return armorLevel;
+    }
+
+    public int getSwordLevel() {
+        return swordLevel;
     }
     
     public void setPlayer(Player player){
