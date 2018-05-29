@@ -469,11 +469,11 @@ public class World extends JPanel{
     
     private void sortSprites(){
         for (int i = 1; i < sprites.size(); i++){
-            for (int j = i; j > 0 && sprites.get(j - 1).getY() > sprites.get(j).getY(); j--){
+            for (int j = i; j > 0 && (sprites.get(j - 1).getY() > sprites.get(j).getY() || sprites.get(j).getPassive()); j--){
                 Sprite temp = sprites.get(j - 1);
-                if (temp instanceof Stationary){
-                    if (((Stationary) temp).getPassive()) continue;
-                }
+//                if (temp instanceof Stationary){
+//                    if (((Stationary) temp).getPassive()) continue;
+//                }
                 sprites.set(j - 1, sprites.get(j));
                 sprites.set(j, temp);
             }
