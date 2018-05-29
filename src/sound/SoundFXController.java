@@ -37,8 +37,8 @@ public class SoundFXController {
         changeFX(Sound); //Change clip and play sound
     }
     
-    public static void effectOne() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
-        Sound = new File("./src/Sound/FX/effectOne.wav");
+    public static void shieldFX() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
+        Sound = new File("./src/Sound/FX/shieldOne.wav");
         changeFX(Sound);
     }
     
