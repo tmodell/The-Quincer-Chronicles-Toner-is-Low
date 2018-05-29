@@ -18,8 +18,8 @@ public class Player extends Movable{
     static final String[] PLAYER_IMAGE_URLS = {"src/sprites/lib/images/quincerfront.png", "src/sprites/lib/images/quincerback.png", 
         "src/sprites/lib/images/quincerleft.png", "src/sprites/lib/images/quincerright.png"};
     public static final int DEFAULT_HEALTH = 200;
-    public static final int DEFAULT_DAMAGE = 25;
-    public static final int DEFAULT_COOLDOWN = 900;
+    public static final int DEFAULT_DAMAGE = 20;
+    public static final int DEFAULT_COOLDOWN = 800;
     public static final int DEFAULT_MONEY = 100;
     public static final int DEFAULT_POTIONS = 20;
     
@@ -137,7 +137,7 @@ public class Player extends Movable{
         
         //Needlessly complicated but it works.
         //Relationship for damage and time between key presses.
-        if(deltatime <= 250){attackdmg = 2;}
+        if(deltatime <= 250){attackdmg = 1;}
         else if(deltatime < cooldown){attackdmg = (int)((double)damage * Math.pow(damage/3,(deltatime-cooldown)/(cooldown-250)));}
         System.out.println(deltatime);
         System.out.println(attackdmg);

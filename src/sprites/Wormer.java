@@ -168,20 +168,12 @@ public class Wormer extends Movable{
         if (attack) attack();
         
     }
-        
+    
     public void receiveStrike(int damage){
             health -= damage;
             
             orientation = getOrientation();
             if (health <= 0) kill();
-//            else if (health <= maxHealth / 10){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[20+orientation]); image = ii.getImage(); }
-//            else if (health <= maxHealth / 4){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[16+orientation]); image = ii.getImage(); }
-//            else if (health <= maxHealth / 2){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[12+orientation]); image = ii.getImage(); }
-//            else if (health <= 3 * maxHealth / 4){ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[8+orientation]); image = ii.getImage(); }
-//            else{ ImageIcon ii = new ImageIcon(WORMER_IMAGE_URLS[4+orientation]); image = ii.getImage(); }
-//            String s;
-//            s = health <= 0 ? "dead" : Integer.toString(health);
-//            System.out.println(s);
     }
     
     @Override

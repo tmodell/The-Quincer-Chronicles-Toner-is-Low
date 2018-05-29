@@ -87,7 +87,7 @@ public class World extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
-                if (count++ > 20){
+                if (count++ > 37){
                     count = 0;
                     refreshWormers();
                 }
@@ -397,6 +397,12 @@ public class World extends JPanel{
                 wormers[x][y] = w;
             } else count--;
         }
+    }
+    
+    public void summonWormer(int x, int y){
+        Wormer w = new Wormer(this, x, y, shamanNum);
+        sprites.add(w);
+        wormers[x][y] = w;
     }
     
     public void refreshWormers(){
