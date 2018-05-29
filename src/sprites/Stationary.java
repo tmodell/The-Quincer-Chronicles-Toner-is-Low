@@ -13,9 +13,20 @@ public class Stationary extends Sprite{
     private static final String PREFIX = "src/sprites/lib/images/";
     private static final String SUFFIX = ".png";
     
+    boolean passive;
+    
     public Stationary(String name, int x, int y){
         super(PREFIX + name + SUFFIX);
         this.x = x;
         this.y = y;
+        passive = false;
+    }
+    
+    public void setPassive (boolean passive){
+        this.passive = passive;
+    }
+    
+    public boolean getPassive(){
+        return passive;
     }
 }

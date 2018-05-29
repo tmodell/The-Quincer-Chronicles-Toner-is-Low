@@ -268,13 +268,19 @@ public class World extends JPanel{
                             sprites.add(sign);
                             break;
                         case 'D':
-                            System.out.println("Processing dark wurm");
+                            //System.out.println("Processing dark wurm");
                             c = ' ';
                             if (!save.isShamanAlive(4)) break;
                             DarkWurm wurm = new DarkWurm(this, x, y - 1);
                             sprites.add(wurm);
                             wormers[x][y - 1] = wurm;
                             break;
+                        case 'A':
+                            c = escapeSplit[1].charAt(0);
+                            Stationary passive = new Stationary(symbolMap.get(c), x, y - 1);
+                            passive.setPassive(true);
+                            sprites.add(passive);
+                            c = ' ';
                     }
                 }
                 else if (c != ' '){
@@ -316,8 +322,6 @@ public class World extends JPanel{
         symbolMap.put('C', "cart");
         symbolMap.put('Y', "hysperia");
         symbolMap.put('L', "villageleader");
-        symbolMap.put('V', "villager2");
-        symbolMap.put('v', "villager1");
         symbolMap.put('B', "blacksmith");
         symbolMap.put('W', "lledo");
         symbolMap.put('O', "statue");
@@ -338,6 +342,13 @@ public class World extends JPanel{
         symbolMap.put('t', "tower");
         symbolMap.put('m', "stalagmite");
         symbolMap.put('r', "wallpaper");
+        symbolMap.put('e', "table");
+        symbolMap.put('c', "chair");
+        symbolMap.put('1', "villager1");
+        symbolMap.put('2', "villager2");
+        symbolMap.put('3', "villager3");
+        symbolMap.put('4', "villager4");
+        symbolMap.put('5', "villager5");
     }
     
     public void handlePlayerDeath(){
@@ -459,9 +470,12 @@ public class World extends JPanel{
     private void sortSprites(){
         for (int i = 1; i < sprites.size(); i++){
             for (int j = i; j > 0 && sprites.get(j - 1).getY() > sprites.get(j).getY(); j--){
-                Sprite temp = sprites.get(j);
-                sprites.set(j, sprites.get(j - 1));
-                sprites.set(j - 1, temp);
+                Sprite temp = sprites.get(j - 1);
+                if (temp instanceof Stationary){
+                    if (((Stationary) temp).getPassive()) continue;
+                }
+                sprites.set(j - 1, sprites.get(j));
+                sprites.set(j, temp);
             }
         }
     }
