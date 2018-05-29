@@ -26,11 +26,7 @@ public class Hysperia extends NPC{
     @Override
     public AdvancableText getInteraction(){
         Save s = tonerislow.TonerIsLow.getSave();
-        int count = 1;
-        if (!s.isShamanAlive(1))count++;
-        if (!s.isShamanAlive(2))count++;
-        if (!s.isShamanAlive(3))count++;
-        if (!s.isShamanAlive(4))count++;
+        int count = s.nextShaman();
         
         String url = "src/npcinteraction/lib/hysperia" + Integer.toString(count) + ".txt";
         

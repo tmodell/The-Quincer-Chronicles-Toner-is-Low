@@ -72,6 +72,7 @@ public class SideBar extends JPanel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 exit.setIcon(inactive);
+                frame.dispose();
                 System.exit(0);
             }
 

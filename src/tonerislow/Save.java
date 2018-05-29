@@ -177,6 +177,14 @@ public class Save implements Serializable {
         }
     }
     
+    public int nextShaman(){
+        if (shaman1) return 1;
+        if (shaman2) return 2;
+        if (shaman3) return 3;
+        if (shaman4) return 4;
+        return 5;
+    }
+    
     public boolean allShamansDead(){
         return !(shaman1 || shaman2 || shaman3 || shaman4);
     }

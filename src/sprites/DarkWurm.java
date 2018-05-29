@@ -19,16 +19,20 @@ import world.World;
  */
 public class DarkWurm extends Wormer{
     
+    static final int DAMAGE = 100;
+    static final int HEALTH = 3000;
+    static final int REWARD = 10000;
+    
     static final String[] WURM_IMAGE_URLS = {"src/sprites/lib/images/wurmfront.png", "src/sprites/lib/images/wurmback.png", 
         "src/sprites/lib/images/wurmleft.png", "src/sprites/lib/images/wurmright.png"};
         
     public DarkWurm(World world, int x, int y) {
         super(world, x, y, 0);
                 
-        damage = 100;
-        maxHealth = 500;
+        damage = DAMAGE;
+        maxHealth = HEALTH;
         health = maxHealth;
-        reward = 10000;
+        reward = REWARD;
         
         try{
            images[Movable.ORIENTATION_UP] = ImageIO.read(new File(WURM_IMAGE_URLS[ORIENTATION_UP]));

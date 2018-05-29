@@ -28,7 +28,7 @@ public class Shaman extends Wormer{
         
         this.shamanNum = shamanNum;
         
-        damage = shamanNum * 30;
+        damage = shamanNum * 20;
         maxHealth = shamanNum * 500;
         health = maxHealth;
         reward = 100 * shamanNum;

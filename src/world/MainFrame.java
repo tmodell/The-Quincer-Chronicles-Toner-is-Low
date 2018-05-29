@@ -33,7 +33,7 @@ public class MainFrame extends JFrame{
     
     Save save;
     
-    static final boolean DEVELOPER_DEBUG = true;
+    static final boolean DEVELOPER_DEBUG = false;
     
     public MainFrame(Save save){
         super();
