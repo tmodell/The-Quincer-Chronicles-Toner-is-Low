@@ -84,8 +84,8 @@ public class Menu {
     public boolean press(){
         String s = actions[cursorIndex];
         String[] split = s.split(";");
-        int buy = 0, health = 0, potion = 0, damage = 0;
-        boolean quit = false;
+        int buy = 0, potion = 0;
+        boolean quit = false, health = false, damage = false;
         for (String str: split){
             char c = str.charAt(0);
             switch(c){
@@ -93,13 +93,13 @@ public class Menu {
                     buy = Integer.parseInt(str.substring(1, str.length()));
                     break;
                 case 'h':
-                    health = Integer.parseInt(str.substring(1, str.length()));
+                    health = true;
                     break;
                 case 'p':
                     potion = Integer.parseInt(str.substring(1, str.length()));
                     break;
                 case 'd':
-                    damage = Integer.parseInt(str.substring(1, str.length()));
+                    damage = true;
                     break;
                 case 'q':
                     quit = true;
@@ -108,9 +108,9 @@ public class Menu {
         }
         if (player.getMoney() >= buy){
             player.setMoney(player.getMoney() - buy);
-            player.setMaxHealth(player.getMaxHealth() + health);
+            if (health) player.upgradeArmor();
             player.givePotions(potion);
-            player.setDamage(player.getDamage() + damage);
+            if (damage) player.upgradeSword();
             tonerislow.TonerIsLow.getMainFrame().getSideBar().update();
         } //else quit = true;
         if (quit) return true;

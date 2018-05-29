@@ -102,6 +102,7 @@ public class AdvancableText {
         } else {
             String s = currentNode.getMessage();
             s = checkHealthRestore(s);
+            s = checkSave(s);
             s = checkMenu(s);
             return s;
         }
@@ -128,6 +129,14 @@ public class AdvancableText {
             s = null;
         }
         
+        return s;
+    }
+    
+    private String checkSave(String s){
+        if (s.contains("~s")){
+            s = s.replace("~s", "Progress Saved.");
+            tonerislow.TonerIsLow.getSave().save();
+        }
         return s;
     }
     
