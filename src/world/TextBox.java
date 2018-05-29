@@ -178,9 +178,9 @@ public class TextBox extends JPanel{
             for (String str: ss){
                 //System.out.println("leng " + ss.length);
                 g.drawString(str, x, 100);
-                x += 500;
+                x += 600;
             }
-            int cursorX = (menu.getCursorPos() * 500) + 70;
+            int cursorX = (menu.getCursorPos() * 600) + 70;
             g.drawImage(cursor, cursorX, 85, null);
             g.drawString("Use Enter and Arrow Keys to Select", 100, 150);
         }
