@@ -52,7 +52,7 @@ public class MainFrame extends JFrame{
     
     public void init(){
         try {
-            MusicController.trackOne();
+            MusicController.changeMusic(1);
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -122,10 +122,10 @@ public class MainFrame extends JFrame{
     }
     
     public void displayGame(){
-        try { //Stop current music, stop loop, and play track Three (village)
-            MusicController.stopAudio();
+        try { //Stop current music(1), stop loop, and play track Three (village)
+            MusicController.stopAudio(1);
             MusicController.stopLooping();
-            MusicController.trackThree();
+            MusicController.changeMusic(2);
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
