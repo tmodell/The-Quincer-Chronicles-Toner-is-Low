@@ -328,7 +328,6 @@ public class World extends JPanel{
         symbolMap.put('w', "wormercorpse");
         symbolMap.put('h', "thatchedhut");
         symbolMap.put('*', "black");
-        symbolMap.put('f', "fire");
         symbolMap.put('b', "stonebasilica");
         symbolMap.put('R', "ship");
         symbolMap.put('K', "black");//TODO change to rock face
@@ -349,6 +348,7 @@ public class World extends JPanel{
         symbolMap.put('3', "villager3");
         symbolMap.put('4', "villager4");
         symbolMap.put('y', "mystic");
+        symbolMap.put('f', "fireplace");
     }
     
     public void handlePlayerDeath(){
