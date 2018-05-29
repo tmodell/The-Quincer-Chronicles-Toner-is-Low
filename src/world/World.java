@@ -251,16 +251,12 @@ public class World extends JPanel{
                             sprites.add(villager);
                             break;
                         case 'W':
-                            System.out.println("Processing shaman.");
                             int shamanNum = Integer.parseInt(escapeSplit[1]);
-                            if (!save.isShamanAlive(shamanNum)){
-                                c = ' ';
-                                break;
-                            }
+                            c = ' ';
+                            if (!save.isShamanAlive(shamanNum))break;
                             Shaman shaman = new Shaman(this, x, y - 1, shamanNum);
                             sprites.add(shaman);
                             wormers[x][y - 1] = shaman;
-                            c = ' ';
                             break;
                         case 'S':
                             String fileName = escapeSplit[1];
@@ -270,7 +266,12 @@ public class World extends JPanel{
                             sprites.add(sign);
                             break;
                         case 'D':
-                            //TODO code to spawn a dark worm
+                            System.out.println("Processing dark wurm");
+                            c = ' ';
+                            if (!save.isShamanAlive(4)) break;
+                            DarkWurm wurm = new DarkWurm(this, x, y - 1);
+                            sprites.add(wurm);
+                            wormers[x][y - 1] = wurm;
                             break;
                     }
                 }
@@ -333,6 +334,7 @@ public class World extends JPanel{
         symbolMap.put('n', "black");//TODO change to mine
         symbolMap.put('t', "tower");
         symbolMap.put('m', "stalagmite");
+        symbolMap.put('r', "wallpaper");
     }
     
     public void handlePlayerDeath(){
