@@ -39,9 +39,7 @@ public class Wormer extends Movable{
     int reward;
     
     private volatile boolean alive = true;
-    
-    //WormerThread thread;
-    
+        
     /**
      * Creates a Wormer with default health
      * @param world The world
