@@ -25,6 +25,9 @@ public class Player extends Movable{
     
     public static final int POTION_RESTORATION = 50;
     
+    public static final int SWORD_UPGRADE = 10;
+    public static final int ARMOR_UPGRADE = 30;
+    
     World world;
     
     int maxHealth = DEFAULT_HEALTH;
@@ -32,6 +35,8 @@ public class Player extends Movable{
     int damage = DEFAULT_DAMAGE;
     int cooldown = DEFAULT_COOLDOWN;
     int money = DEFAULT_MONEY;
+    int armorLevel = 1;
+    int swordLevel = 1;
     
     double time;
     double deltatime;
@@ -56,6 +61,17 @@ public class Player extends Movable{
         maxHealth = save.getMaxHealth();
         potionCount = save.getPotions();
         damage = save.getDamage();
+        armorLevel = save.getArmorLevel();
+        swordLevel = save.getSwordLevel();
+    }
+    
+    
+    public int getArmorLevel() {
+        return armorLevel;
+    }
+
+    public int getSwordLevel() {
+        return swordLevel;
     }
     
     public void restoreHealth(){
@@ -67,12 +83,14 @@ public class Player extends Movable{
         if (health > maxHealth) health = maxHealth;
     }
     
-    public void setMaxHealth(int newHealth){
-        this.maxHealth = newHealth;
+    public void upgradeArmor(){
+        maxHealth += ARMOR_UPGRADE;
+        armorLevel++;
     }
     
-    public void setDamage(int damage){
-        this.damage = damage;
+    public void upgradeSword(){
+        damage += SWORD_UPGRADE;
+        swordLevel++;
     }
     
     public int getDamage(){
