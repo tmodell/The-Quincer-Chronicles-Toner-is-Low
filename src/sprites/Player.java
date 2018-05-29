@@ -119,6 +119,12 @@ public class Player extends Movable{
     
     public void kill(){
         //TODO add code to handle player death
+        health = maxHealth;
+        try {
+            world.loadMap("village0",20,20);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     public void setCooldown(int cooldown){
