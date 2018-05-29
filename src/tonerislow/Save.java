@@ -29,7 +29,7 @@ public class Save implements Serializable {
     private static final String FILE_NAME = "save.ser";
     private static final String DEFAULT_ROOM = "village0";
     
-    private static boolean DEBUG = false;
+    private static boolean DEBUG = true;
     
     private transient Player player;
     
