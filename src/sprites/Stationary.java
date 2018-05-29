@@ -26,6 +26,7 @@ public class Stationary extends Sprite{
         this.passive = passive;
     }
     
+    @Override
     public boolean getPassive(){
         return passive;
     }

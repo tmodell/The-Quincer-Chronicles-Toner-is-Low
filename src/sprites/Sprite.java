@@ -69,4 +69,8 @@ public abstract class Sprite {
         //if (image == null) System.out.println("This is bad");
         return image;
     }
+    
+    public boolean getPassive(){
+        return false;
+    }
 }
