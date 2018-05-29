@@ -245,10 +245,10 @@ public class World extends JPanel{
                             Random rand = new Random();
                             int n = rand.nextInt(VILLAGER_POSSIBILITY_COUNT) + 1;
                             String numString = Integer.toString(n);
-                            char cha = 'V';
-                            if (rand.nextBoolean()) cha = 'v';
+                            String fn = "villager";
+                            fn += Integer.toString(rand.nextInt(4) + 1);
                             String interaction = "villagers/villager" + numString;
-                            NPC villager = new NPC(symbolMap.get(cha), interaction, "Villager", x, y - 1);
+                            NPC villager = new NPC(fn, interaction, "Villager", x, y - 1);
                             NPCs[x][y - 1] = villager;
                             sprites.add(villager);
                             break;
@@ -348,7 +348,7 @@ public class World extends JPanel{
         symbolMap.put('2', "villager2");
         symbolMap.put('3', "villager3");
         symbolMap.put('4', "villager4");
-        symbolMap.put('5', "villager5");
+        symbolMap.put('y', "mystic");
     }
     
     public void handlePlayerDeath(){
