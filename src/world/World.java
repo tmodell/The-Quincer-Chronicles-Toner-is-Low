@@ -351,6 +351,9 @@ public class World extends JPanel{
         symbolMap.put('4', "villager4");
         symbolMap.put('y', "mystic");
         symbolMap.put('f', "fireplace");
+        symbolMap.put('Z', "wormerfront");
+        symbolMap.put('z', "shamanfront");
+        symbolMap.put('x', "wurmfront");
     }
     
     public void handlePlayerDeath(){

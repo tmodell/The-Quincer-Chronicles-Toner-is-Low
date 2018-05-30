@@ -1,0 +1,15 @@
+0,grass,0,,,,,,,,,,,,,,,,,,,,,,,
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,,T
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,,,,,,,,,,,,T,T,T,T,T,T,T,T
+T,T,T,T,,%S;signtutorial,,%N;L;leadertutorial;Village Leader,,%N;A;alchemisttutorial;Alchemist,,%N;B;blacksmithtutorial;Blacksmith,,%N;y;mystictutorial;Mystic,,,,,,,,T,T,T,T,T
+%P;;25;9;village0,,,,,,,,,,,,,,,%N;Z;wormertutorial;Wormer,,%N;z;shamantutorial;Wormer Shaman,,,,,T,T,T,T
+T,T,T,T,,,,,,,,,,,,,,,,%N;Y;hysperiatutorial;Princess Hysperia,,,T,T,T,T
+T,T,T,T,T,T,,,,,,,,,,,,,,,,T,T,T,T,T
+T,T,T,T,T,T,T,,,,,,,,,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
