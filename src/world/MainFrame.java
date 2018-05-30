@@ -142,6 +142,11 @@ public class MainFrame extends JFrame{
     public void handleKeyPush(KeyEvent ke){
         int key = ke.getKeyCode();
         
+        if (world.playerDead()){
+            world.handlePlayerRevive();
+            return;
+        }
+        
         // Checks whether the user is currently in an NPC interaction
         if (!box.active()){
             //Movement

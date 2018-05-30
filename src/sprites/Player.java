@@ -1,5 +1,6 @@
 package sprites;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,6 +66,18 @@ public class Player extends Movable{
         swordLevel = save.getSwordLevel();
     }
     
+    public void saveReset(){
+        this.x = save.getPlayerX();
+        this.y = save.getPlayerY();
+                        
+        money = save.getMoney();
+        health = save.getHealth();
+        maxHealth = save.getMaxHealth();
+        potionCount = save.getPotions();
+        damage = save.getDamage();
+        armorLevel = save.getArmorLevel();
+        swordLevel = save.getSwordLevel();
+    }
     
     public int getArmorLevel() {
         return armorLevel;
@@ -100,7 +113,7 @@ public class Player extends Movable{
     
     public void receiveStrike(int damage){
         health -= damage;
-        if (health <= 0) kill();
+        if (health <= 0) world.handlePlayerDeath();
         
         world.getFrame().getSideBar().update();
 //        String s;
@@ -118,13 +131,7 @@ public class Player extends Movable{
     }
     
     public void kill(){
-        //TODO add code to handle player death
-        health = maxHealth;
-        try {
-            world.loadMap("village0",20,20);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        world.handlePlayerDeath();
     }
     
     public void setCooldown(int cooldown){
@@ -160,13 +167,6 @@ public class Player extends Movable{
         
     }
     
-    @Override
-    public void setOrientation(int orientation){
-        super.setOrientation(orientation);
-        ImageIcon ii = new ImageIcon(PLAYER_IMAGE_URLS[orientation]);
-        image = ii.getImage();
-    }
-    
     public int getPotionCount(){
         return potionCount;
     }
@@ -198,6 +198,19 @@ public class Player extends Movable{
     
     public World getWorld(){
         return world;
+    }
+    
+    @Override
+    public Image getImage(){
+        if (health < 0) return null;
+        else return super.getImage();
+    }
+    
+    @Override
+    public void setOrientation(int orientation){
+        super.setOrientation(orientation);
+        ImageIcon ii = new ImageIcon(PLAYER_IMAGE_URLS[orientation]);
+        image = ii.getImage();
     }
     
     @Override

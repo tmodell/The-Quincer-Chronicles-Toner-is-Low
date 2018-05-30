@@ -58,6 +58,8 @@ public class World extends JPanel{
     boolean needsSort = false;
     int wormerRefreshCount = 0;
     
+    Image deathImage;
+    
     volatile boolean repainting = true;
     
     HashMap<Character, String> symbolMap;
@@ -103,7 +105,7 @@ public class World extends JPanel{
     }
     
     public void loadMap(String name, int playerX, int playerY) throws IOException{
-        System.out.println(imageFileExists("statue"));
+        //System.out.println(imageFileExists("statue"));
         
         repainting = false;
 
@@ -352,7 +354,24 @@ public class World extends JPanel{
     }
     
     public void handlePlayerDeath(){
-        
+        //System.out.println("Hey bb " + imageFileExists("src/world/lib/maps/death.png"));
+        try{
+            deathImage = new ImageIcon("src/world/lib/death.png").getImage();
+        } catch (Exception e){e.printStackTrace();}
+    }
+    
+    public void handlePlayerRevive(){
+        deathImage = null;
+        save.reset();
+        try{
+        loadMap(save.getPlayerRoom(), save.getPlayerX(), save.getPlayerY());
+        } catch (Exception e){e.printStackTrace();}
+        player.saveReset();
+        getFrame().getSideBar().update();
+    }
+    
+    public boolean playerDead(){
+        return deathImage != null;
     }
     
     /**
@@ -440,37 +459,6 @@ public class World extends JPanel{
     
     public boolean wormerAtPos(int x, int y){
         return (wormers[x][y] != null);
-    }
-    
-    @Override
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-        
-        //if (wormerRefreshCount++ > 10){
-            //wormerRefreshCount = 0;
-            //refreshWormers();
-        //}
-        
-        long time = System.currentTimeMillis();
-        //System.out.println("Painting");
-        for (int x = 0; x < WIDTH; x++){
-            //System.out.println(x);
-            for (int y = 0; y < HEIGHT; y++){
-                g.drawImage(tile, x * GRID_SIZE, y * GRID_SIZE, null);
-            }
-        }
-        
-        if (needsSort) sortSprites();
-        for (Sprite x: sprites){
-            //System.out.println(x.getRealY());
-            g.drawImage(x.getImage(), x.getRealX() + x.getOffsetX(), x.getRealY() + x.getOffsetY(), null);
-        }
-        
-//        int delay = (int)(System.currentTimeMillis() - time) + 20;
-//        try{
-//            Thread.sleep(delay);
-//        } catch (Exception e){}
-//        repaint();
     }
     
     private void sortSprites(){
@@ -623,6 +611,30 @@ public class World extends JPanel{
     
     public String getMap(){
         return map;
+    }
+    
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        
+        //System.out.println("Painting");
+        for (int x = 0; x < WIDTH; x++){
+            //System.out.println(x);
+            for (int y = 0; y < HEIGHT; y++){
+                g.drawImage(tile, x * GRID_SIZE, y * GRID_SIZE, null);
+            }
+        }
+        
+        if (needsSort) sortSprites();
+        for (Sprite x: sprites){
+            //System.out.println(x.getRealY());
+            g.drawImage(x.getImage(), x.getRealX() + x.getOffsetX(), x.getRealY() + x.getOffsetY(), null);
+        }
+        
+        if (deathImage != null) {
+            //System.out.println("Not null");
+            g.drawImage(deathImage, 0, 0, null);
+        }
     }
     
     private class Path{
