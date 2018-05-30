@@ -222,7 +222,7 @@ public class World extends JPanel{
                             
                             // If all shamans are dead
                             if (save.allShamansDead()){
-                                System.out.println("They're dead alright!");
+                                //System.out.println("They're dead alright!");
                                 c = ' ';
                                 if (escapeSplit.length > 1){
                                     file += "unlocked";
@@ -432,6 +432,11 @@ public class World extends JPanel{
         for (Wormer[] list: wormers){
             for (Wormer wormer: list){
                 if (wormer != null) wormer.refresh();
+            }
+        }
+        for (Sprite s: sprites){
+            if (s instanceof Wormer){
+                wormers[s.getX()][s.getY()] = (Wormer)s;
             }
         }
     }
