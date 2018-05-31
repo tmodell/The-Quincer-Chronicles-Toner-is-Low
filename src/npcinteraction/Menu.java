@@ -18,7 +18,7 @@ import sprites.*;
  */
 public class Menu {
 
-    private static final String PREFIX = "src/npcinteraction/lib/";
+    private static final String PREFIX = "lib/npcinteraction/";
     private static final String SUFFIX = ".txt";
     
     String[] options, actions;
