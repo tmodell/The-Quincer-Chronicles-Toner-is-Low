@@ -149,14 +149,14 @@ public class StartMenu extends JPanel{
         public Credits(){
             super("Credits");
             
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             
             Font f = new Font("Times New Roman", Font.BOLD, 20);
             
             JLabel tech = new JLabel("Technical Director - Alec Ewers");
             JLabel integration = new JLabel("Integration - Albert Wilcox");
             JLabel npc = new JLabel("NPC Interactions - Earl Ranario and John Geronimo");
-            JLabel combat = new JLabel("Combat - Dzuy Nguyen and Sam Vasquez");
+            JLabel combat = new JLabel("Combat - Sam Vasquez and Dzuy Nguyen");
             JLabel world = new JLabel("World - Trever Rhodes and Jacob Burghgraef");
             JLabel sound = new JLabel("Sound - Jeevan Bhullar and Rajul Bains");
             
