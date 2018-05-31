@@ -24,8 +24,8 @@ public class MusicController {
     public static Timer looper;
     
     public static long[] time = new long[] {0, 0, 0, 0};
-    public static File[] music = {new File("./src/Sound/Music/trackOne.wav"), new File("./src/Sound/Music/trackTwo.wav"), 
-        new File("./src/Sound/Music/trackThree.wav"), new File("./src/Sound/Music/trackFour.wav")};
+    public static File[] music = {new File("lib/sound/music/trackOne.wav"), new File("lib/sound/music/trackTwo.wav"), 
+        new File("lib/sound/music/trackThree.wav"), new File("lib/sound/music/trackFour.wav")};
     
     public static void changeMusic(int trackNum) throws MalformedURLException, UnsupportedAudioFileException, IOException, LineUnavailableException, InterruptedException {
         clip = AudioSystem.getClip();

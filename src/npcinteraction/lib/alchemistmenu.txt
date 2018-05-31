@@ -1,3 +1,0 @@
-Buy potion ($50),b50;p1
-Buy 10 potions ($450),b450;p10
-Exit,q

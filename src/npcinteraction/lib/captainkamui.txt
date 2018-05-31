@@ -1,9 +1,0 @@
-Huh? Yeah I'm fine.
->My name is Captain Kamui. Retired Captain from the war!
-->And you Are?
--->Oh I see, huh
---->My name is Captain Kamui. Retired Captain form the war!
----->And you are?
------>My name is Captain Kamui. Retired Captain from the
------->War! And you are? My name is Captain Kamui. Retired.
-------->Captain from the war! And you are?

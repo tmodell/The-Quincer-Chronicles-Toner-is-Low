@@ -23,8 +23,8 @@ public class DarkWurm extends Wormer{
     static final int HEALTH = 3000;
     static final int REWARD = 10000;
     
-    static final String[] WURM_IMAGE_URLS = {"src/sprites/lib/images/wurmfront.png", "src/sprites/lib/images/wurmback.png", 
-        "src/sprites/lib/images/wurmleft.png", "src/sprites/lib/images/wurmright.png"};
+    static final String[] WURM_IMAGE_URLS = {"lib/sprites/images/wurmfront.png", "lib/sprites/images/wurmback.png", 
+        "lib/sprites/images/wurmleft.png", "lib/sprites/images/wurmright.png"};
         
     public DarkWurm(World world, int x, int y) {
         super(world, x, y, 0);

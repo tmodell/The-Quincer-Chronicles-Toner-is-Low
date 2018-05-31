@@ -1,3 +1,0 @@
-North: The City
->West: Village 1
-->East: Villages 2 and 3

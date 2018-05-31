@@ -32,11 +32,11 @@ public class StartMenu extends JPanel{
     public StartMenu(MainFrame frame){
         this.frame = frame;
         
-        this.image = new ImageIcon("src/world/lib/start.png").getImage();
+        this.image = new ImageIcon("lib/world/start.png").getImage();
         
-        start = new JLabel(new ImageIcon("src/world/lib/buttons/start.png"));
-        credits = new JLabel(new ImageIcon("src/world/lib/buttons/credits.png"));
-        exit = new JLabel(new ImageIcon("src/world/lib/buttons/exit.png"));
+        start = new JLabel(new ImageIcon("lib/world/buttons/start.png"));
+        credits = new JLabel(new ImageIcon("lib/world/buttons/credits.png"));
+        exit = new JLabel(new ImageIcon("lib/world/buttons/exit.png"));
         
         start.setFont(new Font(MainFrame.FONT_NAME, Font.PLAIN, 72));
         credits.setFont(new Font(MainFrame.FONT_NAME, Font.PLAIN, 72));
@@ -44,7 +44,7 @@ public class StartMenu extends JPanel{
         
         start.setCursor(new Cursor(Cursor.HAND_CURSOR));
         start.addMouseListener(new MouseListener(){
-            Icon inactive = start.getIcon(), active = new ImageIcon("src/world/lib/buttons/startselected.png");
+            Icon inactive = start.getIcon(), active = new ImageIcon("lib/world/buttons/startselected.png");
             
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -71,7 +71,7 @@ public class StartMenu extends JPanel{
         
         credits.setCursor(new Cursor(Cursor.HAND_CURSOR));
         credits.addMouseListener(new MouseListener(){
-            Icon inactive = credits.getIcon(), active = new ImageIcon("src/world/lib/buttons/creditsselected.png");
+            Icon inactive = credits.getIcon(), active = new ImageIcon("lib/world/buttons/creditsselected.png");
             
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -99,7 +99,7 @@ public class StartMenu extends JPanel{
         
         exit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         exit.addMouseListener(new MouseListener(){
-            Icon inactive = exit.getIcon(), active = new ImageIcon("src/world/lib/buttons/exitselected.png");
+            Icon inactive = exit.getIcon(), active = new ImageIcon("lib/world/buttons/exitselected.png");
             
             @Override
             public void mouseClicked(MouseEvent e) {

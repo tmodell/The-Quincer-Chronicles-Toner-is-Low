@@ -34,7 +34,7 @@ public class World extends JPanel{
     public static final int WIDTH = 26;
     public static final int HEIGHT = 14;
     
-    private static final String PREFIX = "src/world/lib/maps/";
+    private static final String PREFIX = "lib/world/maps/";
     private static final String SUFFIX = ".csv";
     
     // How many villager dialogue files there are
@@ -157,7 +157,7 @@ public class World extends JPanel{
         } catch (Exception e){}
         
         //System.out.println(tileName);
-        ImageIcon ii = new ImageIcon("src/sprites/lib/tiles/" + tileName + ".png");
+        ImageIcon ii = new ImageIcon("lib/sprites/tiles/" + tileName + ".png");
         tile = ii.getImage();
         
         //System.out.println("The loop is about to start...");
@@ -378,7 +378,7 @@ public class World extends JPanel{
     public void handlePlayerDeath(){
         //System.out.println("Hey bb " + imageFileExists("src/world/lib/maps/death.png"));
         try{
-            deathImage = new ImageIcon("src/world/lib/death.png").getImage();
+            deathImage = new ImageIcon("lib/world/death.png").getImage();
         } catch (Exception e){e.printStackTrace();}
     }
     
@@ -502,13 +502,13 @@ public class World extends JPanel{
     }
     
     private boolean imageFileExists(String s){
-        s = "src/sprites/lib/images/" + s + ".png";
+        s = "lib/sprites/images/" + s + ".png";
         File tmpDir = new File(s);
         return tmpDir.exists();
     }
     
     private boolean tileFileExists(String s){
-        s = "src/sprites/lib/tiles/" + s + ".png";
+        s = "lib/sprites/tiles/" + s + ".png";
         File tmpDir = new File(s);
         return tmpDir.exists();
     }

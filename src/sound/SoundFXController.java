@@ -28,27 +28,27 @@ public class SoundFXController {
     public static void swordFX() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
         switch (ThreadLocalRandom.current().nextInt(0, 2)) { //Random clip from 0-1 (2 options)
             case 0:
-                Sound = new File("./src/Sound/FX/swordOne.wav"); //Clip one
+                Sound = new File("./lib/sound/fx/swordOne.wav"); //Clip one
                 break;
             case 1:
-                Sound = new File("./src/Sound/FX/swordTwo.wav"); //Clip two
+                Sound = new File("./lib/sound/fx/swordTwo.wav"); //Clip two
                 break;
         }
         changeFX(Sound); //Change clip and play sound
     }
     
     public static void shieldFX() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
-        Sound = new File("./src/Sound/FX/shieldOne.wav");
+        Sound = new File("./lib/sound/fx/shieldOne.wav");
         changeFX(Sound);
     }
     
     public static void effectTwo() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
-        Sound = new File("./src/Sound/FX/effectTwo.wav");
+        Sound = new File("./lib/sound/fx/effectTwo.wav");
         changeFX(Sound);
     }
 
     public static void effectThree() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
-        Sound = new File("./src/Sound/FX/effectThree.wav");
+        Sound = new File("./lib/sound/fx/effectThree.wav");
         changeFX(Sound);
     }
     

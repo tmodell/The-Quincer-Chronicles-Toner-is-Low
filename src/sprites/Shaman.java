@@ -18,8 +18,8 @@ import world.World;
  * @author alber
  */
 public class Shaman extends Wormer{
-    static final String[] SHAMEN_IMAGE_URLS = {"src/sprites/lib/images/shamanfront.png", "src/sprites/lib/images/shamanback.png", 
-        "src/sprites/lib/images/shamanleft.png", "src/sprites/lib/images/shamanright.png"};
+    static final String[] SHAMEN_IMAGE_URLS = {"lib/sprites/images/shamanfront.png", "lib/sprites/images/shamanback.png", 
+        "lib/sprites/images/shamanleft.png", "lib/sprites/images/shamanright.png"};
     
     int shamanNum;
     int teleported;

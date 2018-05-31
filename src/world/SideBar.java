@@ -10,7 +10,7 @@ import sprites.Player;
  * @author alber
  */
 public class SideBar extends JPanel{
-    private static final String IMAGE_URL = "src/world/lib/sidebar.png";
+    private static final String IMAGE_URL = "lib/world/sidebar.png";
     
     MainFrame frame;
     
@@ -63,11 +63,11 @@ public class SideBar extends JPanel{
 //            
 //        });
 //        
-        exit = new JLabel(new ImageIcon("src/world/lib/buttons/menu.png"));
+        exit = new JLabel(new ImageIcon("lib/world/buttons/menu.png"));
         exit.setFocusable(false);
         exit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         exit.addMouseListener(new MouseListener(){
-            ImageIcon active = new ImageIcon("src/world/lib/buttons/menuactive.png"), inactive = (ImageIcon) exit.getIcon();
+            ImageIcon active = new ImageIcon("lib/world/buttons/menuactive.png"), inactive = (ImageIcon) exit.getIcon();
             
             @Override
             public void mouseClicked(MouseEvent e) {
