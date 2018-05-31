@@ -384,7 +384,7 @@ public class World extends JPanel{
         symbolMap.put('M', "cavemouth");//TODO change to cavemouth
         symbolMap.put('J', "longhouse");
         symbolMap.put('Q', "stonebuilding");
-        symbolMap.put('l', "black");// TODO change to well
+        symbolMap.put('l', "black");//TODO change to well
         symbolMap.put('n', "black");//TODO change to mine
         symbolMap.put('t', "tower");
         symbolMap.put('m', "stalagmite");
@@ -426,6 +426,7 @@ public class World extends JPanel{
         } catch (Exception e){e.printStackTrace();}
         player.saveReset();
         getFrame().getSideBar().update();
+        MusicController.reSetAllMusic();
     }
     
     public boolean playerDead(){

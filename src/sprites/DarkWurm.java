@@ -12,6 +12,7 @@ import static sprites.Movable.ORIENTATION_LEFT;
 import static sprites.Movable.ORIENTATION_RIGHT;
 import static sprites.Movable.ORIENTATION_UP;
 import world.World;
+import java.util.Random;
 
 /**
  *
@@ -22,12 +23,15 @@ public class DarkWurm extends Wormer{
     static final int DAMAGE = 80;
     static final int HEALTH = 2500;
     static final int REWARD = 10000;
-    static final int RANGE = 10;
+    static final int RANGE = 15;
     
     static final String[] WURM_IMAGE_URLS = {"lib/sprites/images/wurmfront.png", "lib/sprites/images/wurmback.png", 
         "lib/sprites/images/wurmleft.png", "lib/sprites/images/wurmright.png"};
         
     int reward;
+    Random r;
+    Random rx;
+    Random ry;
     
     public DarkWurm(World world, int x, int y) {
         super(world, x, y, 0);
@@ -37,6 +41,9 @@ public class DarkWurm extends Wormer{
         health = maxHealth;
         reward = REWARD;
         range = RANGE;
+        r = new Random();
+        rx = new Random();
+        ry = new Random();
         
         try{
            images[Movable.ORIENTATION_UP] = ImageIO.read(new File(WURM_IMAGE_URLS[ORIENTATION_UP]));
@@ -76,8 +83,39 @@ public class DarkWurm extends Wormer{
         return images[orientation];
     }
     
-    public void pushPlayer(int dir){
-        
+    @Override
+    public void receiveStrike(int damage){
+        health -= damage;
+        orientation = getOrientation();
+        int tp = r.nextInt(10);
+
+        if (health <= 0){ 
+            kill(); 
+        } else if ((health <= (maxHealth/3 + 20) && health >= (maxHealth/3 - 20)) || (health <= (2*maxHealth/3 + 20) && health >= (2*maxHealth/3 - 20)) || tp == 5){ 
+            int randX = rx.nextInt(24)+1, randY = ry.nextInt(11)+2, playerX = player.getX(), playerY = player.getY(); 
+            while (!world.isOccupiable(randX, randY)){
+                randX = rx.nextInt(24)+1;
+                randY = ry.nextInt(11)+2;
+            } 
+            teleport(randX, randY);
+            if (world.isOccupiable(playerX-1, playerY-1)) world.summonWormer(playerX-1, playerY-1);
+            if (world.isOccupiable(playerX-1, playerY+1)) world.summonWormer(playerX-1, playerY+1);
+            if (world.isOccupiable(playerX+1, playerY-1)) world.summonWormer(playerX+1, playerY-1);
+            if (world.isOccupiable(playerX+1, playerY+1)) world.summonWormer(playerX+1, playerY+1);
+            if (world.isOccupiable(playerX-2, playerY)) world.summonWormer(playerX-2, playerY);
+            if (world.isOccupiable(playerX+2, playerY)) world.summonWormer(playerX+2, playerY);
+            if (world.isOccupiable(playerX, playerY-2)) world.summonWormer(playerX, playerY-2);
+            if (world.isOccupiable(playerX, playerY+2)) world.summonWormer(playerX, playerY+2);
+        } 
     }
     
+    public void teleport(int destX, int destY){
+        int oldX = this.x;
+        int oldY = this.y;
+        this.x = destX;
+        this.y = destY;
+        int newX = getX();
+        int newY = getY();
+        world.moveWormer(this, oldX, oldY, newX, newY);
+    }    
 }

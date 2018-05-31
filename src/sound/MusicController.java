@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.*;
 import javax.sound.sampled.*;
-import javax.swing.Timer;
 
 /*
 Implementation instructions
@@ -21,7 +20,6 @@ stopAudio will pause the stream, startAudio will resume/play the stream
 public class MusicController {
     
     public static Clip clip;
-    public static Timer looper;
     
     public static int currentTrack;
     
@@ -35,12 +33,11 @@ public class MusicController {
         clip.open(AudioSystem.getAudioInputStream(music[currentTrack]));
         clip.setMicrosecondPosition(time[currentTrack]);
         clip.start();//Play Audio
-        //startLooping();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
     
     public static void startAudio() {
         clip.start(); //Play/Resume Audio
-        startLooping();
     }
     
     public static void stopAudio() {
@@ -55,11 +52,12 @@ public class MusicController {
         clip.start();
     }
     
-    public static void startLooping() {
-        if (clip.getMicrosecondPosition() > 1000000)
-            clip.setMicrosecondPosition(0);
-        looper = new Timer(((int) (clip.getMicrosecondLength()/1000)), listener);
-        looper.start();
+    public static void reSetAllMusic() {
+        time[0] = 0;
+        time[1] = 0;
+        time[2] = 0;
+        time[3] = 0;
+        reStartAudio(currentTrack);
     }
     
     public static ActionListener listener = new ActionListener() {
@@ -69,6 +67,4 @@ public class MusicController {
         clip.start();
         }
     };
-    
-    //https://stackoverflow.com/questions/557903/how-can-i-wait-for-a-java-sound-clip-to-finish-playing-back
 }
