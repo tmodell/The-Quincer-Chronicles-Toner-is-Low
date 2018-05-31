@@ -123,8 +123,7 @@ public class MainFrame extends JFrame{
     
     public void displayGame(){
         try { //Stop current music(1), stop loop, and play track Three (village)
-            MusicController.stopAudio(1);
-            MusicController.stopLooping();
+            MusicController.stopAudio();
             MusicController.changeMusic(2);
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
