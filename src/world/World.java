@@ -426,6 +426,7 @@ public class World extends JPanel{
         } catch (Exception e){e.printStackTrace();}
         player.saveReset();
         getFrame().getSideBar().update();
+        MusicController.reSetAllMusic();
     }
     
     public boolean playerDead(){

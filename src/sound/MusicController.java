@@ -60,6 +60,7 @@ public class MusicController {
         time[1] = 0;
         time[2] = 0;
         time[3] = 0;
+        reStartAudio(currentTrack);
     }
     
     public static void startLooping() {
