@@ -456,7 +456,13 @@ public class World extends JPanel{
     
     public void killWormer(Wormer wormer, int x, int y){
         sprites.remove(wormer);
-        sprites.add(new Stationary(symbolMap.get('w'), x, y));
+        if (wormer instanceof DarkWurm){
+            sprites.add(new Stationary("deadwurm.gif", x, y));
+        } else if (wormer instanceof Shaman){
+           sprites.add(new Stationary("deadshaman", x, y));
+        }else{
+            sprites.add(new Stationary(symbolMap.get('w'), x, y));
+        }
         wormers[x][y] = null;
     }
     
