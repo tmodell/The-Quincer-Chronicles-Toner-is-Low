@@ -114,6 +114,7 @@ public class SideBar extends JPanel{
         else g.setColor(Color.RED);
         
         int healthBarLength = (int)(healthPercent * 198);
+        if (healthBarLength < 0) healthBarLength = 0;
         g.fillRect(25, 393, healthBarLength, 48);
         
         String potions = Integer.toString(player.getPotionCount());
