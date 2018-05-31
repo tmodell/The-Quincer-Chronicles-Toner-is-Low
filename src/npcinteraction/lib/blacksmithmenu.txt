@@ -1,3 +1,0 @@
-Upgrade Armor (+30 HP / $50),b50;h30
-Upgrade Sword (+10 Damage / $50),b50;d10
-Exit,q

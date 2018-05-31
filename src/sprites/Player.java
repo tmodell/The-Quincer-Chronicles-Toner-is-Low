@@ -1,5 +1,6 @@
 package sprites;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,18 +16,18 @@ import world.World;
  * @author albert.wilcox
  */
 public class Player extends Movable{
-    static final String[] PLAYER_IMAGE_URLS = {"src/sprites/lib/images/quincerfront.png", "src/sprites/lib/images/quincerback.png", 
-        "src/sprites/lib/images/quincerleft.png", "src/sprites/lib/images/quincerright.png"};
+    static final String[] PLAYER_IMAGE_URLS = {"lib/sprites/images/quincerfront.png", "lib/sprites/images/quincerback.png", 
+        "lib/sprites/images/quincerleft.png", "lib/sprites/images/quincerright.png"};
     public static final int DEFAULT_HEALTH = 200;
     public static final int DEFAULT_DAMAGE = 20;
     public static final int DEFAULT_COOLDOWN = 800;
-    public static final int DEFAULT_MONEY = 100;
-    public static final int DEFAULT_POTIONS = 20;
+    public static final int DEFAULT_MONEY = 20;
+    public static final int DEFAULT_POTIONS = 10;
     
     public static final int POTION_RESTORATION = 50;
     
     public static final int SWORD_UPGRADE = 10;
-    public static final int ARMOR_UPGRADE = 30;
+    public static final int ARMOR_UPGRADE = 50;
     
     World world;
     
@@ -65,6 +66,18 @@ public class Player extends Movable{
         swordLevel = save.getSwordLevel();
     }
     
+    public void saveReset(){
+        this.x = save.getPlayerX();
+        this.y = save.getPlayerY();
+                        
+        money = save.getMoney();
+        health = save.getHealth();
+        maxHealth = save.getMaxHealth();
+        potionCount = save.getPotions();
+        damage = save.getDamage();
+        armorLevel = save.getArmorLevel();
+        swordLevel = save.getSwordLevel();
+    }
     
     public int getArmorLevel() {
         return armorLevel;
@@ -118,13 +131,7 @@ public class Player extends Movable{
     }
     
     public void kill(){
-        //TODO add code to handle player death
-        health = maxHealth;
-        try {
-            world.loadMap("village0",20,20);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        world.handlePlayerDeath();
     }
     
     public void setCooldown(int cooldown){
@@ -160,13 +167,6 @@ public class Player extends Movable{
         
     }
     
-    @Override
-    public void setOrientation(int orientation){
-        super.setOrientation(orientation);
-        ImageIcon ii = new ImageIcon(PLAYER_IMAGE_URLS[orientation]);
-        image = ii.getImage();
-    }
-    
     public int getPotionCount(){
         return potionCount;
     }
@@ -198,6 +198,19 @@ public class Player extends Movable{
     
     public World getWorld(){
         return world;
+    }
+    
+    @Override
+    public Image getImage(){
+        if (health < 0) return null;
+        else return super.getImage();
+    }
+    
+    @Override
+    public void setOrientation(int orientation){
+        super.setOrientation(orientation);
+        ImageIcon ii = new ImageIcon(PLAYER_IMAGE_URLS[orientation]);
+        image = ii.getImage();
     }
     
     @Override

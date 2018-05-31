@@ -1,0 +1,3 @@
+Upgrade Armor ($50 * level),b50;h30
+Upgrade Sword ($50 * level),b50;d10
+Exit,q

@@ -39,9 +39,9 @@ public class TextBoxCopy extends JPanel{
         this.frame = frame;
         setPreferredSize(new Dimension(1664 , 184));
         
-        cursor = new ImageIcon("src/world/lib/cursor.png").getImage();
+        cursor = new ImageIcon("lib/world/cursor.png").getImage();
         
-        background = new ImageIcon("src/world/lib/textbox.png").getImage();
+        background = new ImageIcon("lib/world/textbox.png").getImage();
         //setBackground(Color.RED);
 
     }

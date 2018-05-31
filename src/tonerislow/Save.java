@@ -27,9 +27,9 @@ public class Save implements Serializable {
     private String playerRoom;
         
     private static final String FILE_NAME = "save.ser";
-    private static final String DEFAULT_ROOM = "village0";
+    private static final String DEFAULT_ROOM = "tutorial";
     
-    private static boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     
     private transient Player player;
     
@@ -40,8 +40,8 @@ public class Save implements Serializable {
                 // This code is executed if it successfully creates the new file (meaning it didn't exist)
                 // This code saves this object to the file
                 ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
-                playerX = 9;
-                playerY = 11;
+                playerX = 12;
+                playerY = 12;
                 money = Player.DEFAULT_MONEY;
                 maxHealth = Player.DEFAULT_HEALTH;
                 health = maxHealth;
@@ -121,6 +121,28 @@ public class Save implements Serializable {
             oos.writeObject(this);
             oos.close();
         } catch (IOException e){}
+    }
+    
+    public void reset(){
+        try{
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME));
+            Save temp = (Save) ois.readObject();
+            playerX = temp.getPlayerX();
+            playerY = temp.getPlayerY();
+            money = temp.getMoney();
+            maxHealth = temp.getMaxHealth();
+            health = temp.getHealth();
+            damage = temp.getDamage();
+            shaman1 = temp.isShamanAlive(1);
+            shaman2 = temp.isShamanAlive(2);
+            shaman3 = temp.isShamanAlive(3);
+            shaman4 = temp.isShamanAlive(4);
+            armorLevel = temp.getArmorLevel();
+            swordLevel = temp.getSwordLevel();
+            playerRoom = temp.getPlayerRoom();
+            potions = temp.getPotions();
+            ois.close();
+        } catch (Exception e){e.printStackTrace();}
     }
     
     public void setArmorLevel(int armorLevel) {

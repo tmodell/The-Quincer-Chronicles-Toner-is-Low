@@ -10,7 +10,7 @@ import sprites.Player;
  * @author alber
  */
 public class SideBar extends JPanel{
-    private static final String IMAGE_URL = "src/world/lib/sidebar.png";
+    private static final String IMAGE_URL = "lib/world/sidebar.png";
     
     MainFrame frame;
     
@@ -33,41 +33,41 @@ public class SideBar extends JPanel{
         
         setLayout(null);
         
-        save = new JLabel(new ImageIcon("src/world/lib/buttons/save.png"));
-        save.setFocusable(false);
-        save.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        save.addMouseListener(new MouseListener(){
-            ImageIcon active = new ImageIcon("src/world/lib/buttons/saveactive.png"), inactive = (ImageIcon) save.getIcon();
-            
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                save.setIcon(inactive);
-                tonerislow.TonerIsLow.getSave().save();
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                save.setIcon(active);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                save.setIcon(inactive);
-            }
-            
-            @Override
-            public void mousePressed(MouseEvent e){}
-
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-            
-        });
-        
-        exit = new JLabel(new ImageIcon("src/world/lib/buttons/exit.png"));
+//        save = new JLabel(new ImageIcon("src/world/lib/buttons/save.png"));
+//        save.setFocusable(false);
+//        save.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//        save.addMouseListener(new MouseListener(){
+//            ImageIcon active = new ImageIcon("src/world/lib/buttons/saveactive.png"), inactive = (ImageIcon) save.getIcon();
+//            
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                save.setIcon(inactive);
+//                tonerislow.TonerIsLow.getSave().save();
+//            }
+//
+//            @Override
+//            public void mouseEntered(MouseEvent e) {
+//                save.setIcon(active);
+//            }
+//
+//            @Override
+//            public void mouseExited(MouseEvent e) {
+//                save.setIcon(inactive);
+//            }
+//            
+//            @Override
+//            public void mousePressed(MouseEvent e){}
+//
+//            @Override
+//            public void mouseReleased(MouseEvent e) {}
+//            
+//        });
+//        
+        exit = new JLabel(new ImageIcon("lib/world/buttons/menu.png"));
         exit.setFocusable(false);
         exit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         exit.addMouseListener(new MouseListener(){
-            ImageIcon active = new ImageIcon("src/world/lib/buttons/exitactive.png"), inactive = (ImageIcon) exit.getIcon();
+            ImageIcon active = new ImageIcon("lib/world/buttons/menuactive.png"), inactive = (ImageIcon) exit.getIcon();
             
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -121,7 +121,7 @@ public class SideBar extends JPanel{
         String armor = Integer.toString(player.getArmorLevel());
         String sword = Integer.toString(player.getSwordLevel());
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Old English Text MT", Font.BOLD, 50));
+        g.setFont(new Font(frame.FONT_NAME, Font.BOLD, 50));
         int pot;
         if ((pot = player.getPotionCount()) > 9999){
             int i = pot / 1000;

@@ -40,9 +40,9 @@ public class TextBox extends JPanel{
         this.frame = frame;
         setPreferredSize(new Dimension(1664 , 184));
         
-        cursor = new ImageIcon("src/npcinteraction/lib/cursor.png").getImage();
+        cursor = new ImageIcon("lib/npcinteraction/cursor.png").getImage();
         
-        background = new ImageIcon("src/world/lib/textbox.png").getImage();
+        background = new ImageIcon("lib/world/textbox.png").getImage();
         //setBackground(Color.RED);
 
     }
@@ -75,10 +75,10 @@ public class TextBox extends JPanel{
             }
             
             if (s == null) {
-                System.out.println("NULL B");
+                //System.out.println("NULL B");
                 menu = currentText.getMenu();
                 if (menu != null){
-                    System.out.println("menu isn't null");
+                    //System.out.println("menu isn't null");
                     ss = menu.getOptions();
                     for (String s: ss){
                         System.out.println(s);
@@ -128,7 +128,7 @@ public class TextBox extends JPanel{
         currentText = text;
         displayText(currentText.nextLine());
         name  = currentText.getName();
-        System.out.println("Name: " + name);
+        //System.out.println("Name: " + name);
     }
     
     public boolean active(){

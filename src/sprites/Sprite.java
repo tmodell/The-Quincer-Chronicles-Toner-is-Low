@@ -25,6 +25,9 @@ public abstract class Sprite {
     static final int GRID_SIZE = 64;
     
     public Sprite(String url){
+        if (url.contains(".png") && url.contains(".gif")){
+            url = url.replace(".png", "");
+        }
         ImageIcon ii = new ImageIcon(url);
         image = ii.getImage();
     }

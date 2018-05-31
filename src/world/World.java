@@ -34,7 +34,7 @@ public class World extends JPanel{
     public static final int WIDTH = 26;
     public static final int HEIGHT = 14;
     
-    private static final String PREFIX = "src/world/lib/maps/";
+    private static final String PREFIX = "lib/world/maps/";
     private static final String SUFFIX = ".csv";
     
     // How many villager dialogue files there are
@@ -57,6 +57,8 @@ public class World extends JPanel{
     int shamanNum;
     boolean needsSort = false;
     int wormerRefreshCount = 0;
+    
+    Image deathImage;
     
     volatile boolean repainting = true;
     
@@ -103,7 +105,7 @@ public class World extends JPanel{
     }
     
     public void loadMap(String name, int playerX, int playerY) throws IOException{
-        System.out.println(imageFileExists("statue"));
+        //System.out.println(imageFileExists("statue"));
         
         repainting = false;
 
@@ -155,7 +157,7 @@ public class World extends JPanel{
         } catch (Exception e){}
         
         //System.out.println(tileName);
-        ImageIcon ii = new ImageIcon("src/sprites/lib/tiles/" + tileName + ".png");
+        ImageIcon ii = new ImageIcon("lib/sprites/tiles/" + tileName + ".png");
         tile = ii.getImage();
         
         //System.out.println("The loop is about to start...");
@@ -220,7 +222,7 @@ public class World extends JPanel{
                             
                             // If all shamans are dead
                             if (save.allShamansDead()){
-                                System.out.println("They're dead alright!");
+                                //System.out.println("They're dead alright!");
                                 c = ' ';
                                 if (escapeSplit.length > 1){
                                     file += "unlocked";
@@ -281,6 +283,16 @@ public class World extends JPanel{
                             passive.setPassive(true);
                             sprites.add(passive);
                             c = ' ';
+                            break;
+                        case 'M':
+                            c = 'N';
+                            char symboool = '.';
+                            if (!escapeSplit[1].equals("")) symboool = escapeSplit[1].charAt(0);
+                            String interactionFileNamee = escapeSplit[2];
+                            NPC npcc = new NPC(symbolMap.get(symboool), interactionFileNamee, "", x, y - 1);
+                            NPCs[x][y - 1] = npcc;
+                            sprites.add(npcc);
+                            break;
                     }
                 }
                 else if (c != ' '){
@@ -330,7 +342,7 @@ public class World extends JPanel{
         symbolMap.put('*', "black");
         symbolMap.put('b', "stonebasilica");
         symbolMap.put('R', "ship");
-        symbolMap.put('K', "black");//TODO change to rock face
+        symbolMap.put('K', "rock");//TODO change to rock face
         symbolMap.put('X', "stonewall");
         symbolMap.put('b', "stonebasilica");
         symbolMap.put('M', "cavemouth");//TODO change to cavemouth
@@ -349,10 +361,39 @@ public class World extends JPanel{
         symbolMap.put('4', "villager4");
         symbolMap.put('y', "mystic");
         symbolMap.put('f', "fireplace");
+        symbolMap.put('Z', "wormerfront");
+        symbolMap.put('z', "shamanfront");
+        symbolMap.put('x', "wurmfront");
+        symbolMap.put('a', "cavewall");
+        symbolMap.put(']', "stairupright");
+        symbolMap.put('[', "stairupleft");
+        symbolMap.put('}', "stairdownright");
+        symbolMap.put('{', "stairdownleft");
+        symbolMap.put('o', "colonel");
+        symbolMap.put('p', "pillar");
+        symbolMap.put('g', "rugvertical");
+        symbolMap.put('u', "rughorizontal");
     }
     
     public void handlePlayerDeath(){
-        
+        //System.out.println("Hey bb " + imageFileExists("src/world/lib/maps/death.png"));
+        try{
+            deathImage = new ImageIcon("lib/world/death.png").getImage();
+        } catch (Exception e){e.printStackTrace();}
+    }
+    
+    public void handlePlayerRevive(){
+        deathImage = null;
+        save.reset();
+        try{
+        loadMap(save.getPlayerRoom(), save.getPlayerX(), save.getPlayerY());
+        } catch (Exception e){e.printStackTrace();}
+        player.saveReset();
+        getFrame().getSideBar().update();
+    }
+    
+    public boolean playerDead(){
+        return deathImage != null;
     }
     
     /**
@@ -412,6 +453,11 @@ public class World extends JPanel{
                 if (wormer != null) wormer.refresh();
             }
         }
+        for (Sprite s: sprites){
+            if (s instanceof Wormer){
+                wormers[s.getX()][s.getY()] = (Wormer)s;
+            }
+        }
     }
     
     public void moveWormer(Wormer wormer, int oldX, int oldY, int newX, int newY){
@@ -442,37 +488,6 @@ public class World extends JPanel{
         return (wormers[x][y] != null);
     }
     
-    @Override
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-        
-        //if (wormerRefreshCount++ > 10){
-            //wormerRefreshCount = 0;
-            //refreshWormers();
-        //}
-        
-        long time = System.currentTimeMillis();
-        //System.out.println("Painting");
-        for (int x = 0; x < WIDTH; x++){
-            //System.out.println(x);
-            for (int y = 0; y < HEIGHT; y++){
-                g.drawImage(tile, x * GRID_SIZE, y * GRID_SIZE, null);
-            }
-        }
-        
-        if (needsSort) sortSprites();
-        for (Sprite x: sprites){
-            //System.out.println(x.getRealY());
-            g.drawImage(x.getImage(), x.getRealX() + x.getOffsetX(), x.getRealY() + x.getOffsetY(), null);
-        }
-        
-//        int delay = (int)(System.currentTimeMillis() - time) + 20;
-//        try{
-//            Thread.sleep(delay);
-//        } catch (Exception e){}
-//        repaint();
-    }
-    
     private void sortSprites(){
         for (int i = 1; i < sprites.size(); i++){
             for (int j = i; j > 0 && (sprites.get(j - 1).getY() > sprites.get(j).getY() || sprites.get(j).getPassive()); j--){
@@ -487,13 +502,13 @@ public class World extends JPanel{
     }
     
     private boolean imageFileExists(String s){
-        s = "src/sprites/lib/images/" + s + ".png";
+        s = "lib/sprites/images/" + s + ".png";
         File tmpDir = new File(s);
         return tmpDir.exists();
     }
     
     private boolean tileFileExists(String s){
-        s = "src/sprites/lib/tiles/" + s + ".png";
+        s = "lib/sprites/tiles/" + s + ".png";
         File tmpDir = new File(s);
         return tmpDir.exists();
     }
@@ -623,6 +638,30 @@ public class World extends JPanel{
     
     public String getMap(){
         return map;
+    }
+    
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        
+        //System.out.println("Painting");
+        for (int x = 0; x < WIDTH; x++){
+            //System.out.println(x);
+            for (int y = 0; y < HEIGHT; y++){
+                g.drawImage(tile, x * GRID_SIZE, y * GRID_SIZE, null);
+            }
+        }
+        
+        if (needsSort) sortSprites();
+        for (Sprite x: sprites){
+            //System.out.println(x.getRealY());
+            g.drawImage(x.getImage(), x.getRealX() + x.getOffsetX(), x.getRealY() + x.getOffsetY(), null);
+        }
+        
+        if (deathImage != null) {
+            //System.out.println("Not null");
+            g.drawImage(deathImage, 0, 0, null);
+        }
     }
     
     private class Path{

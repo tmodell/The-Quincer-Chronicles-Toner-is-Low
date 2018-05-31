@@ -1,0 +1,15 @@
+4,stone,7,,,,,,,,,,,,,,,,,,,,,,,
+.,.,.,.,.,.,.,.,.,.,.,.,%P;;12;12;citynorth,%P;;13;12;citynorth,.,.,.,.,.,.,.,.,.,.,.,.
+H,.,.,%M;H;locked,%M;;locked,%M;;locked,%M;H;locked,%M;;locked,%M;;locked,%M;H;locked,%M;;locked,%M;;locked,,,%M;H;locked,%M;;locked,%M;;locked,%M;H;locked,%M;;locked,%M;;locked,%M;H;locked,%M;;locked,%M;;locked,H,.,.
+.,.,.,,,,,,,,,,,,,,,,,,,,,.,.,.
+H,.,.,,,,,,,,,,,,,,,,,,,,,H,.,.
+.,.,.,,,.,.,.,,.,.,.,,,.,.,.,,.,.,.,,,.,.,.
+H,.,.,,,%M;H;locked,%M;;locked,%M;;locked,,%P;H;12;10;cityhouse3,%P;;12;10;cityhouse3,%P;;12;10;cityhouse3,,,%M;H;locked,%M;;locked,%M;;locked,,%M;H;locked,%M;;locked,%M;;locked,,,H,.,.
+.,.,.,,,,,,,,,,,,,,,,,,,,,.,.,.
+H,.,.,,,,,,,,,,,,,,,,,,,,,H,.,.
+.,.,.,,,.,.,.,,.,.,.,,,.,.,.,,.,.,.,,,.,.,.
+H,.,.,,,%M;H;locked,%M;;locked,%M;;locked,,%M;H;locked,%M;;locked,%M;;locked,,,%M;H;locked,%M;;locked,%M;;locked,,%M;H;locked,%M;;locked,%M;;locked,,,H,.,.
+.,.,.,,,,,,,,,,,,,,,,,,,,,.,.,.
+H,.,.,,,,,,,,,,,,,,,,,,,,,H,.,.
+.,.,.,.,.,.,.,.,.,.,.,.,,,.,.,.,.,.,.,.,.,.,.,.,.
+H,.,.,H,.,.,H,.,.,H,.,.,%P;;12;1;citysouth,%P;;13;1;citysouth,H,.,.,H,.,.,H,.,.,H,.,.

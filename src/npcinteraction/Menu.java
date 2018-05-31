@@ -18,7 +18,7 @@ import sprites.*;
  */
 public class Menu {
 
-    private static final String PREFIX = "src/npcinteraction/lib/";
+    private static final String PREFIX = "lib/npcinteraction/";
     private static final String SUFFIX = ".txt";
     
     String[] options, actions;
@@ -48,10 +48,10 @@ public class Menu {
             if (inputStream != null) inputStream.close();
         }
         
-        System.out.println("making thing");
-        for (String s: actions){
-            System.out.println(s);
-        }
+//        System.out.println("making thing");
+//        for (String s: actions){
+//            System.out.println(s);
+//        }
         
         cursorIndex = 0;
         maxCursorIndex = options.length - 1;
@@ -106,6 +106,8 @@ public class Menu {
                     break;
             }
         }
+        if (health) buy *= player.getArmorLevel();
+        else if (damage) buy *= player.getSwordLevel();
         if (player.getMoney() >= buy){
             player.setMoney(player.getMoney() - buy);
             if (health) player.upgradeArmor();

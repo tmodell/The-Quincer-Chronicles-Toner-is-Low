@@ -8,7 +8,7 @@ import npcinteraction.*;
  * @author albert.wilcox
  */
 public class NPC extends Sprite{
-    static final String PREFIX = "src/npcinteraction/lib/";
+    static final String PREFIX = "lib/npcinteraction/";
     
     public String interactionURL;
     String name;
@@ -22,7 +22,7 @@ public class NPC extends Sprite{
      * @param y 
      */
     public NPC(String imageURL, String interactionFileName, String name, int x, int y){
-        super("src/sprites/lib/images/" + imageURL + ".png");
+        super("lib/sprites/images/" + imageURL + ".png");
         interactionURL = PREFIX + interactionFileName + ".txt";
         
         this.name = name;

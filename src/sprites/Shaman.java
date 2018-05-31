@@ -18,11 +18,12 @@ import world.World;
  * @author alber
  */
 public class Shaman extends Wormer{
-    static final String[] SHAMEN_IMAGE_URLS = {"src/sprites/lib/images/shamanfront.png", "src/sprites/lib/images/shamanback.png", 
-        "src/sprites/lib/images/shamanleft.png", "src/sprites/lib/images/shamanright.png"};
+    static final String[] SHAMEN_IMAGE_URLS = {"lib/sprites/images/shamanfront.png", "lib/sprites/images/shamanback.png", 
+        "lib/sprites/images/shamanleft.png", "lib/sprites/images/shamanright.png"};
     
     int shamanNum;
     int teleported;
+    int reward;
     
     public Shaman(World world, int x, int y, int shamanNum) {
         super(world, x, y, shamanNum);
@@ -32,8 +33,9 @@ public class Shaman extends Wormer{
         damage = shamanNum * 20;
         maxHealth = 100 + shamanNum * 200;
         health = maxHealth;
-        reward = 100 * shamanNum;
+        reward = 50 + (shamanNum-1)*100;
         teleported = 0;
+        range = 10;
         
         try{
            images[Movable.ORIENTATION_UP] = ImageIO.read(new File(SHAMEN_IMAGE_URLS[ORIENTATION_UP]));
@@ -47,7 +49,8 @@ public class Shaman extends Wormer{
     
     @Override
     public void kill(){
-        super.kill();
+        world.killWormer(this, x, y);
+        player.giveMoney(reward);
         world.getFrame().getSave().setShamanAlive(shamanNum, false);
     }
     
