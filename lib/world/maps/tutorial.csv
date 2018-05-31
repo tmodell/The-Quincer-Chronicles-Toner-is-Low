@@ -1,0 +1,15 @@
+0,grass,0,,,,,,,,,,,,,,,,,,,,,,,
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,%P;;9;11;village0,T,T,T,T,T,T,T,T,T,T,T,,T
+T,T,T,T,T,T,T,T,T,T,T,T,,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,%W;0,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,,,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,,,,,,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,,,,,,,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,,,,,,,,,,,,T,T,T,T,T,T,T,T
+T,T,T,T,,,,,%N;A;alchemisttutorial;Alchemist,,%N;B;blacksmithtutorial;Blacksmith,,%S;signtutorial,,%N;y;mystictutorial;Mystic,,%N;Z;wormertutorial;Wormer,,,,,T,T,T,T,T
+T,T,T,,,,%N;L;leadertutorial;Village Leader,,,,,,,,,,,,%N;z;shamantutorial;Wormer Shaman,,,,T,T,T,T
+T,T,T,T,,,,,,,,,,,,,,,,,,,T,T,T,T
+T,T,T,T,T,T,,,,,,,%S;tutorial,,,,,,,,,T,T,T,T,T
+T,T,T,T,T,T,T,,,,,,,,,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T

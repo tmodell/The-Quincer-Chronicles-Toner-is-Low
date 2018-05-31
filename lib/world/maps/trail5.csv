@@ -1,0 +1,15 @@
+3,grass,4,,,,,,,,,,,,,,,,,,,,,,,
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,,,%P;;1;9;village2
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,,,,,,%P;;1;10;village2
+T,T,T,T,T,,,,,,,T,T,T,T,T,T,T,,,,,,,,T
+T,T,T,,,,,,,,,,,,T,,T,,,,,T,T,T,T,T
+T,T,T,,,,,,,T,,,T,T,T,,,,,,,T,T,T,T,T
+T,T,,,,,,T,T,T,,,,,,,,,,T,T,T,T,T,T,T
+T,T,T,,,,T,T,T,T,,,,,,,T,,,T,T,T,T,T,T,T
+T,T,,,,,,T,T,T,T,,,,,T,T,T,,,,T,T,T,T,T
+T,T,,,,,,T,T,T,T,T,T,T,T,T,T,T,,,,T,T,T,T,T
+T,T,,,,,,T,T,T,T,T,T,T,T,T,T,T,,,,,,,T,T
+T,T,,,,,,T,T,T,T,T,T,T,T,T,T,T,,,,,,,,%P;;1;10;cavemouth2
+T,T,,,,T,,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,,,%P;;1;10;cavemouth2
+T,T,%P;;22;1;trail6,%P;;23;1;trail6,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T

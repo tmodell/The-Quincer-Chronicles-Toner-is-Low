@@ -1,0 +1,5 @@
+Oh no, oh no, oh no.
+>I'm scared to death, but hey that's no reason to stop selling potions.
+->Would you like to buy some potions.
+-->~malchemistmenu
+-->Ah. Ok...

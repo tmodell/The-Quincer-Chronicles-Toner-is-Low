@@ -1,0 +1,15 @@
+2,grass,5,,,,,,,,,,,,,,,,,,,,,,,
+T,T,%P;;22;12;mountain3,%P;;23;12;mountain3,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,,,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,,,T,T,T,T,T,T,T,T,T,T,%N;A;alchemist;Alchemist,C,.,T,T,T,T,T,T,T,T,T
+T,T,,,T,T,,,T,T,T,%N;B;blacksmith;Blacksmith,,,,,,.,.,.,.,.,.,T,T,T
+T,T,T,,,,,,,%N;y;mystic;Mystic,,,,,,,,J,.,%P;;12;8;village2townhall,%P;;13;8;village2townhall,.,.,T,T,T
+T,T,T,T,,,,,,,,,.,.,.,,,,,,,,,%N;L;villageleader;Village Leader,T,T
+T,T,T,T,,,%S;village2,,,,,,h,%P;;12;10;village2house2,.,,,%V,,,,,,,T,T
+T,T,.,T,,,,,.,.,.,,,,,,,,,,.,.,.,,T,T
+T,T,.,T,T,T,,,h,%P;;12;10;village2house1,.,,,,%V,,.,.,.,,h,%P;;12;10;village2house4,.,,T,T
+%P;;24;1;trail5,,T,T,%V,,,,,,,,,,,,h,%P;;12;10;village2house3,.,,,,,,T,T
+%P;;24;1;trail5,,,,,,,,,,,T,,,,,,,,,%V,,,,T,T
+T,T,,,,,,,T,T,T,T,T,T,,,,,,,,,,T,T,T
+T,T,T,,,T,T,T,T,T,T,T,T,T,T,T,T,,,,,,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,T,%P;;2;1;cavemouth2,%P;;3;1;cavemouth2,T,T,T,T,T

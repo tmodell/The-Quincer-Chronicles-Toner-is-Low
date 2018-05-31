@@ -1,0 +1,4 @@
+I hate being cooped up in here. The mystic always complains when I start my forge.
+>Anyway, would you like me to upgrade you?
+->~mblacksmithmenu
+->Oh. I guess the mystic will be glad.

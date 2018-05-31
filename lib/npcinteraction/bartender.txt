@@ -1,0 +1,7 @@
+Haven't seen you around, whats your name newcomer?
+>Yeah I heard of you, take a seat and chill for a bit. I'm the bartender.
+->*Quincer pops a seat up*
+-->I'll give you a nice starter. 
+--->Since you seem pretty wrecked... drinks on the house buddy.
+---->Graditude comes in small doses, but when you get it...
+----->It can make anyones day brighter!

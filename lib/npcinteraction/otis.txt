@@ -1,0 +1,6 @@
+Otis:Hey boy can you help me here?
+>Quincer:Okay
+->Otis:I need a drink from that vendin machine over there.
+-->Quincer: OH sure I got like 5 do-
+--->Otis: StaY AwaY FrOm ME!
+---->Quincer: Okay

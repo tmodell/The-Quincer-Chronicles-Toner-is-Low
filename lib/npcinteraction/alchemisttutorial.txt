@@ -1,0 +1,3 @@
+I'm an alchemist
+>I can whip up health potions with ease.
+->I can be found in each village and will sell potions to you.

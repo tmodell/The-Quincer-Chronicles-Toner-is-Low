@@ -1,0 +1,14 @@
+Greetings. I am old and thus very wise.
+>Would you like to hear advice for your quest?
+->To free Mysteria, you must sleigh the Dark Wurm, who is locked deep in the city.
+-->As you likely know, the gates to the city are locked.
+--->Luckily, there is a somewhat secret entrance that no one has found somehow.
+---->In the southeasternmost house in village 3 there is a staircase leading to the sewer.
+----->That sewer will lead you to another house inside the city.
+------>Beware, in the city the wormers will be stronger than those you've faced so far.
+------->I wish you luck hero.
+->Oh. Then would you like to hear a joke?
+-->How can you tell if your girlfriend or dog loves you more?
+--->...
+---->Dang. I can't remember the punch line.
+-->You're missing out son.
