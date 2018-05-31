@@ -131,9 +131,9 @@ public class StartMenu extends JPanel{
         add(credits);
         add(exit);
                 
-        start.setBounds(1370, 500, 420, 56);
-        credits.setBounds(1513, 600, 277, 56);
-        exit.setBounds(1604, 700, 186, 56);
+        start.setBounds(1370, 550, 420, 56);
+        credits.setBounds(1513, 650, 277, 56);
+        exit.setBounds(1604, 750, 186, 56);
         
         repaint();
     }

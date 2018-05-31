@@ -289,9 +289,13 @@ public class World extends JPanel{
                         case 'M':
                             c = 'N';
                             char symboool = '.';
-                            if (!escapeSplit[1].equals("")) symboool = escapeSplit[1].charAt(0);
+                            String fnn = null;
+                            if (!escapeSplit[1].equals("")) {
+                                symboool = escapeSplit[1].charAt(0);
+                                if (infested && imageFileExists(fnn + "snow")) fnn = fnn + "snow";
+                            }
                             String interactionFileNamee = escapeSplit[2];
-                            NPC npcc = new NPC(symbolMap.get(symboool), interactionFileNamee, "", x, y - 1);
+                            NPC npcc = new NPC(symbolMap.get(fnn), interactionFileNamee, "", x, y - 1);
                             NPCs[x][y - 1] = npcc;
                             sprites.add(npcc);
                             break;
@@ -466,6 +470,7 @@ public class World extends JPanel{
             int y = r.nextInt(HEIGHT);
             if (isOccupiable(x, y)){
                 Wormer w = new Wormer(this, x, y, shamanNum);
+                w.setHealth(1);
                 sprites.add(w);
                 wormers[x][y] = w;
             } else count--;
