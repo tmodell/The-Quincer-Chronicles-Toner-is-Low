@@ -1,0 +1,5 @@
+I looked into the future and saw that I would make it, so I'm not afraid.
+>I can't stand the blacksmith's forge though.
+->Anyway, would you like me to save for you?
+-->Alright. ~s
+-->All the same.

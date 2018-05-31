@@ -370,6 +370,9 @@ public class World extends JPanel{
         symbolMap.put('}', "stairdownright");
         symbolMap.put('{', "stairdownleft");
         symbolMap.put('o', "colonel");
+        symbolMap.put('p', "pillar");
+        symbolMap.put('g', "rugvertical");
+        symbolMap.put('u', "rughorizontal");
     }
     
     public void handlePlayerDeath(){

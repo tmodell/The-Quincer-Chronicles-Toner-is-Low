@@ -3,8 +3,8 @@ Greetings. I am old and thus very wise.
 ->To free Mysteria, you must sleigh the Dark Wurm, who is locked deep in the city.
 -->As you likely know, the gates to the city are locked.
 --->Luckily, there is a somewhat secret entrance that no one has found somehow.
----->South of Village 3, there is a well which will take you into the sewer.
------>That sewer will lead you to a well inside the city walls.
+---->In the southeasternmost house in village 3 there is a staircase leading to the sewer.
+----->That sewer will lead you to another house inside the city.
 ------>Beware, in the city the wormers will be stronger than those you've faced so far.
 ------->I wish you luck hero.
 ->Oh. Then would you like to hear a joke?
