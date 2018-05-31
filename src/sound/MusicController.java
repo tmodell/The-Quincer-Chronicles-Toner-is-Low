@@ -35,7 +35,7 @@ public class MusicController {
         clip.open(AudioSystem.getAudioInputStream(music[currentTrack]));
         clip.setMicrosecondPosition(time[currentTrack]);
         clip.start();//Play Audio
-        //startLooping();
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
     
     public static void startAudio() {
@@ -53,6 +53,13 @@ public class MusicController {
         clip.setMicrosecondPosition(0);
         time[currentTrack] = 0;
         clip.start();
+    }
+    
+    public static void reSetAllMusic() {
+        time[0] = 0;
+        time[1] = 0;
+        time[2] = 0;
+        time[3] = 0;
     }
     
     public static void startLooping() {
