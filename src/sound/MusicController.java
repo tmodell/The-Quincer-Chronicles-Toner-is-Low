@@ -23,29 +23,35 @@ public class MusicController {
     public static Clip clip;
     public static Timer looper;
     
+    public static int currentTrack;
+    
     public static long[] time = new long[] {0, 0, 0, 0};
     public static File[] music = {new File("lib/sound/music/trackOne.wav"), new File("lib/sound/music/trackTwo.wav"), 
         new File("lib/sound/music/trackThree.wav"), new File("lib/sound/music/trackFour.wav")};
     
     public static void changeMusic(int trackNum) throws MalformedURLException, UnsupportedAudioFileException, IOException, LineUnavailableException, InterruptedException {
+        currentTrack = trackNum-1;
         clip = AudioSystem.getClip();
-        clip.open(AudioSystem.getAudioInputStream(music[trackNum-1]));
-        clip.setMicrosecondPosition(time[trackNum-1]);
+        clip.open(AudioSystem.getAudioInputStream(music[currentTrack]));
+        clip.setMicrosecondPosition(time[currentTrack]);
         clip.start();//Play Audio
+        startLooping();
     }
     
     public static void startAudio() {
         clip.start(); //Play/Resume Audio
+        startLooping();
     }
     
-    public static void stopAudio(int trackNum) {
+    public static void stopAudio() {
         clip.stop(); //Pause Audio
-        time[trackNum-1] = clip.getMicrosecondPosition();
+        time[currentTrack] = clip.getMicrosecondPosition();
+        looper.stop();
     }
     
     public static void reStartAudio(int trackNum) {
         clip.setMicrosecondPosition(0);
-        time[trackNum-1] = 0;
+        time[currentTrack] = 0;
         clip.start();
     }
     
@@ -54,10 +60,6 @@ public class MusicController {
             clip.setMicrosecondPosition(0);
         looper = new Timer(((int) (clip.getMicrosecondLength()/1000)), listener);
         looper.start();
-    }
-    
-    public static void stopLooping() {
-        looper.stop();
     }
     
     public static ActionListener listener = new ActionListener() {
