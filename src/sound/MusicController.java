@@ -2,8 +2,6 @@
 
 package sound;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.*;
@@ -59,12 +57,4 @@ public class MusicController {
         time[3] = 0;
         reStartAudio(currentTrack);
     }
-    
-    public static ActionListener listener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent event){
-        clip.setMicrosecondPosition(0);
-        clip.start();
-        }
-    };
 }
