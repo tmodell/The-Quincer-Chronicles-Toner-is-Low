@@ -1,4 +1,3 @@
-Greetings again traveler
->I'm doing great. These people are all suffering and I have to help them.
-->Sorry, I have to continue helping others, you're on your own for now.
--->Good bye traveler, may the winds guide thee.
+>It looks like you've killed the shaman in village 1.
+->Now you should venture to the northeastern corner of the map
+-->and kill the shaman in village 2.
