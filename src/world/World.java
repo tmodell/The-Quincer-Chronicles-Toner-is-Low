@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.*;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -20,6 +21,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import sprites.*;
 import npcinteraction.*;
+import sound.MusicController;
 import sound.SoundFXController;
 import tonerislow.Save;
 import tonerislow.TonerIsLow;
@@ -307,7 +309,35 @@ public class World extends JPanel{
                 squares[x][y - 1] = c;}catch(Exception e){e.printStackTrace();}
             }
         } 
-        if (infested) spawnWormers(wormerCount);
+        if (infested) { //If the current map is infested
+            spawnWormers(wormerCount); //Spawns Wormers
+            
+            if (!isLastInfested) { //If the last map was not infested (and this is)
+                isLastInfested=true; //Set last map to infected (will be last map at next run)
+                try {
+                    MusicController.stopAudio(); //Stop Audio
+                    MusicController.changeMusic(3); //Change to hostile track
+                } catch (MalformedURLException | UnsupportedAudioFileException | LineUnavailableException | InterruptedException ex) {
+                    Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            if (isLastInfested) { //If the last map was infested (and this isn't)
+                isLastInfested=false; //Set last map to not infected (will be last map at next run)
+                try {
+                    MusicController.stopAudio(); //Stop Audio
+                    MusicController.changeMusic(2); //Change to traveling track
+                } catch (MalformedURLException | UnsupportedAudioFileException | LineUnavailableException | InterruptedException ex) {
+                    Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        try {
+            SoundFXController.mapMoveFX(); //Swoosh sound effect
+        } catch (UnsupportedAudioFileException | LineUnavailableException | MalformedURLException | InterruptedException ex) {
+            Logger.getLogger(World.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         // Hardcode wormer
         //Wormer w = new Wormer(this, 100, 10, 20, 5);
@@ -318,6 +348,8 @@ public class World extends JPanel{
         
         repainting = true;
     }
+    
+    private boolean isLastInfested = false;
     
     /**
      * The way this works is that each letter in the text box will
