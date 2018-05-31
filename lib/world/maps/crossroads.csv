@@ -10,6 +10,6 @@ T,T,,T,,,,,,,,,,,,,,,,,,,,,T,T
 T,T,,,T,T,,,,,,,,%S;crossroadssign,,,,,,,,,,,T,T
 T,T,T,,,,,,,,,,,,,,,,,,,T,,T,T,T
 T,T,T,T,T,,T,,T,T,,,,,,,T,,T,,,T,T,T,T,T
-T,T,T,T,T,,,T,T,K,T,K,,,T,T,K,K,T,,T,T,T,T,T,T
-T,T,T,T,T,T,T,K,K,K,K,K,,,K,K,K,K,K,T,T,T,T,T,T,T
-T,T,T,T,T,T,K,K,K,K,K,K,%P;;22;1;trail2,%P;;23;1;trail2,K,K,K,K,K,K,T,T,T,T,T,T
+T,T,T,T,T,,,T,T,T,T,T,,,T,T,T,T,T,,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,,,T,T,T,T,T,T,T,T,T,T,T,T
+T,T,T,T,T,T,T,T,T,T,T,T,%P;;22;1;trail2,%P;;23;1;trail2,T,T,T,T,T,T,T,T,T,T,T,T
