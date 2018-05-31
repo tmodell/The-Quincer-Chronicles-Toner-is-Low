@@ -470,7 +470,6 @@ public class World extends JPanel{
             int y = r.nextInt(HEIGHT);
             if (isOccupiable(x, y)){
                 Wormer w = new Wormer(this, x, y, shamanNum);
-                w.setHealth(1);
                 sprites.add(w);
                 wormers[x][y] = w;
             } else count--;
@@ -479,6 +478,7 @@ public class World extends JPanel{
     
     public void summonWormer(int x, int y){
         Wormer w = new Wormer(this, x, y, shamanNum);
+        w.setHealth(1);
         sprites.add(w);
         wormers[x][y] = w;
     }

@@ -75,8 +75,7 @@ public class StartMenu extends JPanel{
             
             @Override
             public void mouseClicked(MouseEvent e) {
-                frame.dispose();
-                System.exit(0);
+                new Credits();
             }
 
             @Override
@@ -144,5 +143,53 @@ public class StartMenu extends JPanel{
         super.paintComponent(g);
         
         g.drawImage(image, 0, 0, null);
+    }
+    
+    private class Credits extends JFrame{
+        public Credits(){
+            super("Credits");
+            
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            
+            Font f = new Font("Times New Roman", Font.BOLD, 20);
+            
+            JLabel tech = new JLabel("Technical Director - Alec Ewers");
+            JLabel integration = new JLabel("Integration - Albert Wilcox");
+            JLabel npc = new JLabel("NPC Interactions - Earl Ranario and John Geronimo");
+            JLabel combat = new JLabel("Combat - Dzuy Nguyen and Sam Vasquez");
+            JLabel world = new JLabel("World - Trever Rhodes and Jacob Burghgraef");
+            JLabel sound = new JLabel("Sound - Jeevan Bhullar and Rajul Bains");
+            
+            JLabel art = new JLabel("Art Director - Cameron Scott");
+            JLabel artTeam = new JLabel("Art Team - Matthew Hargitay and Weston Monroe");
+            
+            tech.setFont(f);
+            integration.setFont(f);
+            npc.setFont(f);
+            combat.setFont(f);
+            world.setFont(f);
+            sound.setFont(f);
+            art.setFont(f);
+            artTeam.setFont(f);
+            
+            JPanel panel = new JPanel();
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+            
+            panel.add(tech);
+            panel.add(integration);
+            panel.add(npc);
+            panel.add(combat);
+            panel.add(world);
+            panel.add(sound);
+            panel.add(Box.createVerticalStrut(20));
+            panel.add(art);
+            panel.add(artTeam);
+            
+            getContentPane().add(panel);
+            setResizable(false);
+            
+            pack();
+            setVisible(true);
+        }
     }
 }
