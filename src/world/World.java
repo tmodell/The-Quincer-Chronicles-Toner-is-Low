@@ -669,6 +669,50 @@ public class World extends JPanel{
                    // maybe add code for what to do if a square is unoccupiable 
                 }
                 break;
+            case KeyEvent.VK_SPACE:
+                switch (player.getOrientation()){
+                    case Movable.ORIENTATION_DOWN:
+                         hypotheticalY = y + 1;
+                        if (wormerAtPos(x, hypotheticalY)){
+                            player.attack();
+                        } else if (wormerAtPos(x, y+1)) {
+                            //some way to block attacks
+                        } else {
+                           // maybe add code for what to do if a square is unoccupiable 
+                        }
+                        break;
+                    case Movable.ORIENTATION_UP:
+                        hypotheticalY = y - 1;
+                        if (wormerAtPos(x, hypotheticalY)){
+                            player.attack();
+                        } else if (wormerAtPos(x, y-1)) {
+                            //some way to block attacks
+                        } else {
+                           // maybe add code for what to do if a square is unoccupiable 
+                        }
+                        break;
+                    case Movable.ORIENTATION_LEFT:
+                        hypotheticalX = x - 1;
+                        if (wormerAtPos(hypotheticalX, y)){
+                            player.attack();
+                        } else if (wormerAtPos(x+1, y)) {
+                            //some way to block attacks
+                        } else {
+                           // maybe add code for what to do if a square is unoccupiable 
+                        }
+                        break;
+                    case Movable.ORIENTATION_RIGHT:
+                        hypotheticalX = x + 1;
+                        if (wormerAtPos(hypotheticalX, y)){
+                            player.attack();
+                        } else if (wormerAtPos(x-1, y)) {
+                            //some way to block attacks
+                        } else {
+                           // maybe add code for what to do if a square is unoccupiable 
+                        }
+                        break;
+                }
+                break;
         }
     }
     

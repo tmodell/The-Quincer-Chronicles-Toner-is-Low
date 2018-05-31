@@ -166,6 +166,7 @@ public class MainFrame extends JFrame{
             // Beginning an interaction
             if (key == KeyEvent.VK_SPACE){
                 world.playerInteraction();
+                world.handleCombatKey(key);
             }
             
             if (key == KeyEvent.VK_Q){
