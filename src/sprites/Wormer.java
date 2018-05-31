@@ -12,6 +12,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import world.*;
@@ -25,7 +26,7 @@ public class Wormer extends Movable{
     static final int DEFAULT_HEALTH = 100;
     static final int DEFAULT_DAMAGE = 10;
     static final int DEFAULT_COOLDOWN = 1000;
-    static final int DEFAULT_REWARD = 50;
+    static final int RANGE = 5;
     
     BufferedImage[] images = new BufferedImage[4];
     
@@ -36,7 +37,9 @@ public class Wormer extends Movable{
     int maxHealth;
     int damage;
     int cooldown;
-    int reward;
+    int rewardMin;
+    int rewardMax;
+    int range;
     
     private volatile boolean alive = true;
         
@@ -48,11 +51,13 @@ public class Wormer extends Movable{
         super(WORMER_IMAGE_URLS[0]);
         this.world = world;
         
-        maxHealth = DEFAULT_HEALTH * shaman;
-        health = DEFAULT_HEALTH * shaman;
+        if (shaman == 1){maxHealth = DEFAULT_HEALTH;} else {maxHealth = 100 * shaman - 50;}
+        health = maxHealth;
         damage = DEFAULT_DAMAGE * shaman;
         cooldown = DEFAULT_COOLDOWN;
-        reward = DEFAULT_REWARD * shaman;
+        rewardMin = shaman==1 ? 3 : shaman==2 ? 15 : shaman==3 ? 20 : 40;
+        rewardMax = shaman==1 ? 7 : shaman==2 ? 20 : shaman==3 ? 30 : 50;
+        range = RANGE;
         
         this.player = world.getPlayer();
         
@@ -102,6 +107,9 @@ public class Wormer extends Movable{
     public void kill(){
         alive = false;
         world.killWormer(this, x, y);
+        
+        Random r = new Random();
+        int reward = r.nextInt(rewardMax-rewardMin) + rewardMin;
         player.giveMoney(reward);
     }
 
@@ -118,7 +126,7 @@ public class Wormer extends Movable{
         int distance = (int)(Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)));
         //System.out.println();
         //System.out.println();
-        if (distance > 5) return false;
+        if (distance > range) return false;
         if (distance == 1 && (dx == 0 || dy == 0)) return true;
 
         //TODO this code has no way of handling obstacles

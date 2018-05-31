@@ -23,6 +23,7 @@ public class Shaman extends Wormer{
     
     int shamanNum;
     int teleported;
+    int reward;
     
     public Shaman(World world, int x, int y, int shamanNum) {
         super(world, x, y, shamanNum);
@@ -32,8 +33,9 @@ public class Shaman extends Wormer{
         damage = shamanNum * 20;
         maxHealth = 100 + shamanNum * 200;
         health = maxHealth;
-        reward = 100 * shamanNum;
+        reward = 50 + (shamanNum-1)*100;
         teleported = 0;
+        range = 10;
         
         try{
            images[Movable.ORIENTATION_UP] = ImageIO.read(new File(SHAMEN_IMAGE_URLS[ORIENTATION_UP]));
@@ -47,7 +49,8 @@ public class Shaman extends Wormer{
     
     @Override
     public void kill(){
-        super.kill();
+        world.killWormer(this, x, y);
+        player.giveMoney(reward);
         world.getFrame().getSave().setShamanAlive(shamanNum, false);
     }
     

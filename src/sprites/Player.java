@@ -21,13 +21,13 @@ public class Player extends Movable{
     public static final int DEFAULT_HEALTH = 200;
     public static final int DEFAULT_DAMAGE = 20;
     public static final int DEFAULT_COOLDOWN = 800;
-    public static final int DEFAULT_MONEY = 100;
-    public static final int DEFAULT_POTIONS = 20;
+    public static final int DEFAULT_MONEY = 20;
+    public static final int DEFAULT_POTIONS = 10;
     
     public static final int POTION_RESTORATION = 50;
     
     public static final int SWORD_UPGRADE = 10;
-    public static final int ARMOR_UPGRADE = 30;
+    public static final int ARMOR_UPGRADE = 50;
     
     World world;
     
@@ -113,7 +113,7 @@ public class Player extends Movable{
     
     public void receiveStrike(int damage){
         health -= damage;
-        if (health <= 0) world.handlePlayerDeath();
+        if (health <= 0) kill();
         
         world.getFrame().getSideBar().update();
 //        String s;

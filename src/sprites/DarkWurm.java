@@ -19,13 +19,16 @@ import world.World;
  */
 public class DarkWurm extends Wormer{
     
-    static final int DAMAGE = 100;
-    static final int HEALTH = 3000;
+    static final int DAMAGE = 80;
+    static final int HEALTH = 2500;
     static final int REWARD = 10000;
+    static final int RANGE = 10;
     
     static final String[] WURM_IMAGE_URLS = {"lib/sprites/images/wurmfront.png", "lib/sprites/images/wurmback.png", 
         "lib/sprites/images/wurmleft.png", "lib/sprites/images/wurmright.png"};
         
+    int reward;
+    
     public DarkWurm(World world, int x, int y) {
         super(world, x, y, 0);
                 
@@ -33,6 +36,7 @@ public class DarkWurm extends Wormer{
         maxHealth = HEALTH;
         health = maxHealth;
         reward = REWARD;
+        range = RANGE;
         
         try{
            images[Movable.ORIENTATION_UP] = ImageIO.read(new File(WURM_IMAGE_URLS[ORIENTATION_UP]));
@@ -46,13 +50,14 @@ public class DarkWurm extends Wormer{
     
     @Override
     public void kill(){
-        super.kill();
+        world.killWormer(this, x, y);
+        player.giveMoney(reward);
         world.getFrame().getSave().setShamanAlive(4, false);
     }
     
     @Override
     public int getRealX(){
-        if (orientation == ORIENTATION_UP || orientation == ORIENTATION_DOWN)return super.getRealX() - 8;
+        if (orientation == ORIENTATION_UP || orientation == ORIENTATION_DOWN) return super.getRealX() - 8;
         else return super.getRealX();
     }
     
@@ -69,6 +74,10 @@ public class DarkWurm extends Wormer{
         g.fillRect(2 + aliveLength, 1, 80 - aliveLength, 6);
         
         return images[orientation];
+    }
+    
+    public void pushPlayer(int dir){
+        
     }
     
 }
