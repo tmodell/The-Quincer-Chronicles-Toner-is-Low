@@ -33,41 +33,41 @@ public class SideBar extends JPanel{
         
         setLayout(null);
         
-        save = new JLabel(new ImageIcon("src/world/lib/buttons/save.png"));
-        save.setFocusable(false);
-        save.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        save.addMouseListener(new MouseListener(){
-            ImageIcon active = new ImageIcon("src/world/lib/buttons/saveactive.png"), inactive = (ImageIcon) save.getIcon();
-            
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                save.setIcon(inactive);
-                tonerislow.TonerIsLow.getSave().save();
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                save.setIcon(active);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                save.setIcon(inactive);
-            }
-            
-            @Override
-            public void mousePressed(MouseEvent e){}
-
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-            
-        });
-        
-        exit = new JLabel(new ImageIcon("src/world/lib/buttons/exit.png"));
+//        save = new JLabel(new ImageIcon("src/world/lib/buttons/save.png"));
+//        save.setFocusable(false);
+//        save.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//        save.addMouseListener(new MouseListener(){
+//            ImageIcon active = new ImageIcon("src/world/lib/buttons/saveactive.png"), inactive = (ImageIcon) save.getIcon();
+//            
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                save.setIcon(inactive);
+//                tonerislow.TonerIsLow.getSave().save();
+//            }
+//
+//            @Override
+//            public void mouseEntered(MouseEvent e) {
+//                save.setIcon(active);
+//            }
+//
+//            @Override
+//            public void mouseExited(MouseEvent e) {
+//                save.setIcon(inactive);
+//            }
+//            
+//            @Override
+//            public void mousePressed(MouseEvent e){}
+//
+//            @Override
+//            public void mouseReleased(MouseEvent e) {}
+//            
+//        });
+//        
+        exit = new JLabel(new ImageIcon("src/world/lib/buttons/menu.png"));
         exit.setFocusable(false);
         exit.setCursor(new Cursor(Cursor.HAND_CURSOR));
         exit.addMouseListener(new MouseListener(){
-            ImageIcon active = new ImageIcon("src/world/lib/buttons/exitactive.png"), inactive = (ImageIcon) exit.getIcon();
+            ImageIcon active = new ImageIcon("src/world/lib/buttons/menuactive.png"), inactive = (ImageIcon) exit.getIcon();
             
             @Override
             public void mouseClicked(MouseEvent e) {

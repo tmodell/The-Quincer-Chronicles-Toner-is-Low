@@ -283,6 +283,16 @@ public class World extends JPanel{
                             passive.setPassive(true);
                             sprites.add(passive);
                             c = ' ';
+                            break;
+                        case 'M':
+                            c = 'N';
+                            char symboool = escapeSplit[1].charAt(0);
+                            String interactionFileNamee = escapeSplit[2];
+                            String namm = escapeSplit[3];
+                            NPC npcc = new NPC(symbolMap.get(symboool), interactionFileNamee, namm, x, y - 1);
+                            NPCs[x][y - 1] = npcc;
+                            sprites.add(npcc);
+                            break;
                     }
                 }
                 else if (c != ' '){
@@ -332,7 +342,7 @@ public class World extends JPanel{
         symbolMap.put('*', "black");
         symbolMap.put('b', "stonebasilica");
         symbolMap.put('R', "ship");
-        symbolMap.put('K', "black");//TODO change to rock face
+        symbolMap.put('K', "largestone");//TODO change to rock face
         symbolMap.put('X', "stonewall");
         symbolMap.put('b', "stonebasilica");
         symbolMap.put('M', "cavemouth");//TODO change to cavemouth
@@ -354,6 +364,11 @@ public class World extends JPanel{
         symbolMap.put('Z', "wormerfront");
         symbolMap.put('z', "shamanfront");
         symbolMap.put('x', "wurmfront");
+        symbolMap.put('a', "cavewall");
+        symbolMap.put(']', "stairupright");
+        symbolMap.put('[', "stairupleft");
+        symbolMap.put('}', "stairdownright");
+        symbolMap.put('{', "stairdownleft");
     }
     
     public void handlePlayerDeath(){
