@@ -121,7 +121,7 @@ public class SideBar extends JPanel{
         String armor = Integer.toString(player.getArmorLevel());
         String sword = Integer.toString(player.getSwordLevel());
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Old English Text MT", Font.BOLD, 50));
+        g.setFont(new Font(frame.FONT_NAME, Font.BOLD, 50));
         int pot;
         if ((pot = player.getPotionCount()) > 9999){
             int i = pot / 1000;

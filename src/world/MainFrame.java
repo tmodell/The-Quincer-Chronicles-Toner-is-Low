@@ -25,13 +25,15 @@ import tonerislow.Save;
 public class MainFrame extends JFrame{
     
     JPanel mainPanel;
-    //StartMenu start;
+    StartMenu start;
     
     World world;
     TextBox box;
     SideBar bar;
     
     Save save;
+    
+    static final String FONT_NAME = "Old English Text MT";
     
     static final boolean DEVELOPER_DEBUG = false;
     
@@ -40,7 +42,7 @@ public class MainFrame extends JFrame{
         
         this.save  = save;
         
-        //start = new StartMenu(this);
+        start = new StartMenu(this);
         
         mainPanel = new JPanel();
         world = new World(this);
@@ -82,7 +84,7 @@ public class MainFrame extends JFrame{
         box.setBounds(256,896,1664,184);
         bar.setBounds(0,0,256,1080);
         
-        getContentPane().add(mainPanel);
+        getContentPane().add(start);
         
 //        getContentPane().add(world, BorderLayout.CENTER);
 //        getContentPane().add(box, BorderLayout.SOUTH);
@@ -126,7 +128,8 @@ public class MainFrame extends JFrame{
             MusicController.stopAudio(1);
             MusicController.stopLooping();
             MusicController.changeMusic(2);
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException ex) {
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException | InterruptedException | NullPointerException ex) {
+            //ex.printStackTrace();
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         

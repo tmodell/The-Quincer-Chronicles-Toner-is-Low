@@ -5,10 +5,15 @@
  */
 package world;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 
 /**
@@ -16,51 +21,128 @@ import javax.swing.*;
  * @author albert.wilcox
  */
 public class StartMenu extends JPanel{
-    JButton start, exit, settings;
-    JLabel header;
+    JLabel start, credits, exit;
+    
+    JFrame frame;
+    
+    Image image = null;
     
     //World world;
     MainFrame mainFrame;
     public StartMenu(MainFrame frame){
-        setPreferredSize(new Dimension(1920, 1080));
-        start = new JButton("Start Game");
-        exit = new JButton("Exit Game");
-        settings  = new JButton("Settings");
-        header = new JLabel("Quincer Chronicles: Toner is Low");
-        header.setFont(new Font("", Font.BOLD, 30));
+        this.frame = frame;
         
-        this.mainFrame = frame;
+        this.image = new ImageIcon("src/world/lib/start.png").getImage();
         
-        start.addActionListener(new ActionListener(){
-           
+        start = new JLabel(new ImageIcon("src/world/lib/buttons/start.png"));
+        credits = new JLabel(new ImageIcon("src/world/lib/buttons/credits.png"));
+        exit = new JLabel(new ImageIcon("src/world/lib/buttons/exit.png"));
+        
+        start.setFont(new Font(MainFrame.FONT_NAME, Font.PLAIN, 72));
+        credits.setFont(new Font(MainFrame.FONT_NAME, Font.PLAIN, 72));
+        exit.setFont(new Font(MainFrame.FONT_NAME, Font.PLAIN, 72));
+        
+        start.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        start.addMouseListener(new MouseListener(){
+            Icon inactive = start.getIcon(), active = new ImageIcon("src/world/lib/buttons/startselected.png");
+            
             @Override
-            public void actionPerformed(ActionEvent e){
-                mainFrame.displayGame();
+            public void mouseClicked(MouseEvent e) {
+                frame.displayGame();
             }
-        });
-        exit.addActionListener(new ActionListener(){
-           
+
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                start.setIcon(active);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                start.setIcon(inactive);
+            }
+            
+        });
+        
+        credits.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        credits.addMouseListener(new MouseListener(){
+            Icon inactive = credits.getIcon(), active = new ImageIcon("src/world/lib/buttons/creditsselected.png");
+            
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                frame.dispose();
                 System.exit(0);
             }
-        });
-        settings.addActionListener(new ActionListener(){
-           
+
             @Override
-            public void actionPerformed(ActionEvent e){
-                try{
-                    Thread.sleep(5000);
-                }catch (InterruptedException ie){}
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                credits.setIcon(active);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                credits.setIcon(inactive);
+            }
+            
+        });
+        
+        exit.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        exit.addMouseListener(new MouseListener(){
+            Icon inactive = exit.getIcon(), active = new ImageIcon("src/world/lib/buttons/exitselected.png");
+            
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                frame.dispose();
                 System.exit(0);
             }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                exit.setIcon(active);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                exit.setIcon(inactive);
+            }
+            
         });
         
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(null);
         
-        add(header);
         add(start);
-        add(settings);
+        add(credits);
         add(exit);
+                
+        start.setBounds(1370, 500, 420, 56);
+        credits.setBounds(1513, 600, 277, 56);
+        exit.setBounds(1604, 700, 186, 56);
+        
+        repaint();
+    }
+    
+    
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        
+        g.drawImage(image, 0, 0, null);
     }
 }
