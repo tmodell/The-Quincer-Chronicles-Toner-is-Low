@@ -42,8 +42,8 @@ public class SoundFXController {
         changeFX(Sound);
     }
     
-    public static void effectTwo() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
-        Sound = new File("./lib/sound/fx/effectTwo.wav");
+    public static void mapMoveFX() throws UnsupportedAudioFileException, LineUnavailableException, IOException, MalformedURLException, InterruptedException {
+        Sound = new File("./lib/sound/fx/mapMoveOne.wav");
         changeFX(Sound);
     }
 
