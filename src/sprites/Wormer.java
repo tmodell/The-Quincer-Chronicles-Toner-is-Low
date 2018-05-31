@@ -162,6 +162,10 @@ public class Wormer extends Movable{
         return false;
     }
 
+    public void setHealth(int health){
+        this.health = health;
+    }
+    
     /**
      * This method will attack the user
      */
