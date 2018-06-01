@@ -157,7 +157,7 @@ public class StartMenu extends JPanel{
             JLabel integration = new JLabel("Integration - Albert Wilcox");
             JLabel npc = new JLabel("NPC Interactions - Earl Ranario and John Geronimo");
             JLabel combat = new JLabel("Combat - Sam Vasquez and Dzuy Nguyen");
-            JLabel world = new JLabel("World - Trever Rhodes and Jacob Burghgraef");
+            JLabel world = new JLabel("World - Trevor Rhodes and Jacob Burghgraef");
             JLabel sound = new JLabel("Sound - Jeevan Bhullar and Rajul Bains");
             
             JLabel art = new JLabel("Art Director - Cameron Scott");
